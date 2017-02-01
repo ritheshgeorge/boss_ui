@@ -1,0 +1,204 @@
+<div>
+    <div id="page-title">
+        <h2>Manage User</h2>
+
+    </div>
+
+    <div class="clear"></div>
+    <div class="table_top">
+
+        <div class="row">
+            <div class="col-md-8">
+
+                <select id="pageSize" name="pageSize" class="selectbx">
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="30">30</option>
+                    <option value="-1">All</option>
+                </select>
+                <label class="slt_label">Per page</label>
+
+                <div class="space_5"></div>
+
+            </div>
+            <div class="col-md-4">
+
+            </div>
+            <!--  <div class="col-md-4 tblsearch">
+          <div class="input-group stylish-input-group">
+                    <input type="text" class="form-control"  placeholder="Enter Keyword, Amount or Date(mm/dd/yyyy)" >
+                    <span class="input-group-addon">
+                        <button type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>  
+                    </span>
+                </div>
+                <div class="space_5"></div>
+
+     </div> -->
+        </div>
+
+        <div class="clear"></div>
+    </div>
+
+    <div class="example-box-wrapper">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Company</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                    <th><a ui-sref="addEditUser" class="btn btn-sm btn-primary pull-right" title="">Add New</a></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <input name="" type="text" class="frmtxtbx" placeholder="Search ID" style="width: 140px;">
+                    </td>
+                    <td>
+                        <input name="" type="text" class="frmtxtbx" placeholder="Search Name">
+                    </td>
+                    <td>
+                        <input name="" type="text" class="frmtxtbx" placeholder="Search Email">
+                    </td>
+                    <td>
+                        <input name="" type="text" class="frmtxtbx" placeholder="Search Company">
+                    </td>
+                    <td>
+
+                    </td>
+                    <td>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        User ID
+                    </td>
+                    <td>User Name</td>
+                    <td>user@gmail.com</td>
+                    <td>Company Name</td>
+                    <td>
+                        <div class="appro">
+                            <input id="active1" type="checkbox" name="checkbox" value="1" checked="checked">
+                            <label for="active1">Active</label>
+                        </div>
+                    </td>
+                    <td>
+                        <a ui-sref="addEditUser" class="btn btn-xs btn-primary" title="">Edit</a>
+                        <a href="#" class="btn btn-xs btn-info" title="" data-toggle="modal" data-target="#myModal">Permissions</a>
+                        <a href="#" class="btn btn-xs btn-danger" title="">Suspend</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        User ID
+                    </td>
+                    <td>User Name</td>
+                    <td>user@gmail.com</td>
+                    <td>Company Name</td>
+                    <td>
+                        <div class="appro">
+                            <input id="active2" type="checkbox" name="checkbox" value="1">
+                            <label for="active2">Active</label>
+                        </div>
+                    </td>
+                    <td>
+                        <a ui-sref="addEditUser" class="btn btn-xs btn-primary" title="">Edit</a>
+                        <a href="#" class="btn btn-xs btn-info" title="" data-toggle="modal" data-target="#myModal">Permissions</a>
+                        <a href="#" class="btn btn-xs btn-danger" title="">Suspend</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        User ID
+                    </td>
+                    <td>User Name</td>
+                    <td>user@gmail.com</td>
+                    <td>Company Name</td>
+                    <td>
+                        <div class="appro">
+                            <input id="active3" type="checkbox" name="checkbox" value="1">
+                            <label for="active3">Active</label>
+                        </div>
+
+                    </td>
+                    <td>
+                        <a ui-sref="addEditUser" class="btn btn-xs btn-primary" title="">Edit</a>
+                        <a href="#" class="btn btn-xs btn-info" title="" data-toggle="modal" data-target="#myModal">Permissions</a>
+                        <a href="#" class="btn btn-xs btn-danger" title="">Suspend</a>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="dataTables_info" id="datatable-tabletools_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
+            </div>
+            <div class="col-sm-6">
+                <div class="dataTables_paginate paging_bootstrap" id="datatable-tabletools_paginate">
+                    <ul class="pagination">
+                        <li class="previous disabled"><a href="#">Previous</a></li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li class="next"><a href="#">Next</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <div class="clear"></div>
+                    <div id="page-title">
+                        <h2> Access Permissions for - <span>User</span></h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 appro">
+                            <input id="bank_account" type="checkbox" name="checkbox" value="1">
+                            <label for="bank_account">Bank Accounts</label>
+                        </div>
+                        <div class="space_5"></div>
+                        <div class="col-sm-12 appro">
+                            <input id="payments4" type="checkbox" name="checkbox" value="1">
+                            <label for="payments4">Payments</label>
+                        </div>
+                        <div class="space_5"></div>
+                        <div class="col-sm-12 appro">
+                            <input id="Foreign" type="checkbox" name="checkbox" value="1">
+                            <label for="Foreign">Foreign Exchange</label>
+                        </div>
+                        <div class="space_5"></div>
+                        <div class="col-sm-12 appro">
+                            <input id="Trade" type="checkbox" name="checkbox" value="1">
+                            <label for="Trade">Trade Finance</label>
+                        </div>
+                        <div class="space_10"></div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
