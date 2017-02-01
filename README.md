@@ -13,3 +13,4 @@ Steps to run the Project:
 4. built the maven project using command clean install
 5. You can find the generated war file in target(../git/bossui/target) folder.
 6. Copy the war file in your tomcat web-apps folder.
+7. Access the project from browser http://localhost:port(usually 8080)/bossUI/
