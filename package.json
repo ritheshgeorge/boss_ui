@@ -1,0 +1,18 @@
+{
+  "name": "boss_ui",
+  "version": "1.0.0",
+  "description": "business operation support system ui project",
+  "main": "boss.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Swapstech Incorporated",
+  "license": "ISC",
+  "dependencies": {
+    "grunt": "^1.0.1"
+  },
+  "devDependencies": {
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-watch": "^1.0.0"
+  }
+}

@@ -1,0 +1,328 @@
+<div>
+
+    <div class="bankform">
+        <div class="bigrdo">
+            <input id="domestic1" type="radio" name="radio3" value="1" checked="checked">
+            <label for="domestic1">Domestic (US)</label>
+            <input id="international1" type="radio" name="radio3" value="1">
+            <label for="international1">International</label>
+        </div>
+        <div class="space_20"></div>
+        <h3 class="subhead">Make a Payment</h3>
+        <div class="space_20"></div>
+        <!-- Start Row  -->
+        <div class="row">
+            <div class="col-md-6">
+                <label class="frmlbl">From Account*</label>
+                <select class="frmtxtbx">
+                    <option>Select Account</option>
+                    <option>Business savings Account - 9875</option>
+                    <option>Account2</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <div class="account_balance">Account Balance: $60,000.00</div>
+            </div>
+        </div>
+    </div>
+    <!-- End Row  -->
+    <!-- Start Row  -->
+    <div class="row">
+        <div class="col-md-6">
+            <label class="frmlbl">To Account*</label>
+            <select class="frmtxtbx">
+                <option>Select Account</option>
+                <option>Business savings Account - 9875</option>
+                <option>Account2</option>
+            </select>
+
+        </div>
+        <div class="col-md-6">
+            <div class="space_10"></div>
+        </div>
+    </div>
+    <!-- End Row  -->
+    <!-- Start Row  -->
+    <div class="row">
+        <div class="col-md-6">
+            <label class="frmlbl">Amount*</label>
+            <input type="text" class="frmamtbx" placeholder="$" />
+
+        </div>
+        <div class="col-md-6">
+            <div class="space_10"></div>
+        </div>
+    </div>
+    <!-- End Row  -->
+    <!-- Start Row  -->
+    <div class="row">
+        <div class="col-md-6">
+            <label class="frmlbl">Delivery Method*</label>
+            <div class="smallrdo">
+                <div class="radio_block">
+                    <input id="Paybywire" type="radio" name="radio4" value="1" checked="checked">
+                    <label for="Paybywire">Pay by wire - Immidiatly $25</label>
+                </div>
+                <div class="radio_block">
+                    <input id="Paybyach" type="radio" name="radio4" value="1">
+                    <label for="Paybyach">Pay by ACH - 2 days $3</label>
+                </div>
+                <div class="radio_block">
+                    <input id="mailcheck" type="radio" name="radio4" value="1">
+                    <label for="mailcheck">Mail a check - 2days No Fees</label>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-6">
+            <div class="space_10"></div>
+        </div>
+    </div>
+    <!-- End Row  -->
+    <div class="fldrqd">
+        *These fields are required
+    </div>
+
+    <div class="space_20"></div>
+    <h3 class="subhead">Optional</h3>
+    <div class="space_10"></div>
+    <div class="optional">
+
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#panel1">Schedule this payment</a>
+            </h4>
+                </div>
+                <div id="panel1" class="panel-collapse collapse in">
+                    <div class="panel-body">
+
+                        <div class="smallrdo">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="col-md-4">
+                                        <input id="onetime" type="radio" name="radio8" value="1">
+                                        <label for="onetime">One time on</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="input-prepend input-group">
+                                            <span class="add-on input-group-addon">
+                                        <i class="glyph-icon icon-calendar"></i>
+                                    </span>
+                                            <input type="text" class="bootstrap-datepicker form-control" value="02/16/12" data-date-format="mm/dd/yy">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="space_10"></div>
+                                </div>
+
+                            </div>
+                            <div class="space_10"></div>
+                            <div class="row">
+                                <div class="col-md-12" id="recuringRow">
+                                    <div class="col-md-2">
+                                        <input id="repeat" type="radio" name="radio8" value="1">
+                                        <label for="repeat">Repeat every</label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <select class="frmtxtbx">
+                                            <option>Month</option>
+                                            <option>Week</option>
+                                        </select>
+                                    </div>
+									 <div class="col-md-1 txtsmall">
+                                        <label for="" class="rightlbl">On</label>
+                                    </div>
+									<div class="col-md-2">
+                                        <div class="input-prepend input-group">
+                                            <span class="add-on input-group-addon">
+                                        <i class="glyph-icon icon-calendar"></i>
+                                    </span>
+                                            <input type="text" class="bootstrap-datepicker form-control" value="02/16/12" data-date-format="mm/dd/yy">
+                                        </div>
+                                    </div>
+									<div class="col-md-1 txtsmall">
+                                        <label for="" class="rightlbl">Until</label>
+                                    </div>
+									<div class="col-md-2">
+                                        <select class="frmtxtbx">
+                                            <option>Choose one</option>
+                                            <option>I Cancel</option>
+                                            <option>Date</option>
+                                            <option>Year</option>
+                                            <option>Amount</option>
+                                        </select>
+                                    </div>
+									<div class="col-md-2">
+                                        <input name="" type="text" class="frmtxtbx">
+                                    </div>
+                                </div>
+								<!--
+								
+								
+								
+								
+                                <div class="col-md-6">
+                                    <div class="col-md-1">
+                                        <label for="" class="pull-right rightlbl">On</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="input-prepend input-group">
+                                            <span class="add-on input-group-addon">
+                                        <i class="glyph-icon icon-calendar"></i>
+                                    </span>
+                                            <input type="text" class="bootstrap-datepicker form-control" value="02/16/12" data-date-format="mm/dd/yy">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="space_10"></div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="col-md-4">
+                                        <label for="" class="pull-right rightlbl">Until</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <select class="frmtxtbx">
+                                            <option>Choose one</option>
+                                            <option>I Cancel</option>
+                                            <option>Date</option>
+                                            <option>Year</option>
+                                            <option>Amount</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="col-md-6">
+                                        <input name="" type="text" class="frmtxtbx">
+                                    </div>
+                                </div>
+
+                            </div> -->
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#panel2">Upload Payment documents</a>
+            </h4>
+                </div>
+                <div id="panel2" class="panel-collapse collapse">
+                    <div class="panel-body">
+
+                        <form>
+                            <input type="file" accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf" multiple>
+                        </form>
+                        <div class="space_5"></div>
+                        <div class="col-md-4 col-md-offset-4">
+                            <a href="#">View Uploaded details</a>
+                            <div class="clear"></div>
+                            <div class="space_20"></div>
+
+                            <label>Document Type :</label>
+                            <select class="frmtxtbx">
+                                <option>Invoice</option>
+                            </select>
+                            <div class="space_10"></div>
+                            <div class="documents">
+                                <input id="checkbox1" type="checkbox" name="checkbox" value="1">
+                                <label for="checkbox1">Email this Document to Payee</label>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#panel3">Message To Recipient </a>
+            </h4>
+                </div>
+                <div id="panel3" class="panel-collapse collapse">
+                    <div class="panel-body">
+
+                        <!-- Start Row  -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="frmlbl">Email Address</label>
+                                <input name="" type="text" class="frmtxtbx" placeholder="ex.test@test.com">
+
+                            </div>
+                            <div class="col-md-6">
+                                <label class="frmlbl">Mobile</label>
+                                <input name="" type="text" class="frmtxtbx" placeholder="(***)-***-****">
+                            </div>
+                        </div>
+                        <!-- End Row  -->
+                        <!-- Start Row  -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="frmlbl">Message</label>
+                                <textarea name="" cols="" rows="" class="frmtxtarea" placeholder="Message"></textarea>
+                            </div>
+                        </div>
+                        <!-- End Row  -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="space_20"></div>
+    <h3 class="subhead">Two Factor Authentication:</h3>
+    <div class="space_20"></div>
+    <div class="smallrdo">
+        <input id="email" type="radio" name="radio1" value="1" checked="checked">
+        <label for="email">Email</label>
+        <input id="mobile" type="radio" name="radio1" value="1">
+        <label for="mobile">Mobile</label>
+        <div class="verfication_text">Send two way authentication verfication code via Text <span>(***) - *** - 9104</span></div>
+        <div class="space_10"></div>
+        <button class="btn btn-sm btn-primary">SEND</button>
+    </div>
+    <div class="space_10"></div>
+    <div class="row">
+        <div class="col-md-3">
+            <label class="frmlbl">Enter Verification Code</label>
+            <input name="" type="text" class="frmtxtbx" placeholder="Verification Code">
+        </div>
+    </div>
+
+    <div class="space_10"></div>
+    <div class="btnouter">
+        <button class="btn btn-black">Cancel</button>
+        <button class="btn btn-primary">Confirm</button><a href="#">Add a New Payee</a>
+    </div>
+
+    <div class="clear"></div>
+	
+	<!-- WIDGETS -->
+		<script type="text/javascript" src="app/assets/themes/admin/imageuploadify.min.js"></script>
+		<!-- Theme switcher -->
+		<script type="text/javascript" src="app/assets/widgets/theme-switcher/themeswitcher.js"></script>
+		<script>
+            jQuery(function($) {
+                var $active = $('#accordion .panel-collapse.in').prev().addClass('active');
+                $active.find('a').prepend('<i class="glyphicon glyphicon-minus"></i>');
+                $('#accordion .panel-heading').not($active).find('a').prepend('<i class="glyphicon glyphicon-plus"></i>');
+                $('#accordion').on('show.bs.collapse', function(e) {
+                    $('#accordion .panel-heading.active').removeClass('active').find('.glyphicon').toggleClass('glyphicon-plus glyphicon-minus');
+                    $(e.target).prev().addClass('active').find('.glyphicon').toggleClass('glyphicon-plus glyphicon-minus');
+                })
+            });
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('input[type="file"]').imageuploadify();
+            })
+        </script>
+</div>
