@@ -1,0 +1,114 @@
+<div ng-controller="managePayeeCtrl">
+    <div id="page-title">
+        <h2>Manage All Payees for business operations</h2>
+    </div>
+    <div class="row">
+        <div class="example-box-wrapper payment_dash">
+            <ul class="list-group row list-group-icons">
+                <li class="col-md-3 active">
+                    <a href="#manage_payee" data-toggle="tab" class="list-group-item">
+                        <span>Manage Payees</span>
+                    </a>
+                </li>
+            </ul>
+            <!-- Start tab-content  -->
+            <div class="tab-content">
+                <!-- Start make-a-payment-panel  -->
+                <div class="tab-pane fade active in" id="manage_payee">
+                    <div class="clear">
+                    </div>
+                    <div class="table_top">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a ui-sref="addPayee" class="pull-right preview"><img src="app/assets/image-resources/addpayee.png" alt=""> Add New Payee</a>
+                                <div class="space_20"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+
+                                <label class="slt_label2">Show transfers for </label>
+                                <select id="pageSize" name="pageSize" class="selectbx2">
+                                    <option value="">Past 1 months</option>
+                                    <option value="">Past 3 months</option>
+                                    <option value="">Past 6 months</option>
+                                </select>
+
+                                <select id="pageSize" name="pageSize" class="selectbx" ng-model="tableViewby" ng-change="setTableItemsPerPage(tableViewby)">
+                                    <option value="10">10</option>
+                                    <option value="15">15</option>
+                                    <option value="30">30</option>
+                                    <option value="-1">All</option>
+                                </select>
+                                <label class="slt_label">Per page</label>
+
+                                <div class="space_5"></div>
+
+                            </div>
+                            <div class="col-md-4 tblsearch">
+                                <div class="input-group stylish-input-group">
+                                    <input type="text" class="form-control" ng-model="searchPaymentActivity" placeholder="Enter Keyword, Amount or Date(mm/dd/yyyy)">
+                                    <span class="input-group-addon">
+                        <button type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+                                    </span>
+                                </div>
+                                <div class="space_5"></div>
+
+                            </div>
+                        </div>
+
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="example-box-wrapper">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Bank</th>
+                                    <th>Account No</th>
+                                    <th>Date</th>
+                                    <th>Payment Ccy</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="payee in payeeList.slice(((tableCurrentPage-1)*tableItemsPerPage), ((tableCurrentPage)*tableItemsPerPage)) | filter:searchPaymentActivity track by $index">
+                                    <td>{{payee.name}}</td>
+                                    <td>{{payee.bank.name}}
+                                        <span class="adres">{{payee.bank.city}}, {{payee.bank.zipCode}}, {{payee.bank.Country}}</span>
+                                    </td>
+                                    <td>{{payee.accountNumber}} </td>
+                                    <td>{{payee.date | date}}</td>
+                                    <td>{{payee.paymentCcy}}</td>
+                                    <td>${{payee.amount}}</td>
+                                    <td>
+                                        <a href="#" class="btn btn-xs btn-success"  ng-if="payee.status=='Active'" title="">Active</a>
+										 <a href="#" class="btn btn-xs btn-warning" ng-if="payee.status!='Active'" title="">Inactive</a>
+
+
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="dataTables_info" id="datatable-tabletools_info" role="status" aria-live="polite">Showing page {{tableCurrentPage}} of {{totalTablePagesNumber}}</div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="dataTables_paginate paging_bootstrap" id="datatable-tabletools_paginate">
+                                    <pagination total-items="tableTotalItems" ng-model="tableCurrentPage" max-size="5" class="pagination-sm" boundary-links="true" rotate="false" num-pages="totalTablePagesNumber" items-per-page="tableItemsPerPage"></pagination>
+								</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

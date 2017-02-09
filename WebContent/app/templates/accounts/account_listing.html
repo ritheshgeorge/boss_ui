@@ -1,0 +1,65 @@
+<div ng-controller="accountSummaryCtrl">
+<div id="page-title">
+    <h2><b>Accounts and recent transactions of your business operations </b></h2>
+</div>
+<div class="row">
+
+    <div class="example-box-wrapper accounts_dash">
+        <ul class="list-group row list-group-icons">
+            <li class="col-md-4 active">
+                <a href="#accountSummary" data-toggle="tab" ng-click="showAccountStatement=false;viewAllAccountActivity=false;" class="list-group-item">
+                    <i class="glyph-icon icon-calculator"></i>
+                    <span>Account <br />Summary</span>
+                </a>
+            </li>
+           <li class="col-md-4">
+                <a href="#accountStatement" data-toggle="tab" ng-click="showAccountStatement=true;" class="list-group-item">
+                    <i class="glyph-icon font-primary icon-clipboard"></i>
+                    <span>Statements/ <br />Documents</span>
+                </a>
+            </li>
+
+        </ul>
+        <div class="tab-content" >
+            <div class="tab-pane fade active in" id="accountSummary" >
+                <div ng-if="!viewAllAccountActivity">
+				<div class="summary_outer" ng-repeat="account in accountList track by $index">
+                    <div class="col-md-5">
+                        <div class="bankdtl_header">
+                           {{account.accountNicName}} - {{account.accountNumber}}
+                            <span>{{account.accountName}}</span>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="bankdtl_header">
+                            {{account.accountCode}}
+                            <span>{{account.accountType}}</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="bankdtl_header">
+                            ${{account.accountBalance}}
+                            <span>Available Balance</span>
+                        </div>
+                    </div>
+                    <div class="col-md-2"><a  ng-click="viewAllActivityForThisAccount(account);" class="btn btn-default viewall_btn">View All</a></div>
+                    <div class="clear"></div>
+                </div>
+                
+                <div class="clear"></div>
+				</div>
+				<div ng-if="viewAllAccountActivity">
+					<div ng-include="'app/templates/accounts/account_activity.html'"></div>
+				</div>
+            </div>
+            <div class="tab-pane fade" id="accountStatement">
+				<div ng-if="showAccountStatement">
+					<div ng-include="'app/templates/accounts/account_statement.html'"></div>
+				</div>
+			</div>
+
+        </div>
+    </div>
+
+</div>
+</div>
