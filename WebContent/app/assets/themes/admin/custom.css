@@ -812,6 +812,9 @@ display: inline-block !important;
 
 
 
+.txtbxReq{
+	border:#e03838 1px solid;
+}
 .form-wizard > ul {
 					display: block;
 					}

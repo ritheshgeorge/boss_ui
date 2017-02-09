@@ -1,47 +1,181 @@
 <div>
-    <div id="page-title">
-        <h2>Add/Edit User</h2>
+    <script type="text/javascript" src="app/assets/widgets/input-switch/inputswitch.js"></script>
+    <script>
+        /* Input switch */
+		$(function() {
+            "use strict";
+            $('.input-switch').bootstrapSwitch();
+        });
+    </script>
+    <div class="panel">
+        <div class="panel-body">
+            <h3 class="title-hero">
+				Add/Edit User
+			</h3>
+            <div class="example-box-wrapper">
+                <form class="form-horizontal bordered-row" id="demo-form" data-parsley-validate="">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Name</label>
+                                <div class="col-sm-6">
+                                    <input type="text" placeholder="Required Field" required class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Company</label>
+                                <div class="col-sm-6">
+                                    <input type="text" data-parsley-type="url" placeholder="Company Name" required class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Email</label>
+                                <div class="col-sm-6">
+                                    <input type="text" placeholder="Email ID" required class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">User ID</label>
+                                <div class="col-sm-6">
+                                    <input type="text" placeholder="User ID" required class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Password</label>
+                                <div class="col-sm-6">
+                                    <input type="Password" placeholder="Password" required class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Confirm Password</label>
+                                <div class="col-sm-6">
+                                    <input type="Password" placeholder="Password" required class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="row">
+                        <div class="panel">
+                            <div class="panel-body">
+                                <h3 class="title-hero">
+							  Access Permissions for - User
+							</h3>
+
+                                <div class="example-box-wrapper">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <form class="form-horizontal bordered-row" id="demo-form" data-parsley-validate="">
+
+                                                <div class="dd acl_tree" id="nestable">
+                                                    <ol class="dd-list">
+                                                        <li class="dd-item" data-id="1">
+                                                            <button data-action="collapse" type="button">Collapse</button>
+                                                            <button data-action="expand" type="button" style="display: none;">Expand</button>
+                                                            <div class="dd-handle">Bank Accounts </div>
+                                                            <div class="dd-tgle">
+                                                                <input type="checkbox" data-on-color="primary" name="checkbox-example-1" class="input-switch" data-size="small" data-on-text="On" data-off-text="Off">
+                                                            </div>
+                                                            <ol class="dd-list">
+                                                                <li class="dd-item" data-id="3">
+                                                                    <div class="dd-handle">Bank Accounts 2</div>
+                                                                    <div class="dd-tgle">
+                                                                        <input type="checkbox" data-on-color="primary" name="checkbox-example-1" class="input-switch" data-size="small" data-on-text="On" data-off-text="Off">
+                                                                    </div>
+                                                                </li>
+                                                                <li class="dd-item" data-id="4">
+                                                                    <div class="dd-handle">Bank Accounts 3</div>
+                                                                    <div class="dd-tgle">
+                                                                        <input type="checkbox" data-on-color="primary" name="checkbox-example-1" class="input-switch" data-size="small" data-on-text="On" data-off-text="Off">
+                                                                    </div>
+                                                                </li>
+                                                            </ol>
+
+                                                        </li>
+                                                        <li class="dd-item" data-id="2">
+                                                            <button data-action="collapse" type="button">Collapse</button>
+                                                            <button data-action="expand" type="button" style="display: none;">Expand</button>
+                                                            <div class="dd-handle">Payments</div>
+                                                            <div class="dd-tgle">
+                                                                <input type="checkbox" data-on-color="primary" name="checkbox-example-1" class="input-switch" data-size="small" data-on-text="On" data-off-text="Off">
+                                                            </div>
+                                                            <ol class="dd-list">
+                                                                <li class="dd-item" data-id="3">
+                                                                    <div class="dd-handle">Payments 2</div>
+                                                                    <div class="dd-tgle">
+                                                                        <input type="checkbox" data-on-color="primary" name="checkbox-example-1" class="input-switch" data-size="small" data-on-text="On" data-off-text="Off">
+                                                                    </div>
+                                                                </li>
+                                                                <li class="dd-item" data-id="4">
+                                                                    <div class="dd-handle">Payments 3</div>
+                                                                    <div class="dd-tgle">
+                                                                        <input type="checkbox" data-on-color="primary" name="checkbox-example-1" class="input-switch" data-size="small" data-on-text="On" data-off-text="Off">
+                                                                    </div>
+                                                                </li>
+                                                            </ol>
+                                                        </li>
+                                                        <li class="dd-item" data-id="11">
+                                                            <button data-action="collapse" type="button">Collapse</button>
+                                                            <button data-action="expand" type="button" style="display: none;">Expand</button>
+                                                            <div class="dd-handle">Foreign Exchange</div>
+                                                            <div class="dd-tgle">
+                                                                <input type="checkbox" data-on-color="primary" name="checkbox-example-1" class="input-switch" data-size="small" data-on-text="On" data-off-text="Off">
+                                                            </div>
+                                                            <ol class="dd-list">
+                                                                <li class="dd-item" data-id="3">
+                                                                    <div class="dd-handle">Book Spot Trade</div>
+                                                                    <div class="dd-tgle">
+                                                                        <input type="checkbox" data-on-color="primary" name="checkbox-example-1" class="input-switch" data-size="small" data-on-text="On" data-off-text="Off">
+                                                                    </div>
+                                                                </li>
+                                                                <li class="dd-item" data-id="4">
+                                                                    <div class="dd-handle">Book Forward Trade</div>
+                                                                    <div class="dd-tgle">
+                                                                        <input type="checkbox" data-on-color="primary" name="checkbox-example-1" class="input-switch" data-size="small" data-on-text="On" data-off-text="Off">
+                                                                    </div>
+                                                                </li>
+                                                            </ol>
+
+                                                        </li>
+                                                        <li class="dd-item" data-id="12">
+                                                            <div class="dd-handle nosub">Trade Finance</div>
+                                                            <div class="dd-tgle">
+                                                                <input type="checkbox" data-on-color="primary" name="checkbox-example-1" class="input-switch" data-size="small" data-on-text="On" data-off-text="Off">
+                                                            </div>
+
+                                                        </li>
+                                                    </ol>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-default content-box text-center pad20A mrg25T">
+                        <button class="btn btn-md btn-default" ui-sref="manageUsers">Cancel</button>
+                        <button class="btn btn-md btn-primary">Add User</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-6">
-            <label class="frmlbl">Name</label>
-            <input name="" type="text" class="frmtxtbx" placeholder="User Name">
-
-        </div>
-        <div class="col-md-6">
-            <label class="frmlbl">Company</label>
-            <input name="" type="text" class="frmtxtbx" placeholder="Company Name">
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6">
-            <label class="frmlbl">Email</label>
-            <input name="" type="text" class="frmtxtbx" placeholder="Email ID">
-
-        </div>
-        <div class="col-md-6">
-            <label class="frmlbl">User ID</label>
-            <input name="" type="text" class="frmtxtbx" placeholder="User ID">
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <label class="frmlbl">Password</label>
-            <input name="" type="Password" class="frmtxtbx" placeholder="Password">
-
-        </div>
-        <div class="col-md-6">
-            <label class="frmlbl">Confirm Password</label>
-            <input name="" type="Password" class="frmtxtbx" placeholder="Password">
-        </div>
-    </div>
-
-    <div class="space_20"></div>
-    <div class="btnouter">
-        <button class="btn btn-black" ui-sref="manageUsers">Cancel</button>
-        <button class="btn btn-primary">Add User</button>
-    </div>
 </div>
