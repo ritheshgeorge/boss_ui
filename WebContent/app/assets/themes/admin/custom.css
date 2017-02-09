@@ -5,13 +5,13 @@
 .clear {
 	clear:both;
 }
-.accounts_dash {
+/*.accounts_dash {
 }
 .accounts_dash .list-group-icons .list-group-item  {
     border-color:#cccccc;
 	border-radius:8px;
 	 padding: 8px 0px;
-}
+}*/
 
 .payment_dash .list-group-icons .list-group-item  {
     border-color:#cccccc;
@@ -56,11 +56,11 @@
     padding: 15px 0px;
 }
 .summary_outer {
-	background-color:#eeeeee;
-	border:1px solid #d7d7d7;
-	-moz-border-radius:8px;
+	/*background-color:#eeeeee;*/
+	border:1px solid #dfe8f1;
+	/*-moz-border-radius:8px;
 	-webkit-border-radius:8px;
-	border-radius:8px;
+	border-radius:8px;*/
 	padding:25px 20px 15px 20px;
 	margin-bottom:20px;
 }
@@ -84,7 +84,7 @@
 	font-size:12px;
 	letter-spacing:1px;
 }
-.summary_outer:hover {
+/*.summary_outer:hover {
 	background-color:#80afbf;
 	border:1px solid #80afbf;	
 }
@@ -107,7 +107,7 @@
 	background-color:#dcf0f7 !important;
 	color:#3b6b7c !important;
 	border:none !important;
-}
+}*/
 .table_top {
 	margin:15px 0;
 	display: inline-block;
@@ -147,7 +147,7 @@
 }
 .tblsearch .stylish-input-group .input-group-addon{
     background-color: transparent !important; 
-	border:1px solid #CCC !important;
+	/*border:1px solid #CCC !important;*/
 	border-left:none !important;
 }
 .tblsearch .stylish-input-group .form-control{
@@ -276,8 +276,8 @@
   background-position : 0 -38px;
 }
 h3.subhead {
-	font-size: 24px;
-    font-weight: 600;
+	font-size: 19px;
+    font-weight: normal;
     text-align: left;
     color: #333333;
 	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -294,10 +294,18 @@ h3.subhead span {
 	-moz-border-radius:5px;
 	-webkit-border-radius:5px;
 	border-radius:5px;
-    padding: 5px 5px;
+    padding: 5px 10px;
     width: 100%;
     height: 40px;
     line-height: 40px;
+}
+.toprdosec {
+  width: 100%;
+  float: left;
+  padding-bottom: 10px;
+}
+.dftpayment .tab-pane {
+    padding: 15px 0;
 }
 .frmamtbx {
 	border:1px solid #d1d1d1;
@@ -355,12 +363,15 @@ h3.subhead span {
 	float: left;
     width: 100%;
 }
+.optional .checkbox label {
+     padding-left: 0px; 
+}
 .optional .panel {
     border:0;
 }
 .optional .panel-heading {
-    background-color:#ebebeb;
-	border:1px solid #d8d8d8;
+  background-color: #fff;
+  border: 1px solid #dfe8f1;
 	padding:0px;
 }
 .optional .accordion-toggle i {
@@ -395,6 +406,17 @@ h3.subhead span {
 }
 .optional .panel-group .panel-heading + .panel-collapse .panel-body {
 	border:0 !important;
+  padding: 20px 0px;
+}
+
+.smallrdo div.radio[id^='uniform-'] > span {
+    margin-top: 0px;
+}
+.smallrdo .form-horizontal .radio {
+   padding-top: 0px;
+}
+.form-horizontal .radio {
+   padding-top: 0px;
 }
 .optional .accordion-toggle i {
 	float:right;
@@ -411,9 +433,8 @@ h3.subhead span {
 	.account_balance {
 		    background-color: #EEE;
     padding: 5px 20px;
-    margin-top: 40px;
     display: block;
-    font-size: 17px;
+    font-size: 13px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
@@ -421,11 +442,12 @@ h3.subhead span {
 
 
 .imageuploadify {
-    border: 2px dashed #d2d2d2;
+    border: 1px dashed #d2d2d2;
     position: relative;
     min-width: 250px;
-    max-width: 386px;
-    margin: auto;
+    max-width: 408px;
+    min-height: 225px;
+    /*margin: auto;*/
     display: flex;
     padding: 10px;
     flex-direction: column;
@@ -460,7 +482,8 @@ h3.subhead span {
 }
 
 .imageuploadify .imageuploadify-images-list {
-    display: inline-block
+    display: inline-block;
+    margin-top: 15%;
 }
 
 .imageuploadify .imageuploadify-images-list i {
@@ -559,7 +582,7 @@ h3.subhead span {
 	letter-spacing:1px;
 }
 .rightlbl {
-	margin-top:10px;
+	margin-top:5px;
 }
 .loginlogo {
 	    margin: 0 auto 20px auto;
@@ -604,18 +627,7 @@ ul.paydls {
 	padding: 0;
     margin: 0px;
 }
-.input-group {
-    position: relative;
-    display: table;
-    width: 100%;
-    border-collapse: separate;
-    border-radius: 5px;
-    border: 1px solid #d1d1d1;
-    height: 40px;
-}
-.input-group .form-control {;
-    height: 40px;
-}
+
 .appro {
 	display: inline-block;
 }
@@ -624,12 +636,13 @@ ul.paydls {
   margin  : 0;
   padding : 0;
   opacity : 0;
+  cursor: pointer;
 }
 
 .appro input[type=checkbox]:not(old) + label {
       display: inline-block;
     margin-left: -25px;
-    padding-left: 25px;
+    padding-left: 27px;
     background: url(../../../assets/image-resources/approve.png) no-repeat 0 0;
     line-height: 22px;
     font-size: 12px;
@@ -639,11 +652,119 @@ ul.paydls {
 .appro input[type=checkbox]:not(old):checked + label{
   background-position : 0 -22px;
 }
+
+.appro .bootstrap-switch {
+  margin: 0 10px 5px 0;
+}
 .recurring {
 	color:#00bca4;
 }
 .btn-xs, .btn-group-xs > .btn {
     min-width: 48px;
+}
+#page-title h2 span {
+  color: #00ceb4;
+}
+.table-responsive {
+    /*overflow-x: inherit;*/
+}
+.nsearch_outer {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #EEE;
+  border:1px solid #DDD;
+}
+.nsearch_outer .frmlbl {
+    margin-top: 5px;
+}
+
+.fx_outer {
+  padding: 35px 20px;
+  border-radius: 8px;
+  background-color: #F2F2F2;
+  border:1px solid #DDD;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.fx_outer button, .fx_outer .btn  {
+  width: 100%;
+  max-width: 150px;
+}
+#page-sidebar.font-inverse #sidebar-menu li .sidebar-submenu ul li {
+    /* border-color: rgba(255, 255, 255, 0.07); */
+    border: none;
+}
+#page-sidebar.font-inverse #sidebar-menu li .sidebar-submenu {
+    /* border-color: rgba(255, 255, 255, 0.08); */
+    background: transparent;
+    border: none;
+}
+#page-sidebar.font-inverse #sidebar-menu li .sidebar-submenu ul li a:hover {
+    background: none;
+}
+.shbtn {
+  width: 100%;
+  float: left;
+}
+.shbtn button {
+  min-width: 85px;
+  margin: 0 5px 5px 0;
+}
+table .btn {
+  margin: 2px 0;
+}
+table.last tr td:last-child {
+   text-align: right;
+}
+.adnw {
+  margin-left: 5px;
+}
+.paytab {
+
+}
+.paytab .radio-inline {
+    padding-left: 0px;
+}
+ .paytab .radio-inline input[type="radio"] {
+    margin-left: 0px;
+}
+.dftpayment .example-box-wrapper .nav {
+  margin-bottom: 0px;
+
+}
+hr.line {
+    border-top:1px dashed #dfe8f1;
+}
+ label.perm_lbl {
+  margin-left: 10px;
+}
+.acl_tree .dd-handle {
+display: inline-block !important;
+    border: none;
+        max-width: 300px;
+    width: 100%;
+}
+.acl_tree ol .dd-handle {
+    font-size: 15px;
+    font-weight:bold;
+}
+.acl_tree ol .dd-handle.nosub {
+    margin-left: 26px;
+}
+.acl_tree ol ol .dd-handle {
+        max-width: 295px;
+    width: 100%;
+     font-size: 13px;
+    font-weight:normal;
+}
+.acl_tree .dd-item > button {
+    width: 25px;
+    height: 20px;
+    margin: 7px 0;
+    font-size: 25px;
+}
+.acl_tree .dd-tgle {
+display: inline-block !important;
 }
 @media only screen and (min-width: 1250px) {
 	
@@ -687,6 +808,10 @@ ul.paydls {
 @media only screen and (max-width: 767px) {
 	
 }
+
+
+
+
 .form-wizard > ul {
 					display: block;
 					}

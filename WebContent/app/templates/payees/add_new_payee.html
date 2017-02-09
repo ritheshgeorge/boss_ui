@@ -1,16 +1,22 @@
 <div ng-init="payee = 'domestic';">
-    <div class="bankform">
-        <div class="bigrdo">
+    <div class="example-box-wrapper">
+	<div id="form-wizard-1">
+		<ul class="nav nav-pills">
+            <li class="active"><a href="" data-toggle="tab" ng-click="payee='domestic';">Domestic (US)</a></li>
+            <li><a href="" data-toggle="tab" ng-click="payee='international';">International</a></li>
+        </ul>
+		<!--<div class="bigrdo">
             <input id="domestic" type="radio" name="radio" value="domestic" checked="checked" ng-model="payee">
             <label for="domestic">Domestic (US)</label>
             <input id="international" type="radio" name="radio" value="international" ng-model="payee">
             <label for="international">International</label>
-        </div>
+        </div> -->
         <div ng-if="payee=='domestic'">
 			<div ng-include="'app/templates/payees/add_new_payee_domestic.html'"></div>
 		</div>
 		<div ng-if="payee=='international'">
 			<div ng-include="'app/templates/payees/add_new_payee_international.html'"></div>
 		</div>
+    </div>
     </div>
 </div>
