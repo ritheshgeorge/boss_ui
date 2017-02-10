@@ -145,6 +145,32 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-md-6" ng-if="lookupBy=='Swift'">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="col-sm-4 control-label">Swift/ Bic*</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control" autocomplete="off" ng-model="bankBicSearch" name="bankBic" typeahead-on-select="payeeBankSR($item)" typeahead="bic.bic for bic in getBanks($viewValue) | limitTo:10" typeahead-loading="loadingPayeeBank" typeahead-editable="false" ng-required="true" ng-class="{'txtbxReq': (payeeForm.bankBic.$error.required && (payeeForm.bankBic.$touched || payeeForm.$submitted))}">
+                                                    <strong ng-show="loadingPayeeBank">Loading</strong>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" ng-if="payee.bank">
+                                        <div class="col-md-12">
+                                            <div class="form-group ">
+                                                <div class="col-sm-4"></div>
+                                                <div class="col-md-6">
+                                                    <p>Bank Name : {{payee.bank.institutionName}}</p>
+                                                    <p>Bank Address: {{payee.bank.streetAddress1}}</p>
+                                                    <p>Bank City : {{payee.bank.city}}</p>
+                                                    <p>Bank Zip : {{payee.bank.zipCode}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div ng-if="lookupBy=='Address'">
                                 <div class="row">
@@ -158,8 +184,8 @@
                                         </div>
                                     </div>
                                 </div>
-								<div class="row">
-									 <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="col-sm-4 control-label">Bank City*</label>
                                             <div class="col-sm-6">
@@ -168,7 +194,7 @@
                                             </div>
                                         </div>
                                     </div>
-								</div>
+                                </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -187,32 +213,6 @@
                                                     <option value="" disabled selected>Please Search Banks to Autopopulate BicCode</option>
                                                     <option ng-repeat="x in Banknames" value="{{x.bic}}">{{x.bic}}</option>
                                                 </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div ng-if="lookupBy=='Swift'">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-4 control-label">Swift/ Bic*</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" autocomplete="off" ng-model="bankBicSearch" name="bankBic" typeahead-on-select="payeeBankSR($item)" typeahead="bic.bic for bic in getBanks($viewValue) | limitTo:10" typeahead-loading="loadingPayeeBank" typeahead-editable="false" ng-required="true" ng-class="{'txtbxReq': (payeeForm.bankBic.$error.required && (payeeForm.bankBic.$touched || payeeForm.$submitted))}">
-                                                <strong ng-show="loadingPayeeBank">Loading</strong>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row" ng-if="payee.bank">
-                                    <div class="col-md-6">
-                                        <div class="form-group ">
-                                            <div class="col-sm-4"></div>
-                                            <div class="col-md-6">
-                                                <p>Bank Name : {{payee.bank.institutionName}}</p>
-                                                <p>Bank Address: {{payee.bank.streetAddress1}}</p>
-                                                <p>Bank City : {{payee.bank.city}}</p>
-                                                <p>Bank Zip : {{payee.bank.zipCode}}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -239,117 +239,107 @@
                             <!-- Intermediary Bank -->
                             <hr class="line" />
                             <div class="space_10"></div>
-							<div class="row">
-								<div class="form-group ">
-                                            <div class="col-sm-2"></div>
-								<div class="col-md-6">
-                                   <div class="checkbox checkbox-primary">
-										<label>
-											<input type="checkbox" id="inlineCheckbox110" class="custom-checkbox" ng-model="intermediaryBankDetails">
-											<span class="bold">Intermediary Bank Details (Optional)</span>
-										</label>
-									</div>
-									</div>
-                                </div>
-                            </div>
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							<div ng-if="intermediaryBankDetails">
-							
-							<div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="col-sm-4 control-label">Intermediary Bank LookUp*</label>
-                                        <div class="col-sm-6">
-                                            <select class="form-control" ng-model="Intermediary_lookupBy">
-                                                <option>Address</option>
-                                                <option>Swift</option>
-                                            </select>
+                            <div class="row">
+                                <div class="form-group ">
+                                    <div class="col-sm-2"></div>
+                                    <div class="col-md-6">
+                                        <div class="checkbox checkbox-primary">
+                                            <label>
+                                                <input type="checkbox" id="inlineCheckbox110" class="custom-checkbox" ng-model="intermediaryBankDetails">
+                                                <span class="bold">Intermediary Bank Details (Optional)</span>
+                                            </label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div ng-if="Intermediary_lookupBy=='Address'">
+                            <div ng-if="intermediaryBankDetails">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="col-sm-4 control-label">Bank Name*</label>
+                                            <label class="col-sm-4 control-label">Intermediary Bank LookUp*</label>
                                             <div class="col-sm-6">
-                                                <input type="text" class="form-control" ng-model="intermediary_bankName" name="intermediary_bankName" typeahead="bank as bank  for bank in getBanksNames($viewValue)" typeahead-loading="intermediary_loadingBankName" ng-class="{'txtbxReq': (payeeForm.intermediary_bankName.$error.required && (payeeForm.intermediary_bankName.$touched || payeeForm.$submitted))}" ng-required="true">
-                                                <strong ng-show="intermediary_loadingBankName">Loading</strong>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-								<div class="row">
-									 <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-4 control-label">Bank City*</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" ng-model="intermediary_bankCity" name="intermediary_bankCity" typeahead="city as city  for city in  getCities($viewValue)" typeahead-loading="intermediary_loadingCity" ng-class="{'txtbxReq': (payeeForm.intermediary_bankCity.$error.required && (payeeForm.intermediary_bankCity.$touched || payeeForm.$submitted))}" ng-required="true">
-                                                <strong ng-show="intermediary_loadingCity">Loading</strong>
-                                            </div>
-                                        </div>
-                                    </div>
-								</div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-4 control-label">Bank Branch*</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" ng-model="intermediary_bankBranch" name="intermediary_bankBranch" typeahead="bank as bank.streetAddress1 + ' ( ' +bank.city +' )'   for bank in  getBankBranch($viewValue)" typeahead-loading="intermediary_loadingBranch" ng-class="{'txtbxReq': (payeeForm.intermediary_bankBranch.$error.required && (payeeForm.intermediary_bankBranch.$touched || payeeForm.$submitted))}" ng-required="true">
-                                                <strong ng-show="intermediary_loadingBranch">Loading</strong>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-4 control-label">Swift/ Bic*</label>
-                                            <div class="col-sm-6">
-                                                <select class="form-control" ng-model="intermediary_bankBic" name="intermediary_bankBic" ng-class="{'txtbxReq': (payeeForm.intermediary_bankBic.$error.required && (payeeForm.intermediary_bankBic.$touched || payeeForm.$submitted))}" ng-required="true">
-                                                    <option value="" disabled selected>Please Search Banks to Autopopulate BicCode</option>
-                                                    <option ng-repeat="x in Banknames" value="{{x.bic}}">{{x.bic}}</option>
+                                                <select class="form-control" ng-model="Intermediary_lookupBy">
+                                                    <option>Address</option>
+                                                    <option>Swift</option>
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div ng-if="Intermediary_lookupBy=='Swift'">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="col-sm-4 control-label">Swift/ Bic*</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" autocomplete="off" ng-model="intermediary_bankBicSearch" name="intermediary_bankBic" typeahead-on-select="payeeIntermediaryBankSR($item)" typeahead="bic.bic for bic in getBanks($viewValue) | limitTo:10" typeahead-loading="intermediary_loadingPayeeBank" typeahead-editable="false" ng-required="true" ng-class="{'txtbxReq': (payeeForm.intermediary_bankBic.$error.required && (payeeForm.intermediary_bankBic.$touched || payeeForm.$submitted))}">
-                                                <strong ng-show="intermediary_loadingPayeeBank">Loading</strong>
+                                    <div class="col-md-6" ng-if="Intermediary_lookupBy=='Swift'">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="col-sm-4 control-label">Swift/ Bic*</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="form-control" autocomplete="off" ng-model="intermediary_bankBicSearch" name="intermediary_bankBic" typeahead-on-select="payeeIntermediaryBankSR($item)" typeahead="bic.bic for bic in getBanks($viewValue) | limitTo:10" typeahead-loading="intermediary_loadingPayeeBank" typeahead-editable="false" ng-required="true" ng-class="{'txtbxReq': (payeeForm.intermediary_bankBic.$error.required && (payeeForm.intermediary_bankBic.$touched || payeeForm.$submitted))}">
+                                                        <strong ng-show="intermediary_loadingPayeeBank">Loading</strong>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" ng-if="payee.intermediaryBank">
+                                            <div class="col-md-12">
+                                                <div class="form-group ">
+                                                    <div class="col-sm-4"></div>
+                                                    <div class="col-md-6">
+                                                        <p>Bank Name : {{payee.intermediaryBank.institutionName}}</p>
+                                                        <p>Bank Address: {{payee.intermediaryBank.streetAddress1}}</p>
+                                                        <p>Bank City : {{payee.intermediaryBank.city}}</p>
+                                                        <p>Bank Zip : {{payee.intermediaryBank.zipCode}}</p>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row" ng-if="payee.intermediaryBank">
-                                    <div class="col-md-6">
-                                        <div class="form-group ">
-                                            <div class="col-sm-4"></div>
-                                            <div class="col-md-6">
-                                                <p>Bank Name : {{payee.intermediaryBank.institutionName}}</p>
-                                                <p>Bank Address: {{payee.intermediaryBank.streetAddress1}}</p>
-                                                <p>Bank City : {{payee.intermediaryBank.city}}</p>
-                                                <p>Bank Zip : {{payee.intermediaryBank.zipCode}}</p>
+                                <div ng-if="Intermediary_lookupBy=='Address'">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="col-sm-4 control-label">Bank Name*</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control" ng-model="intermediary_bankName" name="intermediary_bankName" typeahead="bank as bank  for bank in getBanksNames($viewValue)" typeahead-loading="intermediary_loadingBankName" ng-class="{'txtbxReq': (payeeForm.intermediary_bankName.$error.required && (payeeForm.intermediary_bankName.$touched || payeeForm.$submitted))}" ng-required="true">
+                                                    <strong ng-show="intermediary_loadingBankName">Loading</strong>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="col-sm-4 control-label">Bank City*</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control" ng-model="intermediary_bankCity" name="intermediary_bankCity" typeahead="city as city  for city in  getCities($viewValue)" typeahead-loading="intermediary_loadingCity" ng-class="{'txtbxReq': (payeeForm.intermediary_bankCity.$error.required && (payeeForm.intermediary_bankCity.$touched || payeeForm.$submitted))}" ng-required="true">
+                                                    <strong ng-show="intermediary_loadingCity">Loading</strong>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="col-sm-4 control-label">Bank Branch*</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control" ng-model="intermediary_bankBranch" name="intermediary_bankBranch" typeahead="bank as bank.streetAddress1 + ' ( ' +bank.city +' )'   for bank in  getBankBranch($viewValue)" typeahead-loading="intermediary_loadingBranch" ng-class="{'txtbxReq': (payeeForm.intermediary_bankBranch.$error.required && (payeeForm.intermediary_bankBranch.$touched || payeeForm.$submitted))}" ng-required="true">
+                                                    <strong ng-show="intermediary_loadingBranch">Loading</strong>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="col-sm-4 control-label">Swift/ Bic*</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" ng-model="intermediary_bankBic" name="intermediary_bankBic" ng-class="{'txtbxReq': (payeeForm.intermediary_bankBic.$error.required && (payeeForm.intermediary_bankBic.$touched || payeeForm.$submitted))}" ng-required="true">
+                                                        <option value="" disabled selected>Please Search Banks to Autopopulate BicCode</option>
+                                                        <option ng-repeat="x in Banknames" value="{{x.bic}}">{{x.bic}}</option>
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-							</div>
-							<div class="bg-default content-box text-center pad20A mrg25T">
+                            <div class="bg-default content-box text-center pad20A mrg25T">
                                 <button class="btn btn-md btn-primary" type="submit" ng-click="addPayee()">Add Payee</button>
                             </div>
                         </form>
