@@ -1,95 +1,97 @@
 <div>
-	<div id="page-title">
-    <h2>Edit Payment</h2>
-
-</div>
-
-<div class="row">
-    <div class="col-md-6">
-        <label class="frmlbl">Status</label>
-        <select class="frmtxtbx" disabled="disabled">
-            <option>New</option>
-            <option>Status1</option>
-            <option>Status2</option>
-        </select>
-
-    </div>
-    <div class="col-md-6">
-
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-6">
-        <label class="frmlbl">From Account</label>
-        <select class="frmtxtbx" disabled="disabled">
-            <option>Business savings Account - 9875</option>
-            <option>Business savings Account - 9875</option>
-            <option>Account2</option>
-        </select>
-
-    </div>
-    <div class="col-md-6">
-        <label class="frmlbl">To Account</label>
-        <select class="frmtxtbx" disabled="disabled">
-            <option>LMN Corps</option>
-            <option>Business savings Account - 9875</option>
-            <option>Account2</option>
-        </select>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
-        <label class="frmlbl">Message</label>
-        <textarea name="" cols="" rows="" class="frmtxtarea" placeholder="Message"></textarea>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-6">
-        <label class="frmlbl">Amount</label>
-        <input name="" type="text" class="frmtxtbx" value="$ 40,000.00">
-
-    </div>
-    <div class="col-md-6">
-        <label class="frmlbl">Date</label>
-        <div class="input-prepend input-group">
-            <span class="add-on input-group-addon">
+    <div class="panel">
+        <div class="panel-body">
+            <h3 class="title-hero">
+          Edit Payment
+        </h3>
+            <div class="example-box-wrapper">
+                <form class="form-horizontal bordered-row" id="demo-form" data-parsley-validate="">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Status</label>
+                                <div class="col-sm-6">
+                                    <select class="form-control" disabled="disabled">
+                                        <option>New</option>
+                                        <option>Status1</option>
+                                        <option>Status2</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="space_10"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">From Account</label>
+                                <div class="col-sm-6">
+                                    <select class="form-control" disabled="disabled">
+                                        <option>Business savings Account - 9875</option>
+                                        <option>Business savings Account - 9875</option>
+                                        <option>Account2</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">To Account</label>
+                                <div class="col-sm-6">
+                                    <select class="form-control" disabled="disabled">
+                                        <option>LMN Corps</option>
+                                        <option>Business savings Account - 9875</option>
+                                        <option>Account2</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Amount</label>
+                                <div class="col-sm-6">
+                                    <input type="text" placeholder="" value="$ 40,000.00" required class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="" class="col-sm-3 control-label">Date</label>
+                                <div class="col-sm-6">
+                                    <div class="input-prepend input-group">
+                                        <span class="add-on input-group-addon">
                                         <i class="glyph-icon icon-calendar"></i>
                                     </span>
-            <input type="text" class="bootstrap-datepicker form-control" value="03/12/2016" data-date-format="mm/dd/yy">
-        </div>
-    </div>
-</div>
+                                        <input type="text" class="bootstrap-datepicker form-control" value="02/16/12" data-date-format="mm/dd/yy">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Message</label>
+                                <div class="col-sm-6">
+                                    <textarea name="" rows="3" class="form-control textarea-autosize"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="space_10"></div>
+                        </div>
 
-<div class="space_20"></div>
-<div class="btnouter">
-    <button class="btn btn-black">Cancel</button>
-    <button class="btn btn-primary">Save</button>
-</div>
-
-<div class="row" style="visibility:hidden; display:none;">
-    <div class="col-md-12">
-        <div class="panel">
-            <div class="panel-body">
-
-                <div class="example-box-wrapper">
-                    <div id="data-example-1" class="" style="width: 100%; height: 100px;"></div>
-                </div>
+                    </div>
+                    <div class="bg-default content-box text-center pad20A mrg25T">
+                        <a class="btn btn-md btn-default" ui-sref="makePayment">Cancel</a>
+                        <a class="btn btn-md btn-primary">Save</a>
+                    </div>
+                </form>
             </div>
         </div>
-
-        <div class="row">
-
-        </div>
-
-        <div class="content-box">
-
-            <div class="content-box-wrapper">
-                <div id="data-example-3" style="width: 100%; height: 100px;"></div>
-            </div>
-        </div>
-
     </div>
-
-</div>
 </div>
