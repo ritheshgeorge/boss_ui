@@ -1,332 +1,362 @@
-<!--<link rel="stylesheet" type="text/css" href="../assets/widgets/wizard/wizard.css">-->
-<script type="text/javascript" src="app/assets/widgets/wizard/wizard.js"></script>
-<script type="text/javascript" src="app/assets/widgets/wizard/wizard-demo.js"></script>
-<!-- Boostrap Tabs -->
-<script type="text/javascript" src="app/assets/widgets/tabs/tabs.js"></script>
-<div>
-    <div class="space_20"></div>
-    <h3 class="subhead">Add New <span>International</span> Payee</h3>
-    <div class="space_20"></div>
-    <div class="panel">
-        <div class="panel-body">
-            <!--<h3 class="title-hero">
-            Custom navigation
-        </h3> -->
-            <div class="example-box-wrapper">
-                <div id="form-wizard-2" class="form-wizard">
-                    <ul>
-                        <li>
-                            <a href="#custom-step-1" data-toggle="tab">
-                                <label class="wizard-step">1</label>
-                                <span class="wizard-description">
-                         Payee
-                         <!-- <small>Gather the user details</small> -->
-                      </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#custom-step-2" data-toggle="tab">
-                                <label class="wizard-step">2</label>
-                                <span class="wizard-description">
-                         Bank
-                         <!-- <small>Confirm contact details</small> -->
-                      </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#custom-step-3" data-toggle="tab">
-                                <label class="wizard-step">3</label>
-                                <span class="wizard-description">
-                         Other
-                         <!-- <small>Establish business description</small> -->
-                      </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#custom-step-4" data-toggle="tab">
-                                <label class="wizard-step">4</label>
-                                <span class="wizard-description">
-                         Confirm
-                         <!-- <small>Finish and send the email</small> -->
-                      </span>
-                            </a>
-                        </li>
-                    </ul>
-
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="custom-step-1">
-                            <div class="content-box">
-                                <h3 class="content-box-header bg-default">
-                                Payee Details
-                            </h3>
-                                <div class="content-box-wrapper">
-                                    <!-- Start Row  -->
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label class="frmlbl"> Recipient Type*</label>
-                                            <div class="smallrdo">
-                                                <input id="individual" type="radio" name="radio5" value="1" checked="checked">
-                                                <label for="individual">Individual</label>
-                                                <input id="business" type="radio" name="radio5" value="1">
-                                                <label for="business">Business</label>
+<script type="text/javascript" src="app/assets/widgets/uniform/uniform-demo.js"></script>
+<div class="tab-content" ng-controller="addNewInternationalPayeeCtrl">
+    <div class="tab-pane active">
+        <div class="content-box">
+            <div class="content-box-wrapper">
+                <div class="paytab">
+                    <div class="example-box-wrapper">
+                        <form class="form-horizontal bordered-row payeeForm" novalidate id="payeeForm" name="payeeForm">
+                            <h3 class="title-hero">
+								Add New International Payee
+							</h3>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">Recipient Type*</label>
+                                        <div class="col-sm-6">
+                                            <div class="radio-inline">
+                                                <label>
+                                                    <div class="radio" id="uniform-inlineRadio110">
+                                                        <span class="">
+															<input type="radio" class="custom-radio" name="recipientType" value="Individual" ng-model="payee.type"><i class="glyph-icon icon-circle"></i>
+														</span>
+                                                    </div>
+                                                    Individual
+                                                </label>
+                                            </div>
+                                            <div class="radio-inline">
+                                                <label>
+                                                    <div class="radio" id="uniform-inlineRadsio110">
+                                                        <span class="">
+															<input type="radio" class="custom-radio" name="recipientType" value="Business" ng-model="payee.type"><i class="glyph-icon icon-circle"></i>
+														</span>
+                                                    </div>
+                                                    Business
+                                                </label>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="space_10"></div>
-                                        </div>
                                     </div>
-                                    <!-- End Row  -->
-                                    <!-- Start Row  -->
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label class="frmlbl">Payee Name*</label>
-                                            <input name="" type="text" class="frmtxtbx">
-
-                                        </div>
-
-                                    </div>
-                                    <!-- End Row  -->
-                                    <!-- Start Row  -->
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label class="frmlbl">Address 1*</label>
-                                            <input name="" type="text" class="frmtxtbx">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label class="frmlbl">Address 2*</label>
-                                            <input name="" type="text" class="frmtxtbx">
-
-                                        </div>
-
-                                    </div>
-                                    <!-- End Row  -->
-                                    <!-- Start Row  -->
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label class="frmlbl">City*</label>
-                                            <input name="" type="text" class="frmtxtbx">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label class="frmlbl">State*</label>
-                                            <input name="" type="text" class="frmtxtbx">
-
-                                        </div>
-
-                                    </div>
-                                    <!-- End Row  -->
-                                    <!-- Start Row  -->
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label class="frmlbl">Postal Code*</label>
-                                            <input name="" type="text" class="frmtxtbx">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label class="frmlbl">Country*</label>
-                                            <input name="" type="text" class="frmtxtbx">
-
-                                        </div>
-
-                                    </div>
-                                    <!-- End Row  -->
-                                    <!-- Start Row  -->
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label class="frmlbl">Phone No*</label>
-                                            <input name="" type="text" class="frmtxtbx">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label class="frmlbl">Email*</label>
-                                            <input name="" type="text" class="frmtxtbx">
-
-                                        </div>
-                                    </div>
-                                    <!-- End Row  -->
-
+                                </div>
+                                <div class="col-md-6">
                                 </div>
                             </div>
-                        </div>
-                        <div class="tab-pane" id="custom-step-2">
-                            <div class="content-box">
-                                <h3 class="content-box-header bg-black">
-                                Payee Bank Details
-                            </h3>
-                                <div class="content-box-wrapper">
-                                    <!-- Start Row  -->
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label class="frmlbl">Country</label>
-                                            <input name="" type="text" class="frmtxtbx">
+                            <div class="space_10"></div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">Payee Name*</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" ng-model="payee.name" placeholder="Payee Name" name="payeeName" ng-class="{'txtbxReq': (payeeForm.payeeName.$error.required && (payeeForm.payeeName.$touched || payeeForm.$submitted))}" ng-required="true">
                                         </div>
-                                        <div class="col-md-6">
-                                            <label class="frmlbl">Ccy</label>
-                                            <input name="" type="text" class="frmtxtbx">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">Nickname*</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" ng-model="payee.nickName" placeholder="NickName" name="nickName" ng-class="{'txtbxReq': (payeeForm.nickName.$error.required && (payeeForm.nickName.$touched || payeeForm.$submitted))}" ng-required="true">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">Address1*</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" ng-model="payee.address1" placeholder="Address 1" name="address1" ng-class="{'txtbxReq': (payeeForm.address1.$error.required && (payeeForm.address1.$touched || payeeForm.$submitted))}" ng-required="true">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">Address2</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" placeholder="Address 2" class="form-control" ng-model="payee.address2">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">Country*</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" placeholder="Country" class="form-control" ng-model="payee.country" name="country" ng-class="{'txtbxReq': (payeeForm.country.$error.required && (payeeForm.country.$touched || payeeForm.$submitted))}" ng-required="true">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">State*</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" placeholder="State" class="form-control" ng-model="payee.state" name="state" ng-class="{'txtbxReq': (payeeForm.state.$error.required && (payeeForm.state.$touched || payeeForm.$submitted))}" ng-required="true">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">City*</label>
+                                        <div class="col-sm-6">
+                                            <div class="row">
+                                                <div class="col-sm-7">
+                                                    <input type="text" placeholder="City" class="form-control" ng-model="payee.city" name="city" ng-class="{'txtbxReq': (payeeForm.city.$error.required && (payeeForm.city.$touched || payeeForm.$submitted))}" ng-required="true">
+                                                </div>
+                                                <div class="col-sm-5">
+                                                    <input type="text" placeholder="Zip" class="form-control" ng-model="payee.zip" name="zip" ng-class="{'txtbxReq': (payeeForm.zip.$error.required && (payeeForm.zip.$touched || payeeForm.$submitted))}" ng-required="true">
+                                                </div>
+                                            </div>
 
                                         </div>
                                     </div>
-                                    <!-- End Row  -->
-                                    <!-- Start Row  -->
-                                    <div class="row form-horizontal">
-                                        <div class="col-md-6 ">
-                                            <label class="frmlbl">LookUp</label>
-                                            <select class="frmtxtbx">
-                                                <option>Choose State</option>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">Email Address*</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" placeholder="Email Address" class="form-control" ng-model="payee.email" name="email" ng-class="{'txtbxReq': (payeeForm.email.$error.required && (payeeForm.email.$touched || payeeForm.$submitted))}" ng-required="true">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">Phone Number*</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" placeholder="Phone Number" class="form-control" ng-model="payee.phoneNo" name="phoneNumber" ng-class="{'txtbxReq': (payeeForm.phoneNumber.$error.required && (payeeForm.phoneNumber.$touched || payeeForm.$submitted))}" ng-required="true">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="line" />
+                            <div class="space_10"></div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">LookUp*</label>
+                                        <div class="col-sm-6">
+                                            <select class="form-control" ng-model="lookupBy">
                                                 <option>Address</option>
                                                 <option>Swift</option>
-                                                <option>Country Specific</option>
                                             </select>
                                         </div>
                                     </div>
-                                    <!-- End Row  -->
-                                    <!-- Start Row  -->
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label class="frmlbl">Bank Name</label>
-                                            <input name="" type="text" class="frmtxtbx">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label class="frmlbl">Bank Address</label>
-                                            <input name="" type="text" class="frmtxtbx">
-                                        </div>
-                                    </div>
-                                    <!-- End Row  -->
-                                    <!-- Start Row  -->
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label class="frmlbl">Swift/ Bic</label>
-                                            <input name="" type="text" class="frmtxtbx">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label class="frmlbl">Bank City</label>
-                                            <input name="" type="text" class="frmtxtbx">
-                                        </div>
-                                    </div>
-                                    <!-- End Row  -->
-                                    <!-- Start Row  -->
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label class="frmlbl">Zipcode</label>
-                                            <input name="" type="text" class="frmtxtbx">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label class="frmlbl">Account Number</label>
-                                            <input name="" type="text" class="frmtxtbx">
-                                        </div>
-                                    </div>
-                                    <!-- End Row  -->
-									
-									
-                                    <!-- Intermediatary bank info -->
-                                    <div class="row">
-											<div class="optional">
-
-										<div class="panel-group" id="accordion">
-									<div class="panel panel-default">
-										<div class="panel-heading">
-											<h4 class="panel-title">
-										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#panel3">Intermediary Bank Info </a>
-									</h4>
-										</div>
-										<div id="panel3" class="panel-collapse collapse">
-											<div class="panel-body">
-
-												<!-- Start Row  -->
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label class="frmlbl">Country</label>
-                                                <input name="" type="text" class="frmtxtbx">
-                                            </div>
-                                        </div>
-                                        <!-- End Row  -->
-                                        <!-- Start Row  -->
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label class="frmlbl">Name</label>
-                                                <input name="" type="text" class="frmtxtbx">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="frmlbl">Address</label>
-                                                <input name="" type="text" class="frmtxtbx">
-                                            </div>
-                                        </div>
-                                        <!-- End Row  -->
-                                        <!-- Start Row  -->
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label class="frmlbl">City</label>
-                                                <input name="" type="text" class="frmtxtbx">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="frmlbl">Bic</label>
-                                                <input name="" type="text" class="frmtxtbx">
-                                            </div>
-                                        </div>
-                                        <!-- End Row  -->
-
-											</div>
-										</div>
-									</div>
-									</div>
-									</div>
-                                    </div>
-                                    <!-- end -->
-									
-									 
-									
-									
-									
-									
-									
                                 </div>
                             </div>
-                        </div>
-                        <div class="tab-pane" id="custom-step-3">
-                            <div class="content-box">
-                                <h3 class="content-box-header bg-green">
-                                Other Required Fields
-                            </h3>
-                                <div class="content-box-wrapper">
-                                    Country Specific fields populated
+                            <div ng-if="lookupBy=='Address'">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label">Bank Name*</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" ng-model="bankName" name="bankName" typeahead="bank as bank  for bank in getBanksNames($viewValue)" typeahead-loading="loadingBankName" ng-class="{'txtbxReq': (payeeForm.bankName.$error.required && (payeeForm.bankName.$touched || payeeForm.$submitted))}" ng-required="true">
+                                                <strong ng-show="loadingBankName">Loading</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+								<div class="row">
+									 <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label">Bank City*</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" ng-model="bankCity" name="bankCity" typeahead="city as city  for city in  getCities($viewValue)" typeahead-loading="loadingCity" ng-class="{'txtbxReq': (payeeForm.bankCity.$error.required && (payeeForm.bankCity.$touched || payeeForm.$submitted))}" ng-required="true">
+                                                <strong ng-show="loadingCity">Loading</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+								</div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label">Bank Branch*</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" ng-model="bankBranch" name="bankBranch" typeahead="bank as bank.streetAddress1 + ' ( ' +bank.city +' )'   for bank in  getBankBranch($viewValue)" typeahead-loading="loadingBranch" ng-class="{'txtbxReq': (payeeForm.bankBranch.$error.required && (payeeForm.bankBranch.$touched || payeeForm.$submitted))}" ng-required="true">
+                                                <strong ng-show="loadingBranch">Loading</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label">Swift/ Bic*</label>
+                                            <div class="col-sm-6">
+                                                <select class="form-control" ng-model="bankBic" name="bankBic" ng-class="{'txtbxReq': (payeeForm.bankBic.$error.required && (payeeForm.bankBic.$touched || payeeForm.$submitted))}" ng-required="true">
+                                                    <option value="" disabled selected>Please Search Banks to Autopopulate BicCode</option>
+                                                    <option ng-repeat="x in Banknames" value="{{x.bic}}">{{x.bic}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="tab-pane" id="custom-step-4">
-                            <div class="content-box">
-                                <h3 class="content-box-header bg-blue">
-                                Confirm
-                            </h3>
-                                <div class="content-box-wrapper">
-									<div class="row">
-                                    <div class="space_10"></div>
-                                    <div class="btnouter">
-                                        <button class="btn btn-black">Cancel</button>
-                                        <button class="btn btn-primary">Add Payee</button>
+                            <div ng-if="lookupBy=='Swift'">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label">Swift/ Bic*</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" autocomplete="off" ng-model="bankBicSearch" name="bankBic" typeahead-on-select="payeeBankSR($item)" typeahead="bic.bic for bic in getBanks($viewValue) | limitTo:10" typeahead-loading="loadingPayeeBank" typeahead-editable="false" ng-required="true" ng-class="{'txtbxReq': (payeeForm.bankBic.$error.required && (payeeForm.bankBic.$touched || payeeForm.$submitted))}">
+                                                <strong ng-show="loadingPayeeBank">Loading</strong>
+                                            </div>
+                                        </div>
                                     </div>
-									<div class="space_20"></div>
+                                </div>
+                                <div class="row" ng-if="payee.bank">
+                                    <div class="col-md-6">
+                                        <div class="form-group ">
+                                            <div class="col-sm-4"></div>
+                                            <div class="col-md-6">
+                                                <p>Bank Name : {{payee.bank.institutionName}}</p>
+                                                <p>Bank Address: {{payee.bank.streetAddress1}}</p>
+                                                <p>Bank City : {{payee.bank.city}}</p>
+                                                <p>Bank Zip : {{payee.bank.zipCode}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">Account Number*</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" ng-model="payee.accountNumber" name="accountNumber" ng-class="{'txtbxReq': (payeeForm.accountNumber.$error.required && (payeeForm.accountNumber.$touched || payeeForm.$submitted))}" ng-required="true">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">Re Enter Account Number*</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" ng-model="payee.reAccountNumber" name="reAccountNumber" ng-class="{'txtbxReq': (payeeForm.reAccountNumber.$error.required && (payeeForm.reAccountNumber.$touched || payeeForm.$submitted))}" ng-required="true">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Intermediary Bank -->
+                            <hr class="line" />
+                            <div class="space_10"></div>
+							<div class="row">
+								<div class="form-group ">
+                                            <div class="col-sm-2"></div>
+								<div class="col-md-6">
+                                   <div class="checkbox checkbox-primary">
+										<label>
+											<input type="checkbox" id="inlineCheckbox110" class="custom-checkbox" ng-model="intermediaryBankDetails">
+											<span class="bold">Intermediary Bank Details (Optional)</span>
+										</label>
+									</div>
 									</div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="pager">
-                            <div class="pull-right">
-                                <button class="btn btn-default button-next">
-                                    <i class="glyph-icon icon-arrow-right"></i>
-                                </button>
-                                <button class="btn btn-default button-last">
-                                    <i class="glyph-icon icon-chevron-right"></i>
-                                </button>
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							<div ng-if="intermediaryBankDetails">
+							
+							<div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">Intermediary Bank LookUp*</label>
+                                        <div class="col-sm-6">
+                                            <select class="form-control" ng-model="Intermediary_lookupBy">
+                                                <option>Address</option>
+                                                <option>Swift</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="pull-left">
-                                <button class="btn btn-default button-first">
-                                    <i class="glyph-icon icon-chevron-left"></i>
-                                </button>
-                                <button class="btn btn-default button-previous">
-                                    <i class="glyph-icon icon-arrow-left"></i>
-                                </button>
+                            <div ng-if="Intermediary_lookupBy=='Address'">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label">Bank Name*</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" ng-model="intermediary_bankName" name="intermediary_bankName" typeahead="bank as bank  for bank in getBanksNames($viewValue)" typeahead-loading="intermediary_loadingBankName" ng-class="{'txtbxReq': (payeeForm.intermediary_bankName.$error.required && (payeeForm.intermediary_bankName.$touched || payeeForm.$submitted))}" ng-required="true">
+                                                <strong ng-show="intermediary_loadingBankName">Loading</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+								<div class="row">
+									 <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label">Bank City*</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" ng-model="intermediary_bankCity" name="intermediary_bankCity" typeahead="city as city  for city in  getCities($viewValue)" typeahead-loading="intermediary_loadingCity" ng-class="{'txtbxReq': (payeeForm.intermediary_bankCity.$error.required && (payeeForm.intermediary_bankCity.$touched || payeeForm.$submitted))}" ng-required="true">
+                                                <strong ng-show="intermediary_loadingCity">Loading</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+								</div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label">Bank Branch*</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" ng-model="intermediary_bankBranch" name="intermediary_bankBranch" typeahead="bank as bank.streetAddress1 + ' ( ' +bank.city +' )'   for bank in  getBankBranch($viewValue)" typeahead-loading="intermediary_loadingBranch" ng-class="{'txtbxReq': (payeeForm.intermediary_bankBranch.$error.required && (payeeForm.intermediary_bankBranch.$touched || payeeForm.$submitted))}" ng-required="true">
+                                                <strong ng-show="intermediary_loadingBranch">Loading</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label">Swift/ Bic*</label>
+                                            <div class="col-sm-6">
+                                                <select class="form-control" ng-model="intermediary_bankBic" name="intermediary_bankBic" ng-class="{'txtbxReq': (payeeForm.intermediary_bankBic.$error.required && (payeeForm.intermediary_bankBic.$touched || payeeForm.$submitted))}" ng-required="true">
+                                                    <option value="" disabled selected>Please Search Banks to Autopopulate BicCode</option>
+                                                    <option ng-repeat="x in Banknames" value="{{x.bic}}">{{x.bic}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                            <div ng-if="Intermediary_lookupBy=='Swift'">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label">Swift/ Bic*</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" autocomplete="off" ng-model="intermediary_bankBicSearch" name="intermediary_bankBic" typeahead-on-select="payeeIntermediaryBankSR($item)" typeahead="bic.bic for bic in getBanks($viewValue) | limitTo:10" typeahead-loading="intermediary_loadingPayeeBank" typeahead-editable="false" ng-required="true" ng-class="{'txtbxReq': (payeeForm.intermediary_bankBic.$error.required && (payeeForm.intermediary_bankBic.$touched || payeeForm.$submitted))}">
+                                                <strong ng-show="intermediary_loadingPayeeBank">Loading</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" ng-if="payee.intermediaryBank">
+                                    <div class="col-md-6">
+                                        <div class="form-group ">
+                                            <div class="col-sm-4"></div>
+                                            <div class="col-md-6">
+                                                <p>Bank Name : {{payee.intermediaryBank.institutionName}}</p>
+                                                <p>Bank Address: {{payee.intermediaryBank.streetAddress1}}</p>
+                                                <p>Bank City : {{payee.intermediaryBank.city}}</p>
+                                                <p>Bank Zip : {{payee.intermediaryBank.zipCode}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+							</div>
+							<div class="bg-default content-box text-center pad20A mrg25T">
+                                <button class="btn btn-md btn-primary" type="submit" ng-click="addPayee()">Add Payee</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 </div>
