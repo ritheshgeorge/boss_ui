@@ -305,7 +305,7 @@ h3.subhead span {
   padding-bottom: 10px;
 }
 .dftpayment .tab-pane {
-    padding: 15px 0;
+    padding: 0px 0px 15px 0;
 }
 .frmamtbx {
 	border:1px solid #d1d1d1;
@@ -765,6 +765,11 @@ display: inline-block !important;
 }
 .acl_tree .dd-tgle {
 display: inline-block !important;
+}
+.popover-content .form-group label {
+    margin-bottom: 5px;
+    font-size: 12px;
+    font-weight: normal;
 }
 @media only screen and (min-width: 1250px) {
 	
