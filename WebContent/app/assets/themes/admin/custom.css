@@ -903,3 +903,6 @@ input.cmn-toggle-round:checked + label:after {
 .toggle-btn{
 	margin:-23px -36px 0px 53px;
 }
+.bold{
+	font-weight:bold;
+}
