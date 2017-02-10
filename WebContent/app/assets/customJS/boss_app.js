@@ -10,6 +10,14 @@ var app = angular.module('bossApp', ['ui.router','ngMessages' ,'ui.bootstrap','a
         url : '/payment',
         templateUrl: 'app/templates/payments/payments.html',
 	})
+	.state('makePayment.domestic',  {
+        url : '/domestic',
+        templateUrl: 'app/templates/payments/make_a_payment_domestic.html',
+	})
+	.state('makePayment.international',  {
+        url : '/international',
+        templateUrl: 'app/templates/payments/make_a_payment_international.html',
+	})
 	.state('editPayment',  {
         url : '/editPayment',
         templateUrl: 'app/templates/payments/edit_payment.html',
