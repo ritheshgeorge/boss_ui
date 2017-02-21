@@ -10,14 +10,6 @@ var app = angular.module('bossApp', ['ui.router','ngMessages' ,'ui.bootstrap','a
         url : '/payment',
         templateUrl: 'app/templates/payments/payments.html',
 	})
-	.state('makePayment.domestic',  {
-        url : '/domestic',
-        templateUrl: 'app/templates/payments/make_a_payment_domestic.html',
-	})
-	.state('makePayment.international',  {
-        url : '/international',
-        templateUrl: 'app/templates/payments/make_a_payment_international.html',
-	})
 	.state('editPayment',  {
         url : '/editPayment',
         templateUrl: 'app/templates/payments/edit_payment.html',
@@ -29,6 +21,14 @@ var app = angular.module('bossApp', ['ui.router','ngMessages' ,'ui.bootstrap','a
 	.state('addPayee',  {
         url : '/addPayee',
         templateUrl: 'app/templates/payees/payees.html',
+	})
+	.state('addPayee.domesticPayee',  {
+        url : '/domestionaPayee',
+        templateUrl: 'app/templates/payees/add_new_payee_domestic.html',
+	})
+	.state('addPayee.internationalPayee',  {
+        url : '/internationalPayee',
+        templateUrl: 'app/templates/payees/add_new_payee_international.html',
 	})
 	.state('managePayees',  {
         url : '/managePayees',

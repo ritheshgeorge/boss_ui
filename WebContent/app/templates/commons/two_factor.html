@@ -1,0 +1,46 @@
+
+<div>
+	<script type="text/javascript" src="app/assets/widgets/uniform/uniform-demo.js"></script>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="content-box" ng-init="twoFactor.method='text'">
+                <h3 class="content-box-header bg-primary">Two Factor Authentication:</h3>
+                <div class="content-box-wrapper">
+                    <div class="smallrdo" ng-if="!enterVerficationCode">
+                        <div class="radio-inline">
+                            <label>
+                                <div class="radio" id="uniform-inlineRadio110">
+									<span>
+									<input type="radio" ng-model="twoFactor.method" name="method" id="inlineRadio110" class="custom-radio" value="text">
+										<i class="glyph-icon icon-circle"></i>
+									</span>
+								</div>
+                                Mobile
+                            </label>
+                        </div>
+						<div class="radio-inline">
+                            <label>
+                                <div class="radio" id="uniform-inlineRadio110"><span><input type="radio" ng-model="twoFactor.method" name="method" id="inlineRadio110" class="custom-radio" value="email"><i class="glyph-icon icon-circle"></i></span></div>
+                                Email
+                            </label>
+                        </div>
+                        <div class="space_20"></div>
+                        <div class="verfication_text" ng-if="twoFactor.method=='text'">Send two way authentication verfication code via Text <span>(***) - *** - 9104</span></div>
+                        <div class="verfication_text" ng-if="twoFactor.method=='email'">Send two way authentication verfication code via Email <span>s****h@swapstech.com</span></div>
+                        <div class="space_10"></div>
+                        <button class="btn btn-sm btn-primary" ng-click="sendVerificationCode(twoFactor.method);">SEND</button>
+                    </div>
+                    <div class="row" ng-if="enterVerficationCode">
+                        <div class="col-md-12">
+                            <label class="frmlbl">Enter Verification Code</label>
+                            <input name="verificationPin" type="text" class="form-control" placeholder="Verification Code" ng-model="twoFactor.pin">
+                            <div class="space_10"></div>
+							<button class="btn btn-sm btn-primary" ng-click="verifyPin(twoFactor.pin);">Verfy</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
