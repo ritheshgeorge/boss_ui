@@ -297,7 +297,7 @@
                                         <div class="clear"></div>
 
                                         <div class="bg-default content-box text-center pad20A mrg25T">
-                                            <button ng-disabled="!pinVerified" class="btn btn-md btn-primary">Payment</button>
+                                            <button class="btn btn-md btn-primary" ng-disabled="!pinVerified" ng-click="makePayment();" type="submit" >Payment {{paymentForm.$submitted}}</button>
                                         </div>
                                     </form>
                                 </div>
