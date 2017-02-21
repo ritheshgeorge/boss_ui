@@ -1,12 +1,12 @@
-<div ng-init="displayAddNewPayeeScreen=true;">
+<div>
     <div id="page-title">
         <h2>Payments and recent transactions of your business operations</h2>
-	</div>
-	<div class="row dftpayment">
-		<div class="example-box-wrapper">
+    </div>
+    <div class="row dftpayment">
+        <div class="example-box-wrapper">
             <ul class="list-group row list-group-icons">
                 <li class="col-md-3 active">
-                    <a href="#add_new_payee" ng-click="displayAddNewPayeeScreen=true;" data-toggle="tab" class="list-group-item">
+                    <a href="#add_new_payee" data-toggle="tab" class="list-group-item">
                         <span>Add a Payee</span>
                     </a>
                 </li>
@@ -15,11 +15,19 @@
             <div class="tab-content">
                 <!-- Start make-a-payment-panel  -->
                 <div class="tab-pane fade active in" id="add_new_payee">
-					<div ng-if="displayAddNewPayeeScreen">
-                        <div ng-include="'app/templates/payees/add_new_payee.html'"></div>
+                    <div class="example-box-wrapper">
+                        <div id="form-wizard-1" ng-init="selectedTab='domestic'">
+                            <ul class="nav nav-pills">
+                                <li ng-class="{'active':selectedTab === 'domestic'}" ng-click="selectedTab = 'domestic'"><a ui-sref="addPayee.domesticPayee">Domestic (US)</a></li>
+                                <li ng-class="{'active':selectedTab === 'international'}" ng-click="selectedTab = 'international'"><a ui-sref="addPayee.internationalPayee">International</a></li>
+                            </ul>
+                            <div ui-view>
+								<div ng-include="'app/templates/payees/add_new_payee_domestic.html'"></div>
+							</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-	</div>
+    </div>
 </div>
