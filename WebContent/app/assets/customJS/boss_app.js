@@ -6,9 +6,33 @@ var app = angular.module('bossApp', ['ui.router','ngMessages' ,'ui.bootstrap','a
         url : '/accounts',
         templateUrl: 'app/templates/accounts/account_listing.html',
 	})
-	 .state('makePayment',  {
+	.state('makePayment',  {
         url : '/payment',
         templateUrl: 'app/templates/payments/payments.html',
+	})
+	.state('makePayment.makeAPayment',  {
+        url : '/newPayment',
+        templateUrl: 'app/templates/payments/make_a_payment.html',
+	})
+	 .state('makePayment.paymentActivity',  {
+        url : '/paymentActivity',
+        templateUrl: 'app/templates/payments/payment_activity.html',
+	})
+	 .state('makePayment.managePayees',  {
+        url : '/managePayees',
+        templateUrl: 'app/templates/payees/manage_payees.html',
+	})
+	 .state('makePayment.addAPayee',  {
+        url : '/addPayee',
+        templateUrl: 'app/templates/payees/payees.html',
+	})
+	.state('makePayment.addAPayee.domesticPayee',  {
+        url : '/domestionaPayee',
+        templateUrl: 'app/templates/payees/add_new_payee_domestic.html',
+	})
+	.state('makePayment.addAPayee.internationalPayee',  {
+        url : '/internationalPayee',
+        templateUrl: 'app/templates/payees/add_new_payee_international.html',
 	})
 	.state('editPayment',  {
         url : '/editPayment',
@@ -17,7 +41,7 @@ var app = angular.module('bossApp', ['ui.router','ngMessages' ,'ui.bootstrap','a
 	.state('editRecurringPayment',  {
         url : '/editRecurringPayment',
         templateUrl: 'app/templates/payments/edit_recurring_payment.html',
-	})
+	})/*
 	.state('addPayee',  {
         url : '/addPayee',
         templateUrl: 'app/templates/payees/payees.html',
@@ -29,11 +53,11 @@ var app = angular.module('bossApp', ['ui.router','ngMessages' ,'ui.bootstrap','a
 	.state('addPayee.internationalPayee',  {
         url : '/internationalPayee',
         templateUrl: 'app/templates/payees/add_new_payee_international.html',
-	})
+	}) 
 	.state('managePayees',  {
         url : '/managePayees',
         templateUrl: 'app/templates/payees/manage_payees.html',
-	})
+	})*/
 	.state('error',  {
         url : '/error',
         templateUrl: 'app/templates/404error.html',

@@ -1,5 +1,5 @@
 <div>
-    <div id="page-title">
+   <!-- <div id="page-title">
         <h2>Payments and recent transactions of your business operations</h2>
     </div>
     <div class="row dftpayment">
@@ -10,7 +10,7 @@
                         <span>Add a Payee</span>
                     </a>
                 </li>
-            </ul>
+            </ul> -->
             <!-- Start tab-content  -->
             <div class="tab-content">
                 <!-- Start make-a-payment-panel  -->
@@ -18,8 +18,12 @@
                     <div class="example-box-wrapper">
                         <div id="form-wizard-1" ng-init="selectedTab='domestic'">
                             <ul class="nav nav-pills">
-                                <li ng-class="{'active':selectedTab === 'domestic'}" ng-click="selectedTab = 'domestic'"><a ui-sref="addPayee.domesticPayee">Domestic (US)</a></li>
-                                <li ng-class="{'active':selectedTab === 'international'}" ng-click="selectedTab = 'international'"><a ui-sref="addPayee.internationalPayee">International</a></li>
+                                <li ng-class="{'active':selectedTab === 'domestic'}" ng-click="selectedTab = 'domestic'">
+									<a ui-sref="makePayment.addAPayee.domesticPayee">Domestic (US)</a>
+								</li>
+                                <li ng-class="{'active':selectedTab === 'international'}" ng-click="selectedTab = 'international'">
+									<a ui-sref="makePayment.addAPayee.internationalPayee">International</a>
+								</li>
                             </ul>
                             <div ui-view>
 								<div ng-include="'app/templates/payees/add_new_payee_domestic.html'"></div>
