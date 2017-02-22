@@ -1,6 +1,6 @@
 
 <div>
-	<script type="text/javascript" src="app/assets/widgets/uniform/uniform-demo.js"></script>
+	
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4">
@@ -36,7 +36,7 @@
                             <label class="frmlbl">Enter Verification Code</label>
                             <input name="verificationPin" type="text" class="form-control" placeholder="Verification Code" ng-model="twoFactor.pin">
                             <div class="space_10"></div>
-							<button class="btn btn-sm btn-primary" ng-click="verifyPin(twoFactor.pin);">Verfy</button>
+							<button class="btn btn-sm btn-primary" ng-click="verifyPin(twoFactor.pin)" ng-disabled="!twoFactor.pin">Verfy</button>
                         </div>
                     </div>
                 </div>
