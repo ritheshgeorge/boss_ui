@@ -1,14 +1,14 @@
 <script type="text/javascript" src="app/assets/widgets/uniform/uniform-demo.js"></script>
 <div class="tab-content" ng-controller="addNewPayeeCtrl">
    <div class="tab-pane active">
-        <div class="content-box">
+        <div class="content-box" ng-show="!confirmPayeeInfo">
 			<div class="content-box-wrapper">
                 <div class="paytab">
                     <div class="example-box-wrapper">
                         <form class="form-horizontal bordered-row payeeForm" novalidate id="payeeForm" name="payeeForm" >
-                            <h3 class="title-hero">
+                            <!--<h3 class="title-hero">
 								Add New Domestic Payee
-							</h3>
+							</h3>-->
 							<div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -172,15 +172,24 @@
                                     </div>
                                 </div>
                             </div>
-
+							<hr class="line" />
+							<div class="space_20"></div>
+							<div ng-include="'app/templates/commons/two_factor.html'"></div>
+							<div class="space_10"></div>
                             <div class="bg-default content-box text-center pad20A mrg25T">
-                                <button class="btn btn-md btn-primary" type="submit" ng-click="addPayee()">Add Payee</button>
+                                <button class="btn btn-md btn-primary" type="submit" ng-disabled="!pinVerified" ng-click="addPayee()">Add Payee</button>
                             </div>
                         </form>
                     </div>
+					
                 </div>
             </div>
         </div>
+		<div ng-if="confirmPayeeInfo">
+			<div ng-include="'app/templates/payees/payee_confirmation.html'"></div>
+		</div>
+		
+		
     </div>
 
 </div>

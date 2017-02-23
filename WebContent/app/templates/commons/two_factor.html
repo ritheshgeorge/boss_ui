@@ -1,7 +1,6 @@
 
 <div>
-	
-    <div class="row">
+	<div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4">
             <div class="content-box" ng-init="twoFactor.method='text'">
@@ -31,14 +30,19 @@
                         <div class="space_10"></div>
                         <button class="btn btn-sm btn-primary" ng-click="sendVerificationCode(twoFactor.method);">SEND</button>
                     </div>
-                    <div class="row" ng-if="enterVerficationCode">
+                    <div class="row" ng-if="enterVerficationCode && !pinVerified">
                         <div class="col-md-12">
                             <label class="frmlbl">Enter Verification Code</label>
                             <input name="verificationPin" type="text" class="form-control" placeholder="Verification Code" ng-model="twoFactor.pin">
                             <div class="space_10"></div>
 							<button class="btn btn-sm btn-primary" ng-click="verifyPin(twoFactor.pin)" ng-disabled="!twoFactor.pin">Verfy</button>
                         </div>
-                    </div>
+					</div>
+					<div class="row">
+						<div class="col-md-12" ng-if="pinVerified">
+							<label>Verified.</label>
+						</div>
+					</div>
                 </div>
             </div>
         </div>
