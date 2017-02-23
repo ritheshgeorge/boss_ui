@@ -1,6 +1,7 @@
 var app = angular.module('bossApp');
-app.controller('addNewPayeeCtrl', ['$scope', '$http', '$state','BankService', function($scope,$http,$state,BankService) {
+app.controller('addNewPayeeCtrl', ['$scope', '$http', '$state','BankService','$rootScope', function($scope,$http,$state,BankService,$rootScope) {
     $http.defaults.headers.post["Content-Type"] = "application/json";
+	$scope.confirmPayeeInfo = false;
 	$scope.lookupBy="Swift";
 	var payee = {
 		type : "Individual",
@@ -21,6 +22,7 @@ app.controller('addNewPayeeCtrl', ['$scope', '$http', '$state','BankService', fu
 	
 	$scope.addPayee = function(){
 		if(!$scope.payeeForm.$error.required){
+			$scope.confirmPayeeInfo = true;
 			console.log("Submiting payeeForm ....");
 			console.log($scope.payee);
 		}
@@ -59,8 +61,32 @@ app.controller('addNewPayeeCtrl', ['$scope', '$http', '$state','BankService', fu
 		return data.bankList;
     };
 	
-	
-	
+	/*
+	*  Cancel Adding payee
+	*/
+	$scope.cancelAddingPayee = function(){
+		$scope.confirmPayeeInfo = false;
+	}
+	/*
+	* Confirm payee and add
+	*/
+	$scope.confirmPayee = function(){
+		$state.go("makePayment.managePayees");
+	}
+	/**
+		Two-Factor
+	**/
+	$scope.sendVerificationCode = function(method){
+		console.log(method);
+		//service call
+		$scope.enterVerficationCode = true;
+		$scope.pendingVerification = true;
+	}
+	$scope.verifyPin = function(pin){
+		console.log(pin);
+		//service call
+		$scope.pinVerified = true;
+	}
 	
 	
 	
