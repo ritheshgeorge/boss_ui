@@ -1,9 +1,14 @@
 var app = angular.module('bossApp');
-app.controller('addNewInternationalPayeeCtrl', ['$scope', '$http', '$state','BankService', function($scope,$http,$state,BankService) {
+app.controller('addNewInternationalPayeeCtrl', ['$scope', '$http', '$state','BankService','$stateParams','PayeeNewEditService', function($scope,$http,$state,BankService,$stateParams,PayeeNewEditService) {
     $http.defaults.headers.post["Content-Type"] = "application/json";
 	$scope.lookupBy="Swift";
 	$scope.confirmPayeeInfo = false;
-	var payee = {
+	// This should be callBack Function Update once done with API
+	//PayeeNewEditService.newedit($stateParams.lcId).then(function(data) { console.log("Test Succesfull");});
+	if($stateParams.lcId != undefined){
+		$scope.payee = PayeeNewEditService.newedit();
+	}else{
+		var payee = {
 		type : "Individual",
 		name : "",
 		address1: "",
@@ -17,15 +22,15 @@ app.controller('addNewInternationalPayeeCtrl', ['$scope', '$http', '$state','Ban
 		bank: "",
 		accountNumber: "",
 		intermediaryBank: "",
-	};
-	$scope.payee = payee;
-	console.log($scope.payee);
-	
+		};
+		$scope.payee = payee;
+	}
 	$scope.addPayee = function(){
 		if(!$scope.payeeForm.$error.required){
 			$scope.confirmPayeeInfo = true;
 			console.log("Submiting payeeForm ....");
 			console.log($scope.payee);
+			console.log(JSON.stringify($scope.payee));
 		}
 	}
 	/*
