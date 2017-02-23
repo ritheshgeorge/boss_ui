@@ -148,7 +148,7 @@
                                             <div class="form-group">
                                                 <label class="col-sm-4 control-label">Swift/ Bic*</label>
                                                 <div class="col-sm-6">
-                                                    <input type="text" class="form-control" autocomplete="off" ng-model="bankBicSearch" name="bankBic" typeahead-on-select="payeeBankSR($item)" typeahead="bic.bic for bic in getBanks($viewValue) | limitTo:10" typeahead-loading="loadingPayeeBank" typeahead-editable="false" ng-required="true" ng-class="{'txtbxReq': (payeeForm.bankBic.$error.required && (payeeForm.bankBic.$touched || payeeForm.$submitted))}">
+                                                    <input type="text" class="form-control" autocomplete="off" ng-model="payee.bank.bic" name="bankBic" typeahead-on-select="payeeBankSR($item)" typeahead="bic.bic for bic in getBanks($viewValue) | limitTo:10" typeahead-loading="loadingPayeeBank" typeahead-editable="false" ng-required="true" ng-class="{'txtbxReq': (payeeForm.bankBic.$error.required && (payeeForm.bankBic.$touched || payeeForm.$submitted))}">
                                                     <strong ng-show="loadingPayeeBank">Loading</strong>
                                                 </div>
                                             </div>

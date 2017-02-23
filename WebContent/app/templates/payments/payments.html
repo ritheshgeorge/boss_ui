@@ -2,25 +2,25 @@
     <!--<div id="page-title">
         <h2>Payments and recent transactions of your business operations</h2>
 	</div> -->
-	<div class="row dftpayment" ng-init="selectedTab = 'makePayment'">
+	<div class="row dftpayment">
 		<div class="example-box-wrapper">
             <ul class="list-group row list-group-icons">
-                <li class="col-md-3" ng-class="{'active':selectedTab === 'makePayment'}" ng-click="selectedTab = 'makePayment'">
+                <li class="col-md-3" ng-class="{'active':containerClass =='makePayment'}" >
                     <a ui-sref="makePayment.makeAPayment" class="list-group-item">
-                        <span>Make a payment</span>
+                        <span>Make a payments</span>
                     </a>
                 </li>
-                <li class="col-md-3" ng-class="{'active':selectedTab === 'paymentActivity'}" ng-click="selectedTab = 'paymentActivity'">
+                <li class="col-md-3" ng-class="{'active':containerClass =='paymentActivity'}">
                     <a ui-sref="makePayment.paymentActivity" class="list-group-item">
                         <span>Payment Activity</span>
                     </a>
                 </li>
-				<li class="col-md-3" ng-class="{'active':selectedTab === 'managePayee'}" ng-click="selectedTab = 'managePayee'">
+				<li class="col-md-3" ng-class="{'active':containerClass =='managePayees'}">
                     <a ui-sref="makePayment.managePayees" class="list-group-item">
                         <span>Manage Payees</span>
                     </a>
                 </li>
-				<li class="col-md-3" ng-class="{'active':selectedTab === 'addPayee'}" ng-click="selectedTab = 'addPayee'">
+				<li class="col-md-3" ng-class="{'active':containerClass =='domesticPayee'||containerClass =='internationalPayee'}">
                     <a ui-sref="makePayment.addAPayee" class="list-group-item">
                         <span>Add a Payee</span>
                     </a>

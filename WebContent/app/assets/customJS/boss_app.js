@@ -9,30 +9,47 @@ var app = angular.module('bossApp', ['ui.router','ngMessages' ,'ui.bootstrap','a
 	.state('makePayment',  {
         url : '/payment',
         templateUrl: 'app/templates/payments/payments.html',
+		containerClass: 'makePayment',
 	})
 	.state('makePayment.makeAPayment',  {
         url : '/newPayment',
         templateUrl: 'app/templates/payments/make_a_payment.html',
+		containerClass: 'makePayment',
 	})
 	 .state('makePayment.paymentActivity',  {
         url : '/paymentActivity',
         templateUrl: 'app/templates/payments/payment_activity.html',
+		containerClass: 'paymentActivity',
 	})
 	 .state('makePayment.managePayees',  {
         url : '/managePayees',
         templateUrl: 'app/templates/payees/manage_payees.html',
+		containerClass: 'managePayees',
 	})
-	 .state('makePayment.addAPayee',  {
-        url : '/addPayee',
+	.state('makePayment.addAPayee',  {
+        url : '/addPayee', 
         templateUrl: 'app/templates/payees/payees.html',
+		containerClass: 'domesticPayee',
 	})
 	.state('makePayment.addAPayee.domesticPayee',  {
-        url : '/domestionaPayee',
+        url : '/domesticPayee',
         templateUrl: 'app/templates/payees/add_new_payee_domestic.html',
+		containerClass: 'domesticPayee',
 	})
 	.state('makePayment.addAPayee.internationalPayee',  {
         url : '/internationalPayee',
         templateUrl: 'app/templates/payees/add_new_payee_international.html',
+		containerClass: 'internationalPayee',
+	})
+	.state('makePayment.addAPayee.editDomesticPayee',  {
+        url : '/editDomesticPayee/:lcId',
+        templateUrl: 'app/templates/payees/add_new_payee_domestic.html',
+		containerClass: 'domesticPayee',
+	})
+	.state('makePayment.addAPayee.editInternationalPayee',  {
+        url : '/editInternationalPayee/:lcId',
+        templateUrl: 'app/templates/payees/add_new_payee_international.html',
+		containerClass: 'internationalPayee',
 	})
 	.state('editPayment',  {
         url : '/editPayment',
@@ -41,23 +58,7 @@ var app = angular.module('bossApp', ['ui.router','ngMessages' ,'ui.bootstrap','a
 	.state('editRecurringPayment',  {
         url : '/editRecurringPayment',
         templateUrl: 'app/templates/payments/edit_recurring_payment.html',
-	})/*
-	.state('addPayee',  {
-        url : '/addPayee',
-        templateUrl: 'app/templates/payees/payees.html',
 	})
-	.state('addPayee.domesticPayee',  {
-        url : '/domestionaPayee',
-        templateUrl: 'app/templates/payees/add_new_payee_domestic.html',
-	})
-	.state('addPayee.internationalPayee',  {
-        url : '/internationalPayee',
-        templateUrl: 'app/templates/payees/add_new_payee_international.html',
-	}) 
-	.state('managePayees',  {
-        url : '/managePayees',
-        templateUrl: 'app/templates/payees/manage_payees.html',
-	})*/
 	.state('error',  {
         url : '/error',
         templateUrl: 'app/templates/404error.html',
@@ -71,3 +72,11 @@ var app = angular.module('bossApp', ['ui.router','ngMessages' ,'ui.bootstrap','a
         templateUrl: 'app/templates/admin/add_edit_user.html',
 	})
 }]);
+/*
+*  containerClass is used to maintain the classes for ultimate userExperience and Easy to use.
+*/
+app.run(function($rootScope){
+  $rootScope.$on('$stateChangeSuccess',function(event, toState, toParams, fromState, fromParams){
+    $rootScope.containerClass = toState.containerClass;
+  });
+})

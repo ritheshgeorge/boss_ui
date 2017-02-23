@@ -129,7 +129,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-4 control-label">Routing Number*</label>
                                         <div class="col-sm-6">
-                                            <input type="text" placeholder="Routing Number" class="form-control" autocomplete="off" ng-model="bankBicSearch" name="abaNumber"  
+                                            <input type="text" placeholder="Routing Number" class="form-control" autocomplete="off" ng-model="payee.bank.bic" name="abaNumber"  
 											typeahead-on-select="payeeBankSR($item)" 
 											typeahead="bic.bic for bic in getBanks($viewValue) | limitTo:10" 
 											typeahead-loading="loadingPayeeBank" 
@@ -167,7 +167,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-4 control-label">Re-enter Account Number*</label>
                                         <div class="col-sm-6">
-                                            <input type="text" placeholder="Re-enter Account Number" class="form-control"ng-model="payee.reEnterAccountNumber" name="reAccountNumber" ng-class="{'txtbxReq': (payeeForm.reAccountNumber.$error.required && (payeeForm.reAccountNumber.$touched || payeeForm.$submitted))}" ng-required="true">
+                                            <input type="text" placeholder="Re-enter Account Number" class="form-control"ng-model="payee.reAccountNumber" name="reAccountNumber" ng-class="{'txtbxReq': (payeeForm.reAccountNumber.$error.required && (payeeForm.reAccountNumber.$touched || payeeForm.$submitted))}" ng-required="true">
                                         </div>
                                     </div>
                                 </div>
