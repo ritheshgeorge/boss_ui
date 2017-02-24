@@ -13,7 +13,7 @@
 	<div class="panel">
         <div class="panel-body">
             <h3 class="title-hero">
-									Users List
+									Schedule Payments
 								</h3>
             <div class="example-box-wrapper">
                 <div id="datatable-tabletools_wrapper" class="dataTables_wrapper form-inline no-footer">
@@ -91,103 +91,86 @@
             </div>
         </div>
     </div>
-	<!--
-	<div class="clear"></div>
-    <div class="table_top">
-        <div class="row">
-            <div class="col-md-12">
-                <a href="#" class="pull-right preview"><img src="app/assets/image-resources/pdf.png" alt=""> Preview / Print statement</a>
-                <div class="space_20"></div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-8">
+</div>
 
-                <label class="slt_label2">Show transfers for </label>
-                <select id="pageSize" name="pageSize" class="selectbx2">
-                    <option value="">Past 1 months</option>
-                    <option value="">Past 3 months</option>
-                    <option value="">Past 6 months</option>
-                </select>
+<!-- Recent Payment Section -->
+<div class="tab-pane active" id="tab-example-2">
+	<div class="panel">
+        <div class="panel-body">
+            <h3 class="title-hero">
+									Recent Payments
+								</h3>
+            <div class="example-box-wrapper">
+                <div id="datatable-tabletools_wrapper" class="dataTables_wrapper form-inline no-footer">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="dataTables_length" id="datatable-tabletools_length">
+                                <label>
+                                    <select name="datatable-tabletools_length" ng-model="recentTableViewby" ng-change="setRecentPaymentListTableItemsPerPage(recentTableViewby)" class="form-control">
+                                        <option value="5">5</option>
+                                        <option value="10">10</option>
+                                        <option value="25">25</option>
+                                        <option value="50">50</option>
+                                    </select> records per page</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <!--<div id="btn-div" class="pull-right adnw">
+                                <button class="btn btn-default"> Add New</button>
+                            </div> -->
+                            <div id="datatable-tabletools_filter" class="dataTables_filter">
+                                <label>
+                                    <input type="search" class="form-control" placeholder="Search..." ng-model="searchRecentPaymentActivity">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <table id="datatable-tabletools" class="table table-striped table-bordered responsive no-wrap datatable-tabletools dataTable no-footer dtr-inline" cellspacing="0" width="100%" role="grid" aria-describedby="datatable-tabletools_info" style="width: 100%;">
 
-                <select id="pageSize" name="pageSize" class="selectbx" >
-                    <option value="10">10</option>
-                    <option value="15">15</option>
-                    <option value="30">30</option>
-                    <option value="-1">All</option>
-                </select>
-                <label class="slt_label">Per page</label>
-
-                <div class="space_5"></div>
-
-            </div>
-            <div class="col-md-4 tblsearch">
-                <div class="input-group stylish-input-group">
-                    <input type="text" ng-model="searchPaymentActivity" class="form-control" placeholder="Enter Keyword, Amount or Date(mm/dd/yyyy)">
-                    <span class="input-group-addon">
-                        <button type="submit">
-                            <span class="glyphicon glyphicon-search"></span>
-                    </button>
-                    </span>
-                </div>
-                <div class="space_5"></div>
-
-            </div>
-        </div>
-
-        <div class="clear"></div>
-    </div>
-
-    <div class="example-box-wrapper">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Transaction #</th>
-                    <th>Payment Date</th>
-                    <th>From</th>
-                    <th>To</th>
-                    <th>Amount</th>
-					<th>Status</th>
-                    <th>Actions</th>
-
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="activity in paymentActivityList.slice(((tableCurrentPage-1)*tableItemsPerPage), ((tableCurrentPage)*tableItemsPerPage)) | filter:searchPaymentActivity track by $index">
-                    <td>{{activity.transactionNumber}}</td>
-                    <td>{{activity.sendDate | date}}</td>
-                    <td>{{activity.fromAccount}}</td>
-                    <td>{{activity.toAccount}}</td>
-                    <td>{{activity.ccy}} {{activity.amount}}</td>
-                    <td>
-						<span ng-if="activity.isRecurring==false">{{activity.status}}</span>
-						<span ng-if="activity.isRecurring==true">{{activity.status}} <i class="glyph-icon icon-repeat" title="Recurring Payment"></i></span>
-					
-					</td>
-                    <td>
-						<a ui-sref="editPayment" class="btn btn-xs btn-primary" title="Edit Payment" ng-if="activity.isRecurring==false">Edit {{$index}}</a>
-						<a ui-sref="editRecurringPayment" class="btn btn-xs btn-primary" title="Edit Recurring Payment" ng-if="activity.isRecurring==true"><i class="glyph-icon icon-repeat" title="Recurring Payment"  ></i> Edit</a>
-						<div class="toggle-btn">
-							<div class="switch">
-								<input id="cmn-toggle-{{$index}}" class="cmn-toggle cmn-toggle-round" type="checkbox" ng-click="">
-								<label for="cmn-toggle-{{$index}}"></label>
-							  </div>
-							  </div>
-						
-					</td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="dataTables_info" id="datatable-tabletools_info" role="status" aria-live="polite">Showing page {{tableCurrentPage}} of {{totalTablePagesNumber}}</div>
-            </div>
-            <div class="col-sm-6">
-                <div class="dataTables_paginate paging_bootstrap" id="datatable-tabletools_paginate">
-                    <pagination total-items="tableTotalItems" ng-model="tableCurrentPage" max-size="5" class="pagination-sm" boundary-links="true" rotate="false" num-pages="totalTablePagesNumber" items-per-page="tableItemsPerPage"></pagination>
+                        <thead>
+                            <tr role="row">
+                                <th>Transaction #</th>
+								<th>Payment Date</th>
+								<th>From</th>
+								<th>To</th>
+								<th>Amount</th>
+								<th>Status</th>
+                            </tr>
+                        </thead>
+						<tbody>
+							<tr role="row" class="odd" ng-repeat="activity in recentPaymentActivityList.slice(((recentTableCurrentPage-1)*recentTableItemsPerPage), ((recentTableCurrentPage)*recentTableItemsPerPage)) | filter:searchRecentPaymentActivity track by $index">
+                                <td>{{activity.transactionNumber}}</td>
+								<td>{{activity.sendDate | date}}</td>
+								<td>{{activity.fromAccount}}</td>
+								<td>{{activity.toAccount}}</td>
+								<td>{{activity.ccy}} {{activity.amount}}</td>
+								<td>
+									<span ng-if="activity.isRecurring==false">{{activity.status}}</span>
+									<span ng-if="activity.isRecurring==true">{{activity.status}} <i class="glyph-icon icon-repeat" title="Recurring Payment"></i></span>
+								
+								</td>
+							</tr>
+                        </tbody>
+                    </table>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="dataTables_info" id="datatable-tabletools_info" role="status" aria-live="polite">Showing page {{recentTableCurrentPage}} of {{recentTotalTablePagesNumber}}</div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="dataTables_paginate paging_bootstrap" id="datatable-tabletools_paginate">
+                                <pagination total-items="recentTableTotalItems" ng-model="recentTableCurrentPage" max-size="5" class="pagination-sm" boundary-links="true" rotate="false" num-pages="recentTotalTablePagesNumber" items-per-page="recentTableItemsPerPage"></pagination>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
- -->
+</div>
+
+
+
+
+
+
 </div>
