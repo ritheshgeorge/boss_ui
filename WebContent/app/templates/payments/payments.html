@@ -5,17 +5,17 @@
 	<div class="row dftpayment">
 		<div class="example-box-wrapper">
             <ul class="list-group row list-group-icons">
-                <li class="col-md-3" ng-class="{'active':containerClass =='makePayment'}" >
-                    <a ui-sref="makePayment.makeAPayment" class="list-group-item">
-                        <span>Make a payments</span>
-                    </a>
-                </li>
                 <li class="col-md-3" ng-class="{'active':containerClass =='paymentActivity'}">
                     <a ui-sref="makePayment.paymentActivity" class="list-group-item">
                         <span>Payment Activity</span>
                     </a>
                 </li>
-				<li class="col-md-3" ng-class="{'active':containerClass =='managePayees'}">
+				<li class="col-md-3" ng-class="{'active':containerClass =='makePayment'}" >
+                    <a ui-sref="makePayment.makeAPayment" class="list-group-item">
+                        <span>Make a payments</span>
+                    </a>
+                </li>
+                <li class="col-md-3" ng-class="{'active':containerClass =='managePayees'}">
                     <a ui-sref="makePayment.managePayees" class="list-group-item">
                         <span>Manage Payees</span>
                     </a>
@@ -29,7 +29,7 @@
             <!-- Start tab-content  -->
             <div class="tab-content">
 			    <div ui-view>
-					<div ng-include="'app/templates/payments/make_a_payment.html'"></div>
+					<div ng-include="'app/templates/payments/payment_activity.html'"></div>
 				</div>
             </div>
         </div>

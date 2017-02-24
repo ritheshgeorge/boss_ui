@@ -9,7 +9,7 @@ var app = angular.module('bossApp', ['ui.router','ngMessages' ,'ui.bootstrap','a
 	.state('makePayment',  {
         url : '/payment',
         templateUrl: 'app/templates/payments/payments.html',
-		containerClass: 'makePayment',
+		containerClass: 'paymentActivity',
 	})
 	.state('makePayment.makeAPayment',  {
         url : '/newPayment',
@@ -51,13 +51,15 @@ var app = angular.module('bossApp', ['ui.router','ngMessages' ,'ui.bootstrap','a
         templateUrl: 'app/templates/payees/add_new_payee_international.html',
 		containerClass: 'internationalPayee',
 	})
-	.state('editPayment',  {
-        url : '/editPayment',
+	.state('makePayment.editPayment',  {
+        url : '/editPayment/:paymentId',
         templateUrl: 'app/templates/payments/edit_payment.html',
+		containerClass: 'paymentActivity',
 	})
-	.state('editRecurringPayment',  {
-        url : '/editRecurringPayment',
+	.state('makePayment.editRecurringPayment',  {
+        url : '/editRecurringPayment/:paymentId',
         templateUrl: 'app/templates/payments/edit_recurring_payment.html',
+		containerClass: 'paymentActivity',
 	})
 	.state('error',  {
         url : '/error',

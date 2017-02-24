@@ -1,4 +1,4 @@
-<script type="text/javascript" src="app/assets/widgets/datepicker/datepicker.js"></script>
+<!--script type="text/javascript" src="app/assets/widgets/datepicker/datepicker.js"></script>
 	<script type="text/javascript">
 		/* Datepicker bootstrap */
 
@@ -9,16 +9,13 @@
 		});
 
 	</script>
-<!-- jQueryUI Datepicker -->
+<!-- jQueryUI Datepicker --
 <script type="text/javascript" src="app/assets/widgets/datepicker-ui/datepicker.js"></script>
-<script type="text/javascript" src="app/assets/widgets/datepicker-ui/datepicker-demo.js"></script>
-<div ng-init="thisSelected=true">
+<script type="text/javascript" src="app/assets/widgets/datepicker-ui/datepicker-demo.js"></script> -->
+
+<div>
     <div class="example-box-wrapper">
         <div id="form-wizard-3">
-            <!--<ul class="nav nav-pills">
-                <li ng-class="{'active':thisSelected}"><a ui-sref="makePayment.domestic"  ng-click="thisSelected=true">Domestic (US)</a></li>
-                <li ng-class="{'active':!thisSelected}"><a ui-sref="makePayment.international"ng-click="thisSelected=false">International</a></li>
-            </ul>-->
             <div class="tab-content">
                 <script type="text/javascript" src="app/assets/widgets/uniform/uniform-demo.js"></script>
                 <div class="tab-pane active" ng-controller="paymentCtrl">
@@ -35,16 +32,16 @@
                                                     <div class="form-group">
                                                         <label class="col-sm-4 control-label">From Account*</label>
                                                         <div class="col-sm-6">
-                                                            <select class="form-control" ng-model="payment.bankAccount" name="bankAccount" ng-class="{'txtbxReq': (paymentForm.bankAccount.$error.required && (paymentForm.bankAccount.$touched || paymentForm.$submitted))}" ng-required="true" ng-options="account.accountName for account in accountList track by account.id">
+                                                            <select class="form-control" ng-model="bankAccount" name="bankAccount" ng-class="{'txtbxReq': (paymentForm.bankAccount.$error.required && (paymentForm.bankAccount.$touched || paymentForm.$submitted))}" ng-required="true" ng-options="account.accountName for account in accountList track by account.id">
                                                                 <option value="">Select Account</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <div class="col-sm-8" ng-show="payment.bankAccount">
+                                                    <div class="col-sm-8" ng-show="bankAccount">
                                                         <div class="alert alert-info">
-                                                            <p>Account Balance: ${{payment.bankAccount.amount}}</p>
+                                                            <p>Account Balance: ${{bankAccount.amount}}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -54,18 +51,23 @@
                                                     <div class="form-group">
                                                         <label class="col-sm-4 control-label">To Account*</label>
                                                         <div class="col-sm-6">
-                                                            <select class="form-control" ng-model="payment.payee" name="payee" ng-class="{'txtbxReq': (paymentForm.payee.$error.required && (paymentForm.payee.$touched || paymentForm.$submitted))}" ng-required="true">
+                                                            <select class="form-control" ng-model="payee" name="payee" ng-class="{'txtbxReq': (paymentForm.payee.$error.required && (paymentForm.payee.$touched || paymentForm.$submitted))}" ng-required="true">
                                                                 <optgroup label="Domestic Payees">
-                                                                    <option ng-repeat="payee in payeeList track by $index | filter:{ isInternational: false }">{{payee.name}}:{{payee.accountNumber}}</option>
+                                                                    <option ng-repeat="payee in payeeList track by $index | filter:{ isInternational: false }" value="{{payee.id}}">{{payee.name}}:{{payee.accountNumber}}</option>
                                                                 </optgroup>
                                                                 <optgroup label="International Payees">
-                                                                    <option ng-repeat="payee in payeeList track by $index | filter:{ isInternational: true }">{{payee.name}}:{{payee.accountNumber}}</option>
+                                                                    <option ng-repeat="payee in payeeList track by $index | filter:{ isInternational: true }" value="{{payee.id}}">{{payee.name}}:{{payee.accountNumber}}</option>
                                                                 </optgroup>
                                                             </select>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
+													 <div class="col-sm-8" ng-show="payeeAccount">
+                                                        <div class="alert alert-info">
+                                                            <p>{{payeeAccount.bank.name}} ({{payeeAccount.paymentCcy}})</p>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -73,7 +75,7 @@
                                                     <div class="form-group">
                                                         <label class="col-sm-4 control-label">Amount*</label>
                                                         <div class="col-sm-6">
-                                                            <input type="text" placeholder="Amount" ng-model="payment.amount" class="form-control" ng-model="" name="amount" ng-class="{'txtbxReq': (paymentForm.amount.$error.required && (paymentForm.amount.$touched || paymentForm.$submitted))}" ng-required="true"
+                                                            <input type="text" placeholder="Amount" ng-model="payment.paymentAmount" class="form-control" ng-model="" name="amount" ng-class="{'txtbxReq': (paymentForm.amount.$error.required && (paymentForm.amount.$touched || paymentForm.$submitted))}" ng-required="true"
 															number-format  decimals="numberOfDecimals">
                                                         </div>
                                                     </div>
@@ -86,239 +88,305 @@
                                                     <div class="form-group">
                                                         <label class="col-sm-4 control-label">Delivery Method*</label>
                                                         <div class="col-sm-6">
-
-                                                            <select class="form-control" ng-model="payment.deliveryMethod" name="deliveryMethod" ng-class="{'txtbxReq': (paymentForm.deliveryMethod.$error.required && (paymentForm.deliveryMethod.$touched || paymentForm.$submitted))}" ng-required="true">
-                                                                <option ng-repeat="deliver in deliveryMethodList track by $index">{{deliver.method}} - {{deliver.time | date : format : shortDate}} {{deliver.fees}}</option>
+															<select class="form-control" ng-model="deliveryMethod" name="deliveryMethod" ng-class="{'txtbxReq': (paymentForm.deliveryMethod.$error.required && (paymentForm.deliveryMethod.$touched || paymentForm.$submitted))}" ng-required="true" ng-options="deliver.description for deliver in deliveryMethodList"	>
+																<option value="">Select</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
+                                                    <div class="col-sm-8" ng-show="deliveryMethod">
+                                                        <div class="alert alert-info">
+                                                            <p>Fees: {{deliveryMethod.fees}}</p>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <hr class="line" />
                                             <div class="space_10"></div>
 
-                                            <h3 class="subhead">Optional</h3>
-                                            <div class="optional">
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+<div class="optional">
 
-                                                <div class="panel-group" id="accordion">
-                                                    <div class="panel panel-default">
-                                                        <div class="panel-heading">
-                                                            <h4 class="panel-title">
-										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#panel1">Schedule this payment</a>
-									</h4>
-                                                        </div>
-                                                        <div id="panel1" class="panel-collapse collapse in">
-                                                            <div class="panel-body">
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#panel1">Schedule this payment</a>
+            </h4>
+            </div>
+            <div id="panel1" class="panel-collapse collapse in">
+                <div class="panel-body">
+					
+                    <div class="">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="col-md-3">
+                                    <div class="space_5"></div>
+										<input type="radio" name="radiog_dark" id="oneTimePayment" class="boss-checkbox" value="oneTime" ng-model="paymentFrequency" />
+										<label for="oneTimePayment" class="boss-label radGroup2">One time on</label>
+                                    <!--<div class=" radio-primary">
+                                        <label>
+                                            <input type="radio" id="inlineRadio112" name="example-radio" class="custom-radio" value="oneTime" ng-model="paymentFrequency"> One time on
+                                        </label>
+                                    </div>-->
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="input-group">
+                                        <span class="add-on input-group-addon" ng-click="openPaymentDate($event)">
+											<i class="glyphicon glyphicon-calendar"></i>
+										</span>
+                                        <input type="text" class="form-control"  name="paymentDate"
+										datepicker-popup="MM/dd/yyyy"  
+										ng-model="PaymentDate" 
+										is-open="openPaymentCal" 
+										min-date="minDate" 
+										datepicker-options  
+										close-text="Close"   />
+										
+										<!--
+										<input  name="dateofissue"  style="width:368px;" type="text" class="form-control" 
+										ng-readonly="readOnlyLC" 
+										ng-click="disableIssError()" 
+										datepicker-popup="MM/dd/yyyy"  
+										ng-model="lcdetails.dateOfIssue" 
+										is-open="openIssueCal" 
+										min-date="minDate" 
+										datepicker-options  
+										ng-required="false" 
+										close-text="Close"   />
+										<button type="button" class="btn btn-default btn-sm" style="height:34px;"
+										ng-disabled="readOnlyLC" 
+										ng-click="openIssueDate($event)" ><i class="glyphicon glyphicon-calendar"></i></button>
+										
+										-->
+										
+										
+										
+										
+										
+										
+										
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
 
-                                                                <div class="smallrdo">
-                                                                    <div class="row">
-                                                                        <div class="col-md-6">
-                                                                            <div class="col-md-3">
-                                                                                <div class="space_5"></div>
-                                                                                <div class=" radio-primary">
-                                                                                    <label>
-                                                                                        <input type="radio" id="inlineRadio112" name="example-radio" class="custom-radio"> One time on
-                                                                                    </label>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-9">
-                                                                                <div class="input-prepend input-group">
-                                                                                    <span class="add-on input-group-addon">
-																												<i class="glyph-icon icon-calendar"></i>
-																											</span>
-                                                                                    <input type="text" class="bootstrap-datepicker form-control" value="02/16/12" data-date-format="mm/dd/yy">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-6">
+                            </div>
 
-                                                                        </div>
+                        </div>
+                        <div class="space_10"></div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="col-md-3">
+                                    <input type="radio" name="radiog_dark" id="recurringPayment" class="boss-checkbox" value="recurring" ng-model="paymentFrequency" />
+									<label for="recurringPayment" class="boss-label radGroup2">Repeat every</label>
+									<!--<div class=" radio-primary">
+                                        <label>
+                                            <input type="radio" id="inlineRadio112" name="example-radio" class="custom-radio" value="recurring" ng-model="paymentFrequency"> Repeat every
+                                        </label>
+                                    </div>-->
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <select class="form-control">
+                                                <option>Month</option>
+                                                <option>Week</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <label for="" class="rightlbl">On</label>
+                                        </div>
+                                        <div class="col-md-6">
 
-                                                                    </div>
-                                                                    <div class="space_10"></div>
-                                                                    <div class="row">
-                                                                        <div class="col-md-6">
-                                                                            <div class="col-md-3">
-                                                                                <div class=" radio-primary">
-                                                                                    <label>
-                                                                                        <input type="radio" id="inlineRadio112" name="example-radio" class="custom-radio"> Repeat every
-                                                                                    </label>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-9">
-                                                                                <div class="row">
-                                                                                    <div class="col-md-5">
-                                                                                        <select class="form-control">
-                                                                                            <option>Month</option>
-                                                                                            <option>Week</option>
-                                                                                        </select>
-                                                                                    </div>
-                                                                                    <div class="col-md-1">
-                                                                                        <label for="" class="rightlbl">On</label>
-                                                                                    </div>
-                                                                                    <div class="col-md-6">
+                                            <div class="input-prepend input-group">
+                                                <span class="add-on input-group-addon">
+                                        <i class="glyph-icon icon-calendar"></i>
+                                    </span>
+                                                <input type="text" class="bootstrap-datepicker form-control" value="02/16/12" data-date-format="mm/dd/yy">
+                                            </div>
 
-                                                                                        <div class="input-prepend input-group">
-                                                                                            <span class="add-on input-group-addon">
-																														<i class="glyph-icon icon-calendar"></i>
-																													</span>
-                                                                                            <input type="text" class="bootstrap-datepicker form-control" value="02/16/12" data-date-format="mm/dd/yy">
-                                                                                        </div>
+                                        </div>
 
-                                                                                    </div>
+                                    </div>
+                                </div>
 
-                                                                                </div>
-                                                                            </div>
+                            </div>
 
-                                                                        </div>
+                            <div class="col-md-6">
+                                <div class="row2">
+                                    <div class="col-md-2">
+                                        <label for="" class="pull-right rightlbl">Until</label>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <select class="form-control">
+                                            <option>Choose one</option>
+                                            <option>I Cancel</option>
+                                            <option>Date</option>
+                                            <option>Year</option>
+                                            <option>Amount</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <input name="" type="text" class="form-control">
+                                    </div>
 
-                                                                        <div class="col-md-6">
-                                                                            <div class="row2">
-                                                                                <div class="col-md-2">
-                                                                                    <label for="" class="pull-right rightlbl">Until</label>
-                                                                                </div>
-                                                                                <div class="col-md-5">
-                                                                                    <select class="form-control" ng-model="payment.duration">
-                                                                                        <option>Choose one</option>
-                                                                                        <option>I Cancel</option>
-                                                                                        <option>Date</option>
-                                                                                        <option>Year</option>
-                                                                                        <option>Amount</option>
-                                                                                    </select>
-                                                                                </div>
-                                                                                <div class="col-md-5" ng-show="payment.duration == 'Year'|| payment.duration=='Amount' ">
-                                                                                    <input name="" type="text" class="form-control">
-                                                                                </div>
-																				<div class="col-md-5" ng-show="payment.duration == 'Date'">
-                                                                                    <div class="input-prepend input-group">
-																						<span class="add-on input-group-addon">
-																							<i class="glyph-icon icon-calendar"></i>
-																						</span>
-																						<input type="text" class="bootstrap-datepicker form-control" value="02/16/12" data-date-format="mm/dd/yy">
-																					</div>
-                                                                                </div>
+                                </div>
 
-                                                                            </div>
+                            </div>
 
-                                                                        </div>
+                        </div>
+						</div>
 
-                                                                    </div>
-
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-													
-													
-													
-													
-                                                    <div class="panel panel-default">
-                                                        <div class="panel-heading">
-                                                            <h4 class="panel-title">
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#panel2">Upload Payment documents</a>
             </h4>
-                                                        </div>
-                                                        <div id="panel2" class="panel-collapse collapse">
-                                                            <div class="panel-body">
+            </div>
+            <div id="panel2" class="panel-collapse collapse">
+                <div class="panel-body">
 
-                                                                
-                                                                 <input type="file" accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf" multiple>
-                                                                
-                                                                <div class="space_5"></div>
-                                                                <div class="col-md-4">
-                                                                    <a href="#">View Uploaded details</a>
-                                                                    <div class="clear"></div>
-                                                                    <div class="space_20"></div>
+                    
+                        <input type="file" accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf" multiple>
+                    
+                    <div class="space_5"></div>
+                    <div class="col-md-4">
+                        <a href="#">View Uploaded details</a>
+                        <div class="clear"></div>
+                        <div class="space_20"></div>
 
-                                                                    <label>Document Type :</label>
-                                                                    <select class="form-control">
-                                                                        <option>Invoice</option>
-                                                                    </select>
-                                                                    <div class="space_10"></div>
-                                                                    <div class="checkbox checkbox-primary">
-                                                                        <label>
-                                                                            <input type="checkbox" id="inlineCheckbox110" class="custom-checkbox"> Email this Document to Payee
-                                                                        </label>
-                                                                    </div>
-                                                                    <!--    <div class="documents">
-                            <input id="checkbox1" type="checkbox" name="checkbox" value="1"><label for="checkbox1">Email this Document to Payee</label>
-                        </div> -->
-                                                                </div>
+                        <label>Document Type :</label>
+                        <select class="form-control">
+                            <option>Invoice</option>
+                        </select>
+                        <div class="space_10"></div>
+                        <div class="checkbox checkbox-primary">
+                            <label>
+                                <input type="checkbox" id="inlineCheckbox110" class="custom-checkbox"> Email this Document to Payee
+                            </label>
+                        </div>
+                    </div>
 
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="panel panel-default">
-                                                        <div class="panel-heading">
-                                                            <h4 class="panel-title">
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#panel3">Message To Recipient </a>
             </h4>
-                                                        </div>
-                                                        <div id="panel3" class="panel-collapse collapse">
-                                                            <div class="panel-body">
+            </div>
+            <div id="panel3" class="panel-collapse collapse">
+                <div class="panel-body">
 
-                                                                <!-- Start Row  -->
-                                                                <div class="row">
-                                                                    <div class="col-md-6">
-                                                                        <div class="form-group">
-                                                                            <label class="col-sm-4 control-label">Email Address</label>
-                                                                            <div class="col-sm-6">
-                                                                                <input name="" type="text" class="form-control" placeholder="ex.test@test.com">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
+                    <!-- Start Row  -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Email Address</label>
+                                <div class="col-sm-6">
+                                    <input name="" type="text" class="form-control" placeholder="ex.test@test.com" ng-model="payment.email">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
 
-                                                                    </div>
-                                                                </div>
-                                                                <!-- End Row  -->
+                        </div>
+                    </div>
+                    <!-- End Row  -->
 
-                                                                <!-- Start Row  -->
-                                                                <div class="row">
-                                                                    <div class="col-md-6">
-                                                                        <div class="form-group">
-                                                                            <label class="col-sm-4 control-label">Mobile</label>
-                                                                            <div class="col-sm-6">
-                                                                                <input name="" type="text" class="form-control" placeholder="(***)-***-****">
-                                                                            </div>
-                                                                        </div>
+                    <!-- Start Row  -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Mobile</label>
+                                <div class="col-sm-6">
+                                    <input name="" type="text" class="form-control" placeholder="(***)-***-****" ng-model="payment.mobile">
+                                </div>
+                            </div>
 
-                                                                    </div>
-                                                                    <div class="col-md-6">
+                        </div>
+                        <div class="col-md-6">
 
-                                                                    </div>
+                        </div>
 
-                                                                </div>
-                                                                <!-- End Row  -->
-                                                                <!-- Start Row  -->
-                                                                <div class="row">
-                                                                    <div class="col-md-6">
-                                                                        <div class="form-group">
-                                                                            <label class="col-sm-4 control-label">Message</label>
-                                                                            <div class="col-sm-6">
-                                                                                <textarea class="form-control" placeholder="Message"></textarea>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
+                    </div>
+                    <!-- End Row  -->
+                    <!-- Start Row  -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Message</label>
+                                <div class="col-sm-6">
+                                    <textarea class="form-control" placeholder="Message" ng-model="payment.messageToRecipient"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
 
-                                                                    </div>
+                        </div>
 
-                                                                </div>
-                                                                <!-- End Row  -->
+                    </div>
+                    <!-- End Row  -->
 
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                                                </div>
-
-                                            </div>
+</div>
                                             <div class="clear"></div>
+
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
 
                                             <hr class="line" />
                                             <div class="space_20"></div>

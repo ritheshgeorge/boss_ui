@@ -70,8 +70,8 @@
 									<input type="checkbox" data-on-color="primary" name="checkbox-example-1" class="input-switch" checked data-size="small" data-on-text="On" data-off-text="Off">
 								</td>
 								<td>
-									<a ui-sref="editPayment" class="btn btn-xs btn-primary" title="Edit Payment" ng-if="activity.isRecurring==false">Edit</a>
-									<a ui-sref="editRecurringPayment" class="btn btn-xs btn-primary" title="Edit Recurring Payment" ng-if="activity.isRecurring==true"><i class="glyph-icon icon-repeat" title="Recurring Payment"  ></i> Edit</a>
+									<a ui-sref="makePayment.editPayment({paymentId:activity.transactionNumber})" class="btn btn-xs btn-primary" title="Edit Payment" ng-if="activity.isRecurring==false">Edit</a>
+									<a ui-sref="makePayment.editRecurringPayment({paymentId:activity.transactionNumber})" class="btn btn-xs btn-primary" title="Edit Recurring Payment" ng-if="activity.isRecurring==true"><i class="glyph-icon icon-repeat" title="Recurring Payment"  ></i> Edit</a>
 									<a href="#" class="btn btn-xs btn-danger" title="">Reject</a>
 								</td>
                             </tr>
@@ -79,7 +79,7 @@
                     </table>
                     <div class="row">
                         <div class="col-sm-6">
-                            <div class="dataTables_info" id="datatable-tabletools_info" role="status" aria-live="polite">Showing 1 to 5 of 5 entries</div>
+                            <div class="dataTables_info" id="datatable-tabletools_info" role="status" aria-live="polite">Showing page {{tableCurrentPage}} of {{totalTablePagesNumber}}</div>
                         </div>
                         <div class="col-sm-6">
                             <div class="dataTables_paginate paging_bootstrap" id="datatable-tabletools_paginate">

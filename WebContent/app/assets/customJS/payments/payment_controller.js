@@ -8,18 +8,74 @@ app.controller('paymentCtrl', ['$scope', '$http', '$state','ManagePayeeService',
 	$scope.payeeList = ManagePayeeService.payee_list();
 	$scope.accountList = AccountService.getFromAccount();
 	$scope.deliveryMethodList = AccountService.getDeliveryMethod();
+	$scope.paymentFrequency= "oneTime";
+	var payment = {
+		paymentDate : new Date(),
+		fromAccountId : '',
+		payeeAccountId : '',
+		paymentAmount : undefined,
+		paymentNotes : '',
+		messageToPayee : '',
+		deliveryChannel : '',
+		feeAmount : undefined,
+		feeCcy : '',
+		documents : '',
+	};
+	$scope.payment = payment;
+	/****************WATCHERS**********/
+	$scope.$watch('bankAccount', function () {
+		if($scope.bankAccount!=undefined)
+			$scope.payment.fromAccountId=$scope.bankAccount.id;
+	});
+	$scope.$watch('payee', function () {
+		if($scope.payee!=undefined){
+			$scope.payment.payeeAccountId=$scope.payee;
+			 var index =  $scope.indexOfObject( $scope.payeeList,'id' , $scope.payee);
+			$scope.payeeAccount = $scope.payeeList[index];
+		}
+	});
+	$scope.$watch('deliveryMethod', function () {
+		if($scope.deliveryMethod!=undefined){
+			$scope.payment.feeAmount=$scope.deliveryMethod.fees;
+			$scope.payment.feeCcy=$scope.deliveryMethod.ccy;
+			$scope.payment.deliveryChannel=$scope.deliveryMethod.method;
+		}
+	});
+	/**********************************/
+	$scope.indexOfObject = function indexOfObject(array, property, value) {
+		for (var i = 0; i < array.length; i++) {
+			if (array[i][property] === value) return i;
+		}
+		return -1;
+	};
+	/* Date Picker */
+	$scope.minDate = new Date();
+	$scope.openPaymentDate = function($event){
+		$event.preventDefault();
+		$event.stopPropagation();
+		$scope.openPaymentCal = true;
+	}
+	
+	
+	
+	
+	
+	
+	
 	$scope.makePayment = function(){
 		if(!$scope.paymentForm.$error.required){
-			console.log($scope.payment);
+			console.log(JSON.stringify($scope.payment));
 			$scope.paymentProcessed = true;
 		}else{
 			$scope.formError = true;
 		}
 	}
+	$scope.postPayment = function(){
+		//API Call and redirect it to ->
+		$state.go('makePayment.paymentActivity');
+	}
 	$scope.cancelPayment = function(){
-		$scope.payment = undefined;
-		$scope.paymentProcessed = false;
-		$scope.formError = false;
+		$state.go($state.current, {}, {reload: true});
 	}
 	
 	

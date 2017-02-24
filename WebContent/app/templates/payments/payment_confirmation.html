@@ -5,7 +5,7 @@
 	</div>
 
 	<div class="panel">
-		<div class="panel-body">
+		<!--div class="panel-body">
 			<ul class="paydls">
 				<li>
 					<div class="confirm_head">Please Confirm</div>
@@ -36,6 +36,57 @@
 			<div class="bg-default content-box text-center pad20A mrg25T">
 				<button class="btn btn-md btn-default" ng-click="cancelPayment()">Cancel</button>
 				<button class="btn btn-md btn-primary" ng-click="cancelPayment()">Payment</button>
+			</div>
+
+		</div>-->
+		<div class="panel-body">
+		
+			<div class="row">
+				<div class="col-xs-12 confirm_head">Please Confirm</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-6 confirm_smlhead">From:</div>
+				<div class="col-xs-6 confirm_details">{{bankAccount.accountName}}</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-6 confirm_smlhead">To Account:</div>
+				<div class="col-xs-6 confirm_details">{{payeeAccount.bank.name}}</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-6 confirm_smlhead">Amount:</div>
+				<div class="col-xs-6 confirm_details">{{payment.paymentAmount}}</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-6 confirm_smlhead">Delivery Method:</div>
+				<div class="col-xs-6 confirm_details">{{payment.deliveryChannel}}</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-6 confirm_smlhead">Fee:</div>
+				<div class="col-xs-6 confirm_details">{{payment.feeCcy}}{{payment.feeAmount}}</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-6 confirm_smlhead">Payment Date:</div>
+				<div class="col-xs-6 confirm_details">{{payment.paymentDate | date}}</div>
+			</div>
+			<div class="row" ng-show="payment.messageToRecipient">
+				<div class="col-xs-6 confirm_smlhead">Message to recipient:</div>
+				<div class="col-xs-6 confirm_details">{{payment.messageToRecipient}}</div>
+			</div>
+			<div class="row" ng-show="payment.email">
+				<div class="col-xs-6 confirm_smlhead">Email:</div>
+				<div class="col-xs-6 confirm_details">{{payment.email}}</div>
+			</div>
+			<div class="row" ng-show="payment.mobile">
+				<div class="col-xs-6 confirm_smlhead">Phone No:</div>
+				<div class="col-xs-6 confirm_details">{{payment.mobile}}</div>
+			</div>
+			
+			
+
+			<div class="clear"></div>
+			<div class="bg-default content-box text-center pad20A mrg25T">
+				<button class="btn btn-md btn-default" ng-click="cancelPayment()">Cancel</button>
+				<button class="btn btn-md btn-primary" ng-click="postPayment()">Payment</button>
 			</div>
 
 		</div>
