@@ -226,7 +226,7 @@
   background-position : 0 -41px;
 }
 
-/* ------------- */
+/* ------------- *
 .smallrdo input[type=radio   ]:not(old){
   margin  : 0;
   padding : 0;
@@ -906,3 +906,42 @@ input.cmn-toggle-round:checked + label:after {
 .bold{
 	font-weight:bold;
 }
+/*---------------------------------------*/
+input[type=radio].boss-checkbox {
+    position: absolute;
+    z-index: -1000;
+    left: -1000px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+}
+
+input[type=radio].boss-checkbox + label.boss-label {
+    padding-left: 21px;
+    height: 16px;
+    display: inline-block;
+    line-height: 16px;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+input[type=radio].boss-checkbox:checked + label.boss-label {
+    background-position: 0 -16px;
+}
+
+label.boss-label {
+    background-image: url(../../../assets/image-resources/csscheckbox.png);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+/*-----------------------------------------*/

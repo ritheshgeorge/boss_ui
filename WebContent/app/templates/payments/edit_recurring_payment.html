@@ -1,11 +1,11 @@
-<div>
-    <div class="panel">
+<div ng-controller="editPaymentCtrl">
+    <div class="panel" ng-show="!paymentProcessed">
         <div class="panel-body">
             <h3 class="title-hero">
           Edit Payment
         </h3>
             <div class="example-box-wrapper">
-                <form class="form-horizontal bordered-row" id="demo-form" data-parsley-validate="">
+                <form class="form-horizontal bordered-row paymentForm" novalidate id="paymentForm" name="paymentForm">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -28,11 +28,13 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">From Account</label>
                                 <div class="col-sm-6">
-                                    <select class="form-control" disabled="disabled">
-                                        <option>Business savings Account - 9875</option>
-                                        <option>Business savings Account - 9875</option>
-                                        <option>Account2</option>
-                                    </select>
+                                    <select class="form-control" name="bankAccount"  disabled="disabled"
+									ng-model="bankAccount"  
+									ng-class="{'txtbxReq': (paymentForm.bankAccount.$error.required && (paymentForm.bankAccount.$touched || paymentForm.$submitted))}" 
+									ng-required="true" 
+									ng-options="account.accountName for account in accountList track by account.id">
+                                        <option value="">Select Account</option>
+                                     </select>
                                 </div>
                             </div>
                         </div>
@@ -40,10 +42,11 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">To Account</label>
                                 <div class="col-sm-6">
-                                    <select class="form-control" disabled="disabled">
-                                        <option>LMN Corps</option>
-                                        <option>Business savings Account - 9875</option>
-                                        <option>Account2</option>
+                                   <select class="form-control" name="payee"  disabled="disabled"
+									ng-model="payee" 
+									ng-class="{'txtbxReq': (paymentForm.payee.$error.required && (paymentForm.payee.$touched || paymentForm.$submitted))}" 
+									ng-required="true">
+                                        <option ng-repeat="payee in payeeList track by $index" value="{{payee.id}}">{{payee.name}}:{{payee.accountNumber}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -54,7 +57,12 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Amount</label>
                                 <div class="col-sm-6">
-                                    <input type="text" placeholder="" value="$ 40,000.00" required class="form-control">
+                                    <input type="text" placeholder="Amount" class="form-control" name="amount"
+										ng-model="payment.paymentAmount"
+										ng-class="{'txtbxReq': (paymentForm.amount.$error.required && (paymentForm.amount.$touched || paymentForm.$submitted))}" 
+										ng-required="true"
+										number-format  
+										decimals="numberOfDecimals" />
                                 </div>
                             </div>
                         </div>
@@ -76,11 +84,19 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="input-prepend input-group">
-                                                <span class="add-on input-group-addon">
-                                        <i class="glyph-icon icon-calendar"></i>
-                                    </span>
-                                                <input type="text" class="bootstrap-datepicker form-control" value="02/16/12" data-date-format="mm/dd/yy">
-                                            </div>
+                                        <span class="add-on input-group-addon" ng-click="openPaymentDate($event)">
+											<i class="glyphicon glyphicon-calendar"></i>
+										</span>
+                                        <input type="text" class="form-control"  name="paymentDate"
+										datepicker-popup="MM/dd/yyyy"  
+										ng-model="payment.paymentDate" 
+										is-open="openPaymentCal" 
+										min-date="minDate" 
+										datepicker-options  
+										close-text="Close"  
+										ng-required="true"
+										ng-class="{'txtbxReq': (paymentForm.paymentDate.$error.required && (paymentForm.paymentDate.$touched || paymentForm.$submitted))}" />
+                                    </div>
                                         </div>
                                     </div>
                                 </div>
@@ -112,7 +128,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Message</label>
                                 <div class="col-sm-9">
-                                    <textarea name="" rows="3" class="form-control textarea-autosize"></textarea>
+                                    <textarea name="" rows="3" class="form-control textarea-autosize" ng-model="payment.messageToRecipient"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -120,9 +136,12 @@
                             <div class="space_10"></div>
                         </div>
                     </div>
+					<div class="space_20"></div>
+                                  <div ng-include="'app/templates/commons/two_factor.html'"></div>
+                                    <div class="space_10"></div>
                     <div class="bg-default content-box text-center pad20A mrg25T">
                         <a class="btn btn-md btn-default" ui-sref="makePayment">Cancel</a>
-                        <a class="btn btn-md btn-primary">Save</a>
+                        <button type="submit" class="btn btn-md btn-primary" ng-disabled="!pinVerified" ng-click="makePayment()">Save</button>
                     </div>
                 </form>
             </div>
