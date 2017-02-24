@@ -12,24 +12,12 @@
                                         <label class="col-sm-4 control-label">Recipient Type*</label>
                                         <div class="col-sm-6">
                                             <div class="radio-inline">
-                                                <label>
-                                                    <div class="radio" id="uniform-inlineRadio110">
-                                                        <span class="">
-															<input type="radio" class="custom-radio" name="recipientType" value="Individual" ng-model="payee.type"><i class="glyph-icon icon-circle"></i>
-														</span>
-                                                    </div>
-                                                    Individual
-                                                </label>
+                                               <input type="radio" id="Individual_recipient" class="boss-checkbox" name="recipientType" value="Individual" ng-model="payee.type"/>
+												<label for="Individual_recipient" class="boss-label radGroup2">Individual</label>
                                             </div>
                                             <div class="radio-inline">
-                                                <label>
-                                                    <div class="radio" id="uniform-inlineRadsio110">
-                                                        <span class="">
-															<input type="radio" class="custom-radio" name="recipientType" value="Business" ng-model="payee.type"><i class="glyph-icon icon-circle"></i>
-														</span>
-                                                    </div>
-                                                    Business
-                                                </label>
+                                                <input type="radio" id="Business_recipient" class="boss-checkbox" name="recipientType" value="Business" ng-model="payee.type"/>
+												<label for="Business_recipient" class="boss-label radGroup2">Business</label>
                                             </div>
                                         </div>
                                     </div>
