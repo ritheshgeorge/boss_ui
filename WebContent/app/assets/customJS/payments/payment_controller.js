@@ -22,6 +22,11 @@ app.controller('paymentCtrl', ['$scope', '$http', '$state','ManagePayeeService',
 		documents : '',
 	};
 	$scope.payment = payment;
+	
+
+
+
+
 	/****************WATCHERS**********/
 	$scope.$watch('bankAccount', function () {
 		if($scope.bankAccount!=undefined)

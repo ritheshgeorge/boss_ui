@@ -1,0 +1,34 @@
+{
+    "users": {
+        "admin": {
+            "username": "admin",
+            "password": "admin",
+            "userRole": "admin"
+        },
+        "editor": {
+            "username": "editor",
+            "password": "editor",
+            "userRole": "editor"
+        },
+        "guest": {
+            "username": "guest",
+            "password": "guest",
+            "userRole": "guest"
+        },
+		"saurabh": {
+            "username": "saurabh",
+            "password": "saurabh",
+            "userRole": "admin"
+        },
+		"ritesh": {
+            "username": "ritesh",
+            "password": "ritesh",
+            "userRole": "admin"
+        },
+		"booshan": {
+            "username": "booshan",
+            "password": "booshan",
+            "userRole": "admin"
+        }
+    }
+}

@@ -5,7 +5,7 @@
 <web-app>
   <display-name>Business Operation Support System</display-name>
   <welcome-file-list>
-    <welcome-file>login.html</welcome-file>
+    <welcome-file>boss.html</welcome-file>
  </welcome-file-list>
  
 
