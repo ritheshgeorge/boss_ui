@@ -78,7 +78,7 @@ app.controller('addNewPayeeCtrl', ['$scope', '$http', '$state','BankService','$r
 	* Confirm payee and add
 	*/
 	$scope.confirmPayee = function(){
-		$state.go("makePayment.managePayees");
+		$state.go("home.makePayment.managePayees");
 	}
 	/**
 		Two-Factor

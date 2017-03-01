@@ -63,8 +63,8 @@
                                                     <li><a ui-sref="makePayment.addAPayee.internationalPayee">Suspend</a></li>
                                                     <li><a href="#">Delere</a></li>
                                                     <li class="divider"></li>
-                                                    <li ng-if="!payee.isInternational"><a ui-sref="makePayment.addAPayee.editDomesticPayee({ lcId:'{{payee.id}}'})">Edit</a></li><!-- Domestic Payee Edit -->
-                                                    <li ng-if="payee.isInternational"><a ui-sref="makePayment.addAPayee.editInternationalPayee({ lcId:'{{payee.id}}'})">Edit</a></li><!-- International Payee Edit -->
+                                                    <li ng-if="!payee.isInternational"><a ui-sref="home.makePayment.addAPayee.editDomesticPayee({ lcId:'{{payee.id}}'})">Edit</a></li><!-- Domestic Payee Edit -->
+                                                    <li ng-if="payee.isInternational"><a ui-sref="home.makePayment.addAPayee.editInternationalPayee({ lcId:'{{payee.id}}'})">Edit</a></li><!-- International Payee Edit -->
                                                 </ul>
                                             </div> <!--
 											<span ng-if="!payee.isInternational">Domestic</span>

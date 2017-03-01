@@ -11,8 +11,6 @@ function($http, $rootScope, $window, AUTH_EVENTS,$state,$cookies) {
 		$http.post('misc/users.json').success(function(data) {
 		//this is my dummy technique, normally here the 
 		//user is returned with his data from the db
-		console.log("Auth. Login Services; data.users ----");
-		console.log(user);
 		var users = data.users;
 		if(users[user.username]){
 			var loginData = users[user.username];
@@ -24,8 +22,6 @@ function($http, $rootScope, $window, AUTH_EVENTS,$state,$cookies) {
 				//delete password not to be seen clientside 
 				delete loginData.password;
 				
-				console.log("I am the new cookie updated one: ");
-				console.log($cookies.user);
 				//update current user into the Session service or $rootScope.currentUser
 				$rootScope.currentUser = loginData;
 				
@@ -67,8 +63,6 @@ function($http, $rootScope, $window, AUTH_EVENTS,$state,$cookies) {
 	
 	//log out the user and broadcast the logoutSuccess event
 	authService.logout = function(){
-		//Session.destroy();
-		//$window.sessionStorage.removeItem("userInfo");
 		$cookies.user = false;
 		$rootScope.modalShown=false;
 		$rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);

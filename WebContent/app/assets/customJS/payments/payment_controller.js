@@ -77,7 +77,7 @@ app.controller('paymentCtrl', ['$scope', '$http', '$state','ManagePayeeService',
 	}
 	$scope.postPayment = function(){
 		//API Call and redirect it to ->
-		$state.go('makePayment.paymentActivity');
+		$state.go('home.makePayment.paymentActivity');
 	}
 	$scope.cancelPayment = function(){
 		$state.go($state.current, {}, {reload: true});

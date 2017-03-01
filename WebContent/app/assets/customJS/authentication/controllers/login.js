@@ -10,7 +10,6 @@ function($scope, $state, $window, Auth,$cookies ) {
 	//when the form is submitted
 	$scope.submit = function() {
 		if (!$scope.loginForm.$invalid) {
-			console.log("false hence trying to login");
 			$scope.login($scope.credentials);
 		} else {
 			$scope.error = true;

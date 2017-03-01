@@ -83,7 +83,7 @@ app.controller('addNewInternationalPayeeCtrl', ['$scope', '$http', '$state','Ban
 	* Confirm payee and add
 	*/
 	$scope.confirmPayee = function(){
-		$state.go("makePayment.managePayees");
+		$state.go("home.makePayment.managePayees");
 	}
 	/**
 		Two-Factor

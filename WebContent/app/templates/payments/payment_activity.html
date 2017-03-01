@@ -70,8 +70,8 @@
 									<input type="checkbox" data-on-color="primary" name="checkbox-example-1" class="input-switch" checked data-size="small" data-on-text="On" data-off-text="Off">
 								</td>
 								<td>
-									<a ui-sref="makePayment.editPayment({paymentId:activity.transactionNumber})" class="btn btn-xs btn-primary" title="Edit Payment" ng-if="activity.isRecurring==false">Edit</a>
-									<a ui-sref="makePayment.editRecurringPayment({paymentId:activity.transactionNumber})" class="btn btn-xs btn-primary" title="Edit Recurring Payment" ng-if="activity.isRecurring==true"><i class="glyph-icon icon-repeat" title="Recurring Payment"  ></i> Edit</a>
+									<a ui-sref="home.makePayment.editPayment({paymentId:activity.transactionNumber})" class="btn btn-xs btn-primary" title="Edit Payment" ng-if="activity.isRecurring==false">Edit</a>
+									<a ui-sref="home.makePayment.editRecurringPayment({paymentId:activity.transactionNumber})" class="btn btn-xs btn-primary" title="Edit Recurring Payment" ng-if="activity.isRecurring==true"><i class="glyph-icon icon-repeat" title="Recurring Payment"  ></i> Edit</a>
 									<a href="#" class="btn btn-xs btn-danger" title="">Reject</a>
 								</td>
                             </tr>

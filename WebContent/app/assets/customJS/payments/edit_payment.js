@@ -51,7 +51,7 @@ app.controller('editPaymentCtrl', ['$scope', '$http', '$state','$stateParams','M
 			console.log(JSON.stringify($scope.payment));
 			$scope.paymentProcessed = true;
 		}*/
-		$state.go('makePayment');
+		$state.go('home.makePayment');
 	}
 	
 	/**
