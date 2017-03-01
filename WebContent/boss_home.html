@@ -1,0 +1,259 @@
+<div id="boss_homePage">
+	<div id="sb-site" >
+		<!--div id="loading">
+            <div class="spinner">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
+        </div>-->
+		<div id="page-header" class="bg-gradient-8">
+                <div id="mobile-navigation">
+                    <button id="nav-toggle" class="collapsed" data-toggle="collapse" data-target="#page-sidebar"><span></span></button>
+                    <a ui-sref="home.accounts" class="logo-content-small" title="Western Alliance Bank"></a>
+                </div>
+                <div id="header-logo" class="logo-bg">
+                    <a ui-sref="home.accounts" class="logo-content-big" title="Western Alliance Bank">
+
+                    </a>
+                    <a ui-sref="home.accounts" class="logo-content-small" title="Western Alliance Bank">
+
+                    </a>
+                    <a id="close-sidebar" href="#" title="Close sidebar">
+                        <i class="glyph-icon icon-angle-left"></i>
+                    </a>
+                </div>
+                <div id="header-nav-left">
+                    <div class="user-account-btn dropdown">
+                        <a href="#" title="My Account" class="user-profile clearfix" data-toggle="dropdown">
+                            <img width="28" src="app/assets/image-resources/gravatar.jpg" alt="Profile image">
+                            <span>{{currentUser.username}}</span>
+                            <i class="glyph-icon icon-angle-down"></i>
+                        </a>
+                        <div class="dropdown-menu float-left">
+                            <div class="box-sm">
+                                <div class="login-box clearfix">
+                                    <div class="user-img">
+                                        <a href="#" title="" class="change-img">Change photo</a>
+                                        <img src="app/assets/image-resources/gravatar.jpg" alt="">
+                                    </div>
+                                    <div class="user-info">
+                                        <span>
+                                Swapstech Incorporated
+                                <i>Software Developer</i>
+                            </span>
+                                        <a href="#" title="Edit profile">Edit profile</a>
+                                        <a href="#" title="View notifications">View notifications</a>
+                                    </div>
+                                </div>
+                                <div class="divider"></div>
+                                <ul class="reset-ul mrg5B">
+                                    <li>
+                                        <a href="#">
+                                            <i class="glyph-icon float-right icon-caret-right"></i> View login page example
+
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="glyph-icon float-right icon-caret-right"></i> View lockscreen example
+
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="glyph-icon float-right icon-caret-right"></i> View account details
+
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="pad5A button-pane button-pane-alt text-center">
+                                    <a ng-click="logout()" class="btn display-block font-normal btn-danger">
+                                        <i class="glyph-icon icon-power-off"></i> Logout
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- #header-nav-left -->
+				<div id="header-nav-left">
+					<div class="tp_boss">
+			BUSINESS OPERATIONS <span>SUPPORT SYSTEM</span>
+					</div>
+				 </div>
+                <div id="header-nav-right">
+                    <a class="header-btn" id="logout-btn" href="lockscreen-3.html" title="Lockscreen page example">
+                        <i class="glyph-icon icon-linecons-lock"></i>
+                    </a>
+
+                </div>
+                <!-- #header-nav-right -->
+
+            </div>
+		
+        <div id="page-wrapper">
+            
+            <div id="page-sidebar" class="bg-black font-inverse">
+                <div class="scroll-sidebar">
+					 <div class="fxdtext">
+						BUSINESS OPERATIONS SUPPORT SYSTEM
+						</div>
+                    <ul id="sidebar-menu">
+						<li class="header"><span>BANKING</span></li>
+                        <li>
+                            <a ui-sref="home.accounts" title="Accounts">
+                                <i class="glyph-icon icon-calculator"></i>
+                                <span>Accounts</span>
+                            </a>
+                        </li>
+                        <li class="header"><span>PAYMENTS</span></li>
+                        <li>
+                            <a ui-sref="home.makePayment" title="International/Domestic payment">
+                                <i class="glyph-icon icon-credit-card"></i>
+                                <span>Manage Payments</span>
+                            </a>
+                            <!-- .sidebar-submenu -->
+                        </li>
+                        <li class="header"><span>FOREIGN EXCHANGE</span></li>
+                        <li>
+                            <a href="#" title="Trading">
+                                <i class="glyph-icon icon-area-chart"></i>
+                                <span>Trading</span>
+                            </a>
+                            <div class="sidebar-submenu">
+
+                                <ul>
+                                    <li><a ui-sref="home.error" title="Spot"><span>Spot</span></a></li>
+                                    <li><a ui-sref="home.error" title="Forward"><span>Forward</span></a></li>
+                                    <li><a ui-sref="home.error" title="Window Forward"><span>Window Forward</span></a></li>
+                                    <li><a ui-sref="home.error" title="NDF"><span>NDF</span></a></li>
+
+                                </ul>
+
+                            </div>
+                            <!-- .sidebar-submenu -->
+                        </li>
+                        <li>
+                            <a href="#" title="Orders">
+                                <i class="glyph-icon icon-clipboard"></i>
+                                <span>Orders</span>
+                            </a>
+                            <div class="sidebar-submenu">
+
+                                <ul>
+                                    <li><a ui-sref="error" title="New Order"><span>New Order</span></a></li>
+                                    <li><a ui-sref="error" title="Inquiry"><span>Inquiry</span></a></li>
+
+                                </ul>
+
+                            </div>
+                            <!-- .sidebar-submenu -->
+                        </li>
+						<li>
+                            <a href="#" title="Manage">
+                                <i class="glyph-icon icon-briefcase"></i>
+                                <span>Manage</span>
+                            </a>
+                            <div class="sidebar-submenu">
+
+                                <ul>
+                                    <li><a ui-sref="error" title="manage beneficiary"><span>Beneficiary</span></a></li>
+                                </ul>
+
+                            </div>
+                            <!-- .sidebar-submenu -->
+                        </li>
+                        <li class="header"><span>TRADE FINANCE</span></li>
+                        <li>
+                            <a href="#" title="Commercial Letter of Credit">
+                                <i class="glyph-icon icon-building"></i>
+                                <span>Commercial LC</span>
+                            </a>
+                            <div class="sidebar-submenu">
+
+                                <ul>
+                                    <li><a ui-sref="error" title="Import lc"><span>Import</span></a></li>
+                                    <li><a ui-sref="error" title="Export lc"><span>Export</span></a></li>
+                                    <li><a ui-sref="error" title="Transfer lc"><span>Transfer</span></a></li>
+
+                                </ul>
+
+                            </div>
+                            <!-- .sidebar-submenu -->
+                        </li>
+                        <li>
+                            <a href="#" title="Standby Letter of credit">
+                                <i class="glyph-icon icon-refresh"></i>
+                                <span>StandBy LC</span>
+                            </a>
+                            <div class="sidebar-submenu">
+
+                                <ul>
+                                    <li><a ui-sref="error" title="Incoming standby lc"><span>Incoming</span></a></li>
+                                    <li><a ui-sref="error" title="Outgoing standby lc"><span>Outgoing</span></a></li>
+                                    <li><a ui-sref="error" title="Transfer standby lc"><span>Transfer</span></a></li>
+
+                                </ul>
+
+                            </div>
+                            <!-- .sidebar-submenu -->
+                        </li>
+                        <li>
+                            <a href="#" title="Documentary Collections">
+                                <i class="glyph-icon icon-suitcase"></i>
+                                <span>Collections</span>
+                            </a>
+                            <div class="sidebar-submenu">
+
+                                <ul>
+                                    <li><a ui-sref="error" title="Incoming Collections"><span>Incoming</span></a></li>
+                                    <li><a ui-sref="error" title="Outgoing Collections"><span>Outgoing</span></a></li>
+
+                                </ul>
+
+                            </div>
+                            <!-- .sidebar-submenu -->
+                        </li>
+						<li class="header"><span>ADMIN</span></li>
+						<li>
+							<a ui-sref="manageUsers" title="Admin Dashboard">
+								<i class="glyph-icon icon-cogs"></i>
+								<span>Manage Users</span>
+							</a>
+						</li>
+                    </ul>
+                    <!-- #sidebar-menu -->
+
+                </div>
+            </div>
+            <div id="page-content-wrapper">
+                <div id="page-content">
+					<div class="container">
+						<div ui-view>
+							<div ng-include="'app/templates/accounts/account_listing.html'"/></div>
+						</div>
+						<div class="row" style="visibility:hidden; display:none;">
+                            <div class="col-md-12">
+                                <div class="panel">
+                                    <div class="panel-body">
+										<div class="example-box-wrapper">
+                                            <div id="data-example-1" class="" style="width: 100%; height: 100px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+								<div class="row">
+								</div>
+								<div class="content-box">
+									<div class="content-box-wrapper">
+                                        <div id="data-example-3" style="width: 100%; height: 100px;"></div>
+                                    </div>
+                                </div>
+							</div>
+						</div>
+                    </div>
+				</div>
+            </div>
+        </div>
+		
+	</div>

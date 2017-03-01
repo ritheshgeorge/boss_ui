@@ -38,10 +38,10 @@
                                                         <div class="col-sm-6">
                                                             <select class="form-control" ng-model="payee" name="payee" ng-class="{'txtbxReq': (paymentForm.payee.$error.required && (paymentForm.payee.$touched || paymentForm.$submitted))}" ng-required="true">
                                                                 <optgroup label="Domestic Payees">
-                                                                    <option ng-repeat="payee in payeeList track by $index | filter:{ isInternational: false }" value="{{payee.id}}">{{payee.name}}:{{payee.accountNumber}}</option>
+                                                                    <option ng-repeat="payee in payeeList track by $index" value="{{payee.id}}" ng-if="!payee.isInternational">{{payee.name}}:{{payee.accountNumber}}</option>
                                                                 </optgroup>
                                                                 <optgroup label="International Payees">
-                                                                    <option ng-repeat="payee in payeeList track by $index | filter:{ isInternational: true }" value="{{payee.id}}">{{payee.name}}:{{payee.accountNumber}}</option>
+                                                                    <option ng-repeat="payee in payeeList track by $index" value="{{payee.id}}" ng-if="payee.isInternational">{{payee.name}}:{{payee.accountNumber}}</option>
                                                                 </optgroup>
                                                             </select>
                                                         </div>
@@ -55,6 +55,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div ng-if="!payeeAccount.isInternational">
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
@@ -86,6 +87,72 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
+                                            <!-- Div for Internation Payment -->
+                                            <div ng-if="payeeAccount.isInternational">
+                                                <div class="alert alert-info" ng-init="amountOption='equivalent';intermediaryBankFees='Remitter'">
+                                                <div class="row" >
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-4 control-label">Amount*</label>
+                                                            <div class="col-sm-6">
+                                                                <input type="text" placeholder="Amount" ng-model="payment.paymentAmount" class="form-control" ng-model="" name="amount" ng-class="{'txtbxReq': (paymentForm.amount.$error.required && (paymentForm.amount.$touched || paymentForm.$submitted))}" ng-required="true" number-format decimals="numberOfDecimals">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                    </div>
+                                                </div>  
+                                                <div class="row international-amount">
+                                                    <div class="col-sm-12">
+                                                        <input type="radio" name="amountOption" id="amountOption1" class="boss-checkbox" value="equivalent" ng-model="amountOption"/>
+                                                        <label for="amountOption1" class="boss-label radGroup2">Pay USD Equivalent</label><br>
+                                                        <p><small>The Above amount will be conerted and sent in foreign currency.</small></p>
+                                                    </div>
+                                                </div>
+                                                 <div class="row international-amount">
+                                                    <div class="col-sm-12">
+                                                        <input type="radio" name="amountOption" id="amountOption2" class="boss-checkbox" value="notEquivalent" ng-model="amountOption" />
+                                                        <label for="amountOption2" class="boss-label radGroup2">Pay {{payeeAccount.paymentCcy}} Equivalent</label><br>
+                                                        <p><small>The Above amount will be  sent in foreign currency.</small></p>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-4 control-label">Intermediary bank fees*</label>
+                                                            <div class="col-sm-8 interBankRadio">
+                                                               <div class="row">
+                                                                    <div class="col-sm-6">
+                                                                   <input type="radio" name="remitter" id="remitter" class="boss-checkbox" value="Remitter" ng-model="intermediaryBankFees"/>
+                                                                    <label for="remitter" class="boss-label radGroup2">Remitter (me)</label>
+                                                                </div>
+                                                                 <div class="col-sm-6">
+                                                                   <input type="radio" name="beneficiary" id="beneficiary" class="boss-checkbox" value="Beneficiary" ng-model="intermediaryBankFees"/>
+                                                                    <label for="beneficiary" class="boss-label radGroup2">Beneficiary</label>
+                                                                </div>
+                                                               </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                 <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-4 control-label">Purpose of Payment*</label>
+                                                            <div class="col-sm-6">
+                                                                <input type="text" placeholder="Purpose of Payment" ng-model="payment.purposeOfPayment" class="form-control" name="purposeOfPayment" ng-class="{'txtbxReq': (paymentForm.purposeOfPayment.$error.required && (paymentForm.purposeOfPayment.$touched || paymentForm.$submitted))}" ng-required="true">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                    </div>
+                                                </div>
+                                                </div>
+
+                                        <!-- End -->
+
                                             <hr class="line" />
                                             <div class="space_10"></div>
 

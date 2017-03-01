@@ -945,3 +945,12 @@ label.boss-label {
     user-select: none;
 }
 /*-----------------------------------------*/
+.international-amount{
+    padding-left:17%;
+}
+.international-amount .col-sm-12 p{
+  padding-left: 2%;
+}
+.interBankRadio{
+  padding-top: 9px;
+}
