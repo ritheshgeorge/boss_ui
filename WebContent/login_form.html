@@ -17,7 +17,7 @@
 </style>
 
 <div id="test" class="center-vertical" ng-controller='LoginCtrl'>
-    <div class="center-content row">
+    <div class="center-content row" ng-init="error=false;">
 
         <form name="loginForm" id="login-validation" class="col-md-4 col-sm-5 col-xs-11 col-lg-3 center-margin form-horizontal"  method="post" ng-submit="submit()" novalidate form-autofill-fix>
            <img src="app/assets/image-resources/logo-admin.png" class="loginlogo" alt="Western Alliance Bank">
@@ -28,26 +28,22 @@
                         <div class="input-group">
                            
                             <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email/userName" name="username"
-							ng-model="credentials.username" ng-required="true" autocomplete="off">
+							ng-model="credentials.username" 
+							ng-required="true" 
+							ng-class="{'txtbxReq': (loginForm.username.$error.required && (loginForm.username.$touched || loginForm.$submitted))}"
+							autocomplete="off">
                         </div>
-						<div class="error"
-					ng-show="(submitted  || loginForm.username.$dirty)  && loginForm.username.$invalid">
-					<p class="error" ng-show="loginForm.username.$error.required">'Username'
-						is mandatory</p>
-				</div>
-                    </div>
+					</div>
                     <div class="form-group">
                         <div class="input-group">
                           
                             <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password"
-						ng-model="credentials.password" ng-required="true" autocomplete="off">
+							ng-model="credentials.password" 
+							ng-required="true" 
+							ng-class="{'txtbxReq': (loginForm.password.$error.required && (loginForm.password.$touched || loginForm.$submitted))}"
+							autocomplete="off">
                         </div>
-						<div class="error"
-					ng-show="(submitted  || loginForm.password.$dirty)  && loginForm.password.$invalid">
-					<p class="error" ng-show="loginForm.password.$error.required">'Password'
-						is mandatory</p>
-				</div>
-                    </div>
+					</div>
                       <!--div class="form-group">
                         <div class="input-group">
                           
@@ -57,13 +53,13 @@
                     <div class="form-group">
                         <button type="submit" class="btn btn-block btn-primary" >Login</button>
 						<p ng-show="error" class="error">The password you entered is incorrect.
-				 Please try again (make sure your caps lock is off).</p>
+						Please try again (make sure your caps lock is off).</p>
                     </div>
                     <div class="row">
                         <div class="checkbox-primary col-md-6" style="height: 20px;">
                             <label>
                                 <input type="checkbox" id="loginCheckbox1" class="custom-checkbox">
-                                Remember me
+                                Remember me 
                             </label>
                         </div>
                         <div class="text-right col-md-6">
