@@ -26,31 +26,33 @@
 
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane fade active in" id="accountSummary">
+                    <div class="tab-pane fade active in" id="accountSummary" >
                         <div ng-if="!viewAllAccountActivity">
-                            <div class="summary_outer" ng-repeat="account in accountList track by $index">
+                            <div class="summary_outer" ng-repeat="account in accountList track by $index" ng-show="!loading">
                                 <div class="col-md-5">
                                     <div class="bankdtl_header">
-                                        {{account.accountNicName}} - {{account.accountNumber}}
-                                        <span>{{account.accountName}}</span>
+                                        {{account.nicName}} - {{account.accountNumber}}
+                                        <span>{{account.name}}</span>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="bankdtl_header">
-                                        {{account.accountCode}}
-                                        <span>{{account.accountType}}</span>
+                                        {{account.accountType}}
+                                        <span>{{account.accountCode}}</span>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="bankdtl_header">
-                                        ${{account.accountBalance}}
+                                        {{account.currency}} {{account.availableBalance | number : 2}}
                                         <span>Available Balance</span>
                                     </div>
                                 </div>
                                 <div class="col-md-2"><a ng-click="viewAllActivityForThisAccount(account);" class="btn btn-default viewall_btn">View All</a></div>
                                 <div class="clear"></div>
                             </div>
-
+							<div class="example-box-wrapper" ng-show="loading">
+				<div class="glyph-icon remove-border demo-icon tooltip-button icon-spin-4 icon-spin" title="icon-spin-4"></div> 
+			</div>
                             <div class="clear"></div>
                         </div>
                         <div ng-if="viewAllAccountActivity">

@@ -46,15 +46,15 @@
 			</div>
 			<div class="row">
 				<div class="col-xs-6 confirm_smlhead">From:</div>
-				<div class="col-xs-6 confirm_details">{{bankAccount.accountName}}</div>
+				<div class="col-xs-6 confirm_details">{{bankAccount.name}}</div>
 			</div>
 			<div class="row">
 				<div class="col-xs-6 confirm_smlhead">To Account:</div>
-				<div class="col-xs-6 confirm_details">{{payeeAccount.bank.name}}</div>
+				<div class="col-xs-6 confirm_details">{{payeeAccount.legalName}}</div>
 			</div>
 			<div class="row">
 				<div class="col-xs-6 confirm_smlhead">Amount:</div>
-				<div class="col-xs-6 confirm_details">{{payment.paymentAmount}}</div>
+				<div class="col-xs-6 confirm_details">{{payment.paymentAmount | number : 2}}</div>
 			</div>
 			<div class="row">
 				<div class="col-xs-6 confirm_smlhead">Delivery Method:</div>
@@ -62,7 +62,7 @@
 			</div>
 			<div class="row">
 				<div class="col-xs-6 confirm_smlhead">Fee:</div>
-				<div class="col-xs-6 confirm_details">{{payment.feeCcy}}{{payment.feeAmount}}</div>
+				<div class="col-xs-6 confirm_details">{{payment.feeCcy}}{{payment.feeAmount | number : 2}}</div>
 			</div>
 			<div class="row">
 				<div class="col-xs-6 confirm_smlhead">Payment Date:</div>

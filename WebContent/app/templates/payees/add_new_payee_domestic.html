@@ -23,7 +23,7 @@
                                                     </div>
                                                     Individual
                                                 </label>-->
-												<input type="radio" id="Individual_recipient" class="boss-checkbox" name="recipientType" value="Individual" ng-model="payee.type"/>
+												<input type="radio" id="Individual_recipient" class="boss-checkbox" name="recipientType" value="Individual" ng-model="payee.recipientType"/>
 												<label for="Individual_recipient" class="boss-label radGroup2">Individual</label>
                                             </div>
                                             <div class="radio-inline">
@@ -35,7 +35,7 @@
                                                     </div>
                                                     Business
                                                 </label-->
-												<input type="radio" id="Business_recipient" class="boss-checkbox" name="recipientType" value="Business" ng-model="payee.type"/>
+												<input type="radio" id="Business_recipient" class="boss-checkbox" name="recipientType" value="Business" ng-model="payee.recipientType"/>
 												<label for="Business_recipient" class="boss-label radGroup2">Business</label>
                                             </div>
                                         </div>
@@ -51,7 +51,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-4 control-label">Payee Name*</label>
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control" ng-model="payee.name" placeholder="Payee Name"  name="payeeName" ng-class="{'txtbxReq': (payeeForm.payeeName.$error.required && (payeeForm.payeeName.$touched || payeeForm.$submitted))}" ng-required="true">
+                                            <input type="text" class="form-control" ng-model="payee.legalName" placeholder="Payee Name"  name="legalName" ng-class="{'txtbxReq': (payeeForm.legalName.$error.required && (payeeForm.legalName.$touched || payeeForm.$submitted))}" ng-required="true">
                                         </div>
                                     </div>
                                 </div>
@@ -59,7 +59,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-4 control-label">Nickname*</label>
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control" ng-model="payee.nickName" placeholder="NickName"  name="nickName" ng-class="{'txtbxReq': (payeeForm.nickName.$error.required && (payeeForm.nickName.$touched || payeeForm.$submitted))}" ng-required="true">
+                                            <input type="text" class="form-control" ng-model="payee.aliasName" placeholder="NickName"  name="aliasName" ng-class="{'txtbxReq': (payeeForm.aliasName.$error.required && (payeeForm.aliasName.$touched || payeeForm.$submitted))}" ng-required="true">
                                         </div>
                                     </div>
                                 </div>
@@ -69,7 +69,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-4 control-label">Address1*</label>
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control" ng-model="payee.address1" placeholder="Address 1" name="address1" ng-class="{'txtbxReq': (payeeForm.address1.$error.required && (payeeForm.address1.$touched || payeeForm.$submitted))}" ng-required="true">
+                                            <input type="text" class="form-control" ng-model="payee.legalAddress.address1" placeholder="Address 1" name="address1" ng-class="{'txtbxReq': (payeeForm.address1.$error.required && (payeeForm.address1.$touched || payeeForm.$submitted))}" ng-required="true">
                                         </div>
                                     </div>
                                 </div>
@@ -77,7 +77,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-4 control-label">Address2</label>
                                         <div class="col-sm-6">
-                                            <input type="text" placeholder="Address 2" class="form-control" ng-model="payee.address2">
+                                            <input type="text" placeholder="Address 2" class="form-control" ng-model="payee.legalAddress.address2">
                                         </div>
                                     </div>
                                 </div>
@@ -87,7 +87,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-4 control-label">City*</label>
                                         <div class="col-sm-6">
-                                            <input type="text" placeholder="City" class="form-control" ng-model="payee.city" name="city" ng-class="{'txtbxReq': (payeeForm.city.$error.required && (payeeForm.city.$touched || payeeForm.$submitted))}" ng-required="true">
+                                            <input type="text" placeholder="City" class="form-control" ng-model="payee.legalAddress.city" name="city" ng-class="{'txtbxReq': (payeeForm.city.$error.required && (payeeForm.city.$touched || payeeForm.$submitted))}" ng-required="true">
                                         </div>
                                     </div>
                                 </div>
@@ -97,10 +97,10 @@
                                         <div class="col-sm-6">
                                             <div class="row">
                                                 <div class="col-sm-7">
-                                                    <input type="text" placeholder="State" class="form-control" ng-model="payee.state" name="state" ng-class="{'txtbxReq': (payeeForm.state.$error.required && (payeeForm.state.$touched || payeeForm.$submitted))}" ng-required="true">
+                                                    <input type="text" placeholder="State" class="form-control" ng-model="payee.legalAddress.state" name="state" ng-class="{'txtbxReq': (payeeForm.state.$error.required && (payeeForm.state.$touched || payeeForm.$submitted))}" ng-required="true">
                                                 </div>
                                                 <div class="col-sm-5">
-                                                    <input type="text" placeholder="Zip" class="form-control" ng-model="payee.zip" name="zip" ng-class="{'txtbxReq': (payeeForm.zip.$error.required && (payeeForm.zip.$touched || payeeForm.$submitted))}" ng-required="true">
+                                                    <input type="text" placeholder="Postal Code" class="form-control" ng-model="payee.legalAddress.postalCode" name="postalCode" ng-class="{'txtbxReq': (payeeForm.postalCode.$error.required && (payeeForm.postalCode.$touched || payeeForm.$submitted))}" ng-required="true">
                                                 </div>
                                             </div>
 
@@ -113,7 +113,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-4 control-label">Email Address*</label>
                                         <div class="col-sm-6">
-                                            <input type="text" placeholder="Email Address" class="form-control" ng-model="payee.email" name="email" ng-class="{'txtbxReq': (payeeForm.email.$error.required && (payeeForm.email.$touched || payeeForm.$submitted))}" ng-required="true">
+                                            <input type="text" placeholder="Email Address" class="form-control" ng-model="payee.emailAddress" name="email" ng-class="{'txtbxReq': (payeeForm.email.$error.required && (payeeForm.email.$touched || payeeForm.$submitted))}" ng-required="true">
                                         </div>
                                     </div>
                                 </div>
@@ -121,7 +121,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-4 control-label">Phone Number*</label>
                                         <div class="col-sm-6">
-                                            <input type="text" placeholder="Phone Number" class="form-control" ng-model="payee.phoneNo" name="phoneNumber" ng-class="{'txtbxReq': (payeeForm.phoneNumber.$error.required && (payeeForm.phoneNumber.$touched || payeeForm.$submitted))}" ng-required="true">
+                                            <input type="text" placeholder="Phone Number" class="form-control" ng-model="payee.phoneNumber" name="phoneNumber" ng-class="{'txtbxReq': (payeeForm.phoneNumber.$error.required && (payeeForm.phoneNumber.$touched || payeeForm.$submitted))}" ng-required="true">
                                         </div>
                                     </div>
                                 </div>
@@ -133,7 +133,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-4 control-label">Routing Number*</label>
                                         <div class="col-sm-6">
-                                            <input type="text" placeholder="Routing Number" class="form-control" autocomplete="off" ng-model="payee.bank.bic" name="abaNumber"  
+                                            <input type="text" placeholder="Routing Number" class="form-control" autocomplete="off" ng-model="payee.accountWithBank.bic" name="abaNumber"  
 											typeahead-on-select="payeeBankSR($item)" 
 											typeahead="bic.bic for bic in getBanks($viewValue) | limitTo:10" 
 											typeahead-loading="loadingPayeeBank" 
@@ -145,15 +145,15 @@
                                     </div>
                                 </div>
                             </div>
-							<div class="row" ng-if="payee.bank">
+							<div class="row" ng-if="payee.accountWithBank">
                                 <div class="col-md-6">
                                     <div class="form-group ">
 									<div class="col-sm-4"></div>
                                     <div class="col-md-6">
-                                        <p>Bank Name   : {{payee.bank.institutionName}}</p>
-										<p>Bank Address: {{payee.bank.streetAddress1}}</p>
-										<p>Bank City   : {{payee.bank.city}}</p>
-										<p>Bank Zip    : {{payee.bank.zipCode}}</p>
+                                        <p>Bank Name   : {{payee.accountWithBank.institutionName}}</p>
+										<p>Bank Address: {{payee.accountWithBank.streetAddress1}}</p>
+										<p>Bank City   : {{payee.accountWithBank.city}}</p>
+										<p>Bank Zip    : {{payee.accountWithBank.zipCode}}</p>
                                     </div>
                                     </div>
                                 </div>

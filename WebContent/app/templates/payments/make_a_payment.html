@@ -17,7 +17,7 @@
                                                     <div class="form-group">
                                                         <label class="col-sm-4 control-label">From Account*</label>
                                                         <div class="col-sm-6">
-                                                            <select class="form-control" ng-model="bankAccount" name="bankAccount" ng-class="{'txtbxReq': (paymentForm.bankAccount.$error.required && (paymentForm.bankAccount.$touched || paymentForm.$submitted))}" ng-required="true" ng-options="account.accountName for account in accountList track by account.id">
+                                                            <select class="form-control" ng-model="bankAccount" name="bankAccount" ng-class="{'txtbxReq': (paymentForm.bankAccount.$error.required && (paymentForm.bankAccount.$touched || paymentForm.$submitted))}" ng-required="true" ng-options="account.nicName +'-'+account.accountNumber for account in accountList track by account.id">
                                                                 <option value="">Select Account</option>
                                                             </select>
                                                         </div>
@@ -26,7 +26,7 @@
                                                 <div class="col-md-6">
                                                     <div class="col-sm-8" ng-show="bankAccount">
                                                         <div class="alert alert-info">
-                                                            <p>Account Balance: ${{bankAccount.amount}}</p>
+                                                            <p>Account Balance: {{bankAccount.currency}} {{bankAccount.availableBalance | number : 2}}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -38,10 +38,10 @@
                                                         <div class="col-sm-6">
                                                             <select class="form-control" ng-model="payee" name="payee" ng-class="{'txtbxReq': (paymentForm.payee.$error.required && (paymentForm.payee.$touched || paymentForm.$submitted))}" ng-required="true">
                                                                 <optgroup label="Domestic Payees">
-                                                                    <option ng-repeat="payee in payeeList track by $index" value="{{payee.id}}" ng-if="!payee.isInternational">{{payee.name}}:{{payee.accountNumber}}</option>
+                                                                    <option ng-repeat="payee in payeeList track by $index" value="{{payee.id}}" ng-if="!payee.isInternational">{{payee.legalName}}:{{payee.accountNumber | limitTo: 4}}</option>
                                                                 </optgroup>
                                                                 <optgroup label="International Payees">
-                                                                    <option ng-repeat="payee in payeeList track by $index" value="{{payee.id}}" ng-if="payee.isInternational">{{payee.name}}:{{payee.accountNumber}}</option>
+                                                                    <option ng-repeat="payee in payeeList track by $index" value="{{payee.id}}" ng-if="payee.isInternational">{{payee.legalName}}:{{payee.accountNumber | limitTo: 4}}</option>
                                                                 </optgroup>
                                                             </select>
                                                         </div>
@@ -50,7 +50,7 @@
                                                 <div class="col-md-6">
                                                     <div class="col-sm-8" ng-show="payeeAccount">
                                                         <div class="alert alert-info">
-                                                            <p>{{payeeAccount.bank.name}} ({{payeeAccount.paymentCcy}})</p>
+                                                            <p>Bank Name ({{payeeAccount.accountCcy}})</p><!-- {{payeeAccount.accountWithBank.name}} -->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -73,8 +73,8 @@
                                                     <div class="form-group">
                                                         <label class="col-sm-4 control-label">Delivery Method*</label>
                                                         <div class="col-sm-6">
-                                                            <select class="form-control" ng-model="deliveryMethod" name="deliveryMethod" ng-class="{'txtbxReq': (paymentForm.deliveryMethod.$error.required && (paymentForm.deliveryMethod.$touched || paymentForm.$submitted))}" ng-required="true" ng-options="deliver.description for deliver in deliveryMethodList">
-                                                                <option value="">Select</option>
+                                                            <select class="form-control" ng-model="deliveryMethod" name="deliveryMethod" ng-class="{'txtbxReq': (paymentForm.deliveryMethod.$error.required && (paymentForm.deliveryMethod.$touched || paymentForm.$submitted))}" ng-required="true" ng-change="updatedeliveryMethod(deliveryMethod);">
+                                                                <option ng-repeat="deliver in deliveryMethodList track by $index" value="{{deliver.method}}">{{deliver.description}}</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -82,7 +82,7 @@
                                                 <div class="col-md-6">
                                                     <div class="col-sm-8" ng-show="deliveryMethod">
                                                         <div class="alert alert-info">
-                                                            <p>Fees: {{deliveryMethod.fees}}</p>
+                                                            <p>Fees: {{payment.feeCcy}} {{payment.feeAmount}}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -305,7 +305,7 @@
                                                                         <div class="form-group">
                                                                             <label class="col-sm-4 control-label">Email Address</label>
                                                                             <div class="col-sm-6">
-                                                                                <input name="" type="text" class="form-control" placeholder="ex.test@test.com" ng-model="payment.email">
+                                                                                <input name="" type="text" class="form-control" placeholder="ex.test@test.com" ng-model="payment.emailAddress">
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -321,7 +321,7 @@
                                                                         <div class="form-group">
                                                                             <label class="col-sm-4 control-label">Mobile</label>
                                                                             <div class="col-sm-6">
-                                                                                <input name="" type="text" class="form-control" placeholder="(***)-***-****" ng-model="payment.mobile">
+                                                                                <input name="" type="text" class="form-control" placeholder="(***)-***-****" ng-model="payment.phoneNumber">
                                                                             </div>
                                                                         </div>
 
@@ -338,7 +338,7 @@
                                                                         <div class="form-group">
                                                                             <label class="col-sm-4 control-label">Message</label>
                                                                             <div class="col-sm-6">
-                                                                                <textarea class="form-control" placeholder="Message" ng-model="payment.messageToRecipient"></textarea>
+                                                                                <textarea class="form-control" placeholder="Message" ng-model="payment.messageToPayee"></textarea>
                                                                             </div>
                                                                         </div>
                                                                     </div>

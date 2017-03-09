@@ -1,25 +1,12 @@
 var boss_account_module = angular.module('bossApp');
-boss_account_module.factory('AccountSummaryService', ['$http', function($http) {
+boss_account_module.factory('AccountSummaryService', ['$http','$rootScope', function($http,$rootScope) {
     return {
         bankAccount_list: function() {
-            var acccountJSON = [];
-            for (i = 0; i < 5; i++) {
-                var account = {
-                accountNicName: 'Business Account Name',
-                accountName: 'Business Checking Account',
-                accountNumber: (Math.floor(1000 + Math.random() * 9000)),
-                accountCode: 'Checking',
-                accountType: 'AccountType',
-                accountBalance: '50,000.00'
-            };
-				acccountJSON.push(account);
-            }
-            return acccountJSON;
-            /**
-        return $http.get('../getAccount_list').then(function(response) {
-          return response.data;
-        }); */
-        }
+          var actionUrl = $rootScope.path+'bankAccount/getAccount_list/abc183kdig';
+			return $http.post(actionUrl).then(function(response) {
+				return response.data;
+			});
+		}
     };
 }]);
 boss_account_module.factory('AccountActivityService', ['$http', function($http) {

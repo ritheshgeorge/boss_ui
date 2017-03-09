@@ -1,19 +1,26 @@
 'use strict';
 
 angular.module('bossApp').
-controller('ParentController', ['$scope', '$rootScope', '$modal', 'Auth', 'AUTH_EVENTS','USER_ROLES','$state','$cookies',
-function($scope, $rootScope, $modal, Auth, AUTH_EVENTS, USER_ROLES,$state,$cookies){
+controller('ParentController', ['$scope', '$rootScope', '$modal', 'Auth', 'AUTH_EVENTS','USER_ROLES','$state','$cookies','ConfigService',
+function($scope, $rootScope, $modal, Auth, AUTH_EVENTS, USER_ROLES,$state,$cookies,ConfigService){
+	//get the config File and Update the rootscope for all the apis
+	ConfigService.getConfig_path().success(function(data){
+		console.log("API PATH: " + data.api_Path);
+		$cookies.path = data.api_Path;
+		$rootScope.path = data.api_Path;
+		console.log("API PATH cookies: " + $cookies.path);
+		console.log("API PATH rootScope: " + $rootScope.path);
+	});
+		
 	// this is the parent controller for all controllers.
 	// Manages auth login functions and each controller
 	// inherits from this controller	
-
+	
 	$rootScope.modalShown = false;
 	var showLoginDialog = function() {
 		if(!$scope.modalShown){
 			$rootScope.modalShown = true;
 			$state.go("login");
-			
-			console.log();
 		}
 	};
 	
