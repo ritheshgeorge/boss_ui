@@ -26,9 +26,10 @@ app.config(function ($httpProvider) {
 // Configure the main application module.
 
 app.config(['$urlRouterProvider','$stateProvider','USER_ROLES',function($urlRouterProvider, $stateProvider,USER_ROLES) {
-		//console.log($cookies.user);
-		//$urlRouterProvider.otherwise('/home');    
-		//$urlRouterProvider.when('/', '/home');
+		$urlRouterProvider.when("/home", "/home/accounts");		
+		$urlRouterProvider.when("/home/payment", "/home/payment/paymentActivity");
+		$urlRouterProvider.when("/home/payment/addPayee", "/home/payment/addPayee/domesticPayee");
+		
     $stateProvider	
 	.state('login',  {
         url : '/login',
@@ -91,12 +92,12 @@ app.config(['$urlRouterProvider','$stateProvider','USER_ROLES',function($urlRout
 		containerClass: 'internationalPayee',
 	})
 	.state('home.makePayment.addAPayee.editDomesticPayee',  {
-        url : '/editDomesticPayee/:lcId',
+        url : '/editDomesticPayee/:payeeId',
         templateUrl: 'app/templates/payees/add_new_payee_domestic.html',
 		containerClass: 'domesticPayee',
 	})
 	.state('home.makePayment.addAPayee.editInternationalPayee',  {
-        url : '/editInternationalPayee/:lcId',
+        url : '/editInternationalPayee/:payeeId',
         templateUrl: 'app/templates/payees/add_new_payee_international.html',
 		containerClass: 'internationalPayee',
 	})
@@ -113,6 +114,9 @@ app.config(['$urlRouterProvider','$stateProvider','USER_ROLES',function($urlRout
 	.state('home.error',  {
         url : '/error',
         templateUrl: 'app/templates/404error.html',
+		data: {
+          authorizedRoles: [USER_ROLES.guest]
+      },
 	})
 	.state('home.manageUsers',  {
         url : '/manageUsers',

@@ -5,8 +5,9 @@
 
             <div class="panel">
                 <div class="panel-body">
+					<div ng-show="!loadingTable">
                     <div class="example-box-wrapper">
-                        <div id="datatable-tabletools_wrapper" class="dataTables_wrapper form-inline no-footer">
+                        <div id="datatable-tabletools_wrapper" class="dataTables_wrapper form-inline no-footer" ng-show="payeeList.length > 0">
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="dataTables_length" id="datatable-tabletools_length">
@@ -42,12 +43,12 @@
                                 </thead>
                                 <tbody>
                                     <tr role="row" class="odd" ng-repeat="payee in payeeList.slice(((tableCurrentPage-1)*tableItemsPerPage), ((tableCurrentPage)*tableItemsPerPage)) | filter:searchPayee track by $index">
-                                        <td>{{payee.name}}</td>
+                                        <td>{{payee.legalName}}</td>
                                         <td>{{payee.accountNumber}} </td>
-                                        <td>{{payee.bank.name}}
-                                            <span class="adres">{{payee.bank.city}}, {{payee.bank.zipCode}}, {{payee.bank.Country}}</span>
+                                        <td>{{payee.accountWithBank.name}}
+                                            <span class="adres">{{payee.accountWithBank.city}}, {{payee.accountWithBank.zipCode}}, {{payee.accountWithBank.Country}}</span>
                                         </td>
-                                        <td>{{payee.paymentCcy}}</td>
+                                        <td>{{payee.accountCcy}}</td>
                                         <td>
                                             <a href="#" class="btn btn-xs btn-success" ng-if="payee.status=='Active'" title="">Active</a>
                                             <a href="#" class="btn btn-xs btn-warning" ng-if="payee.status!='Active'" title="">Inactive</a>
@@ -63,8 +64,8 @@
                                                     <li><a ui-sref="makePayment.addAPayee.internationalPayee">Suspend</a></li>
                                                     <li><a href="#">Delere</a></li>
                                                     <li class="divider"></li>
-                                                    <li ng-if="!payee.isInternational"><a ui-sref="home.makePayment.addAPayee.editDomesticPayee({ lcId:'{{payee.id}}'})">Edit</a></li><!-- Domestic Payee Edit -->
-                                                    <li ng-if="payee.isInternational"><a ui-sref="home.makePayment.addAPayee.editInternationalPayee({ lcId:'{{payee.id}}'})">Edit</a></li><!-- International Payee Edit -->
+                                                    <li ng-if="!payee.isInternational"><a ui-sref="home.makePayment.addAPayee.editDomesticPayee({ payeeId:'{{payee.id}}'})">Edit</a></li><!-- Domestic Payee Edit -->
+                                                    <li ng-if="payee.isInternational"><a ui-sref="home.makePayment.addAPayee.editInternationalPayee({ payeeId:'{{payee.id}}'})">Edit</a></li><!-- International Payee Edit -->
                                                 </ul>
                                             </div> <!--
 											<span ng-if="!payee.isInternational">Domestic</span>
@@ -84,7 +85,16 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+						<div ng-show="!payeeList.length > 0">
+								<p class="font-red">No records to display.</p>
+						</div>
+                    </div><!-- wrapper-->
+					</div>
+					<div ng-show="loadingTable">
+						<div class="example-box-wrapper">
+							<div class="glyph-icon remove-border demo-icon tooltip-button icon-spin-4 icon-spin" title="icon-spin-4"></div> 
+						</div>
+					</div>
                 </div>
             </div>
 

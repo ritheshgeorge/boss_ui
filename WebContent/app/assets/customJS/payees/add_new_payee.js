@@ -3,24 +3,30 @@ app.controller('addNewPayeeCtrl', ['$scope', '$http', '$state','BankService','$r
     $http.defaults.headers.post["Content-Type"] = "application/json";
 	$scope.confirmPayeeInfo = false;
 	$scope.lookupBy="Swift";
-	// This should be callBack Function Update once done with API
-	//PayeeNewEditService.newedit($stateParams.lcId).then(function(data) { console.log("Test Succesfull");});
-	if($stateParams.lcId != undefined){
-		$scope.payee = PayeeNewEditService.newedit();
+	if($stateParams.payeeId != undefined){
+		// parameter lcId,PayeeId
+		PayeeNewEditService.newedit("leId",$stateParams.payeeId).then(function(data){
+			$scope.payee = data;
+		});
 	}else{
 		var payee = {
-		type : "Individual",
-		name : "",
-		address1: "",
-		address2: "",
-		city: "",
-		state:"",
-		country: "USA",
-		zip: "",
-		phoneNo : "",
-		email : "",
-		bank: "",
+		isInternational : false,
+		recipientType : "Individual",
+		legalName : "",
+		aliasName : "",
+		legalAddress : {
+			address1: "",
+			address2: "",
+			city: "",
+			state:"",
+			country: "USA",
+			postalCode: "",
+		},
+		phoneNumber : "",
+		emailAddress : "",
+		accountWithBank: "",
 		accountNumber: "",
+		accountCcy:"USD",
 		};
 		$scope.payee = payee;
 	}
@@ -30,8 +36,6 @@ app.controller('addNewPayeeCtrl', ['$scope', '$http', '$state','BankService','$r
 	$scope.addPayee = function(){
 		if(!$scope.payeeForm.$error.required){
 			$scope.confirmPayeeInfo = true;
-			console.log("Submiting payeeForm ....");
-			console.log($scope.payee);
 		}
 	}
 	/*
@@ -39,7 +43,8 @@ app.controller('addNewPayeeCtrl', ['$scope', '$http', '$state','BankService','$r
 	*/
 	$scope.payeeBankSR = function(site){
 		console.log(site);
-		$scope.payee.bank = site;
+		$scope.payee.accountWithBank = site;
+		//$scope.payee.bank = site;
 	}
 	$scope.getBanks = function(val) {
 		var data = BankService.bank_list(val);
@@ -78,6 +83,10 @@ app.controller('addNewPayeeCtrl', ['$scope', '$http', '$state','BankService','$r
 	* Confirm payee and add
 	*/
 	$scope.confirmPayee = function(){
+		console.log("Submiting payeeForm ....");
+		console.log($scope.payee);
+		var _payee = $scope.payee; 
+		PayeeNewEditService.savePayee(_payee);
 		$state.go("home.makePayment.managePayees");
 	}
 	/**

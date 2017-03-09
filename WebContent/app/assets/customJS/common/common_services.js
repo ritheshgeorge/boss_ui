@@ -1,5 +1,16 @@
 var boss_common_module = angular.module('bossApp');
 
+boss_common_module.factory('ConfigService', ['$http', function($http) {
+	
+	return{
+		getConfig_path : function(){
+			return $http.post('misc/config.json').success(function(response) {
+				return response.data;
+			});
+		}
+	}
+}]);
+
 boss_common_module.factory('BankService', ['$http', function($http) {
     return {
 		bank_branch_list : function(countryCode,bankName,bankCity,chars) {
