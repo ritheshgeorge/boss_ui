@@ -1,150 +1,102 @@
-<div>
-    <script type="text/javascript" src="app/assets/widgets/input-switch/inputswitch.js"></script>
+<div ng-controller="manageUserCtrl">
+<script type="text/javascript" src="app/assets/widgets/input-switch/inputswitch.js"></script>
     <script>
         $(function() {
             "use strict";
             $('.input-switch').bootstrapSwitch();
         });
     </script>
-    <div id="page-title">
-        <h2>Manage User</h2>
+    <div class="tab-content">
+        <!-- Start make-a-payment-panel  -->
+        <div class="tab-pane active in" id="manage_payee">
 
-    </div>
-    <div class="panel">
-        <div class="panel-body">
-            <h3 class="title-hero">
-									Users List
+            <div class="panel">
+                <div class="panel-body">
+					<h3 class="title-hero">
+									Manage User
 								</h3>
-            <div class="example-box-wrapper">
-                <div id="datatable-tabletools_wrapper" class="dataTables_wrapper form-inline no-footer">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="dataTables_length" id="datatable-tabletools_length">
-                                <label>
-                                    <select name="datatable-tabletools_length" aria-controls="datatable-tabletools" class="form-control">
-                                        <option value="10">10</option>
-                                        <option value="25">25</option>
-                                        <option value="50">50</option>
-                                        <option value="100">100</option>
-                                    </select> records per page</label>
+					<div ng-show="!loadingTable">
+                    <div class="example-box-wrapper">
+                        <div id="datatable-tabletools_wrapper" class="dataTables_wrapper form-inline no-footer" ng-show="userList.length > 0">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="dataTables_length" id="datatable-tabletools_length">
+                                        <label>
+                                            <select name="datatable-tabletools_length" ng-model="tableViewby" ng-change="setTableItemsPerPage(tableViewby)" class="form-control">
+                                                <option value="10">10</option>
+                                                <option value="25">25</option>
+                                                <option value="50">50</option>
+                                                <option value="100">100</option>
+                                            </select> records per page</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+									<div id="btn-div" class="pull-right adnw">
+                                <!--button class="btn btn-default" ui-sref="home.addUser"> Add New</button-->
                             </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div id="btn-div" class="pull-right adnw">
-                                <button class="btn btn-default"> Add New</button>
+                                    <div id="datatable-tabletools_filter" class="dataTables_filter">
+                                        <label>
+                                            <input type="search" class="form-control" placeholder="Search..." ng-model="searchUser">
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
-                            <div id="datatable-tabletools_filter" class="dataTables_filter">
-                                <label>
-                                    <input type="search" class="form-control" placeholder="Search..." aria-controls="datatable-tabletools">
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <table id="datatable-tabletools" class="table table-striped table-bordered responsive no-wrap datatable-tabletools dataTable no-footer dtr-inline" cellspacing="0" width="100%" role="grid" aria-describedby="datatable-tabletools_info" style="width: 100%;">
+                            <table id="datatable-tabletools" class="table table-striped table-bordered responsive no-wrap datatable-tabletools dataTable no-footer dtr-inline" cellspacing="0" width="100%" role="grid" aria-describedby="datatable-tabletools_info">
 
-                        <thead>
-                            <tr role="row">
-                                <th class="sorting_asc" tabindex="0" aria-controls="datatable-tabletools" rowspan="1" colspan="1" aria-sort="ascending" aria-label="User ID: activate to sort column ascending" style="width: 118px;">User ID</th>
-                                <th class="sorting" tabindex="0" aria-controls="datatable-tabletools" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: 183px;">Name</th>
-                                <th class="sorting" tabindex="0" aria-controls="datatable-tabletools" rowspan="1" colspan="1" aria-label="Email: activate to sort column ascending" style="width: 350px;">Email</th>
-                                <th class="sorting" tabindex="0" aria-controls="datatable-tabletools" rowspan="1" colspan="1" aria-label="Company: activate to sort column ascending" style="width: 196px;">Company</th>
-                                <th class="sorting" tabindex="0" aria-controls="datatable-tabletools" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 144px;">Status</th>
-                                <th class="sorting" tabindex="0" aria-controls="datatable-tabletools" rowspan="1" colspan="1" aria-label="Actions: activate to sort column ascending" style="width: 338px;">Actions</th>
-                            </tr>
-                        </thead>
+                                <thead>
+                                    <tr role="row">
+                                        <th>UserId</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
 
-                        <tbody>
-
-                            <tr role="row" class="odd">
-                                <td class="sorting_1">WA02401</td>
-                                <td>Nithil Jose</td>
-                                <td>nithiljose@gmail.com</td>
-                                <td>XTAPPS</td>
-                                <td>
-                                    <input type="checkbox" data-on-color="primary" name="checkbox-example-1" class="input-switch" data-size="small" data-on-text="Active" data-off-text="Inactive">
-                                </td>
-                                <td>
-                                  <!--   <a href="permission-set.html" class="btn btn-xs btn-info view_div" title="">Permissions</a> -->
-                                    <a ui-sref="addEditUser" class="btn btn-xs btn-primary" title="">Edit</a>
-                                    <a href="#" class="btn btn-xs btn-danger" title="">Suspend</a>
-                                </td>
-                            </tr>
-                            <tr role="row" class="even">
-                                <td class="sorting_1">WA02402</td>
-                                <td>Rithesh George</td>
-                                <td>rethesh@thebeerexchange.io</td>
-                                <td>BEX</td>
-                                <td>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr role="row" class="odd" ng-repeat="user in userList.slice(((tableCurrentPage-1)*tableItemsPerPage), ((tableCurrentPage)*tableItemsPerPage)) | filter:searchUser track by $index">
+                                        <td>{{user.userName}}</td>
+                                        <td>{{user.firstName}} {{user.lastName}}</td>
+                                        <td>{{user.email}}</td>
+                                         <td>
                                     <input type="checkbox" data-on-color="primary" name="checkbox-example-1" class="input-switch" checked data-size="small" data-on-text="Active" data-off-text="Inactive">
                                 </td>
                                 <td>
                                     <!-- <a href="permission-set.html" class="btn btn-xs btn-info view_div" title="">Permissions</a> -->
-                                    <a ui-sref="addEditUser" class="btn btn-xs btn-primary" title="">Edit</a>
+                                    <a ui-sref="home.admin.addEditUser({ userId:'{{user.id}}'})" class="btn btn-xs btn-primary" title="">Edit</a>
                                     <a href="#" class="btn btn-xs btn-danger" title="">Suspend</a>
                                 </td>
-                            </tr>
-                            <tr role="row" class="odd">
-                                <td class="sorting_1">WA02403</td>
-                                <td>Brenden Wagner</td>
-                                <td>brenden@gmail.com</td>
-                                <td>HNI Corporation</td>
-                                <td>
-                                    <input type="checkbox" data-on-color="primary" name="checkbox-example-1" class="input-switch" data-size="small" data-on-text="Active" data-off-text="Inactive">
-                                </td>
-                                <td>
-                                    <!-- <a href="permission-set.html" class="btn btn-xs btn-info view_div" title="">Permissions</a> -->
-                                    <a ui-sref="addEditUser" class="btn btn-xs btn-primary" title="">Edit</a>
-                                    <a href="#" class="btn btn-xs btn-danger" title="">Suspend</a>
-                                </td>
-                            </tr>
-                            <tr role="row" class="even">
-                                <td class="sorting_1">WA02404</td>
-                                <td>Bradley Greer</td>
-                                <td>bradleygr@gmail.com</td>
-                                <td>Fiserv</td>
-                                <td>
-                                    <input type="checkbox" data-on-color="primary" name="checkbox-example-1" class="input-switch" data-size="small" data-on-text="Active" data-off-text="Inactive">
-                                </td>
-                                <td>
-                                    <!-- <a href="permission-set.html" class="btn btn-xs btn-info view_div" title="">Permissions</a> -->
-                                    <a ui-sref="addEditUser" class="btn btn-xs btn-primary" title="">Edit</a>
-                                    <a href="#" class="btn btn-xs btn-danger" title="">Suspend</a>
-                                </td>
-                            </tr>
-                            <tr role="row" class="odd">
-                                <td class="sorting_1">WA02405</td>
-                                <td>Cara Stevens</td>
-                                <td>cara7.stevens@gmail.com</td>
-                                <td>GHD Group</td>
-                                <td>
-                                    <input type="checkbox" data-on-color="primary" name="checkbox-example-1" class="input-switch" data-size="small" data-on-text="Active" data-off-text="Inactive">
-                                </td>
-                                <td>
-                                    <!-- <a href="permission-set.html" class="btn btn-xs btn-info view_div" title="">Permissions</a> -->
-                                    <a ui-sref="addEditUser" class="btn btn-xs btn-primary" title="">Edit</a>
-                                    <a href="#" class="btn btn-xs btn-danger" title="">Suspend</a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="dataTables_info" id="datatable-tabletools_info" role="status" aria-live="polite">Showing 1 to 5 of 5 entries</div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="dataTables_paginate paging_bootstrap" id="datatable-tabletools_paginate">
-                                <ul class="pagination">
-                                    <li class="previous disabled"><a href="#">Previous</a></li>
-                                    <li class="active"><a href="#">1</a></li>
-                                    <li class="next disabled"><a href="#">Next</a></li>
-                                </ul>
+                                       
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="dataTables_info" id="datatable-tabletools_info" role="status" aria-live="polite">Showing page {{tableCurrentPage}} of {{totalTablePagesNumber}}</div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="dataTables_paginate paging_bootstrap" id="datatable-tabletools_paginate">
+                                        <pagination total-items="tableTotalItems" ng-model="tableCurrentPage" max-size="5" class="pagination-sm" boundary-links="true" rotate="false" num-pages="totalTablePagesNumber" items-per-page="tableItemsPerPage"></pagination>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+						<div ng-show="!userList.length > 0">
+								<p class="font-red">No records to display.</p>
+						</div>
+                    </div><!-- wrapper-->
+					</div>
+					<div ng-show="loadingTable">
+						<div class="example-box-wrapper">
+							<div class="glyph-icon remove-border demo-icon tooltip-button icon-spin-4 icon-spin" title="icon-spin-4"></div> 
+						</div>
+					</div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <div class="space_20"></div>
+        </div>
+        <!-- End make-a-pament-panel  -->
+    </div>
+</div>
+</div>
 </div>
