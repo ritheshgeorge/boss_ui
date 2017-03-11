@@ -4,18 +4,14 @@
             <h3 class="title-hero">
           Edit Payment
         </h3>
-            <div class="example-box-wrapper">
+            <div class="example-box-wrapper" ng-show="!loading">
                 <form class="form-horizontal bordered-row paymentForm" novalidate id="paymentForm" name="paymentForm">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Status</label>
                                 <div class="col-sm-6">
-                                    <select class="form-control" disabled="disabled">
-                                        <option>New</option>
-                                        <option>Status1</option>
-                                        <option>Status2</option>
-                                    </select>
+                                    <input type="text" class="form-control" name="amount" ng-model="payment.status" disabled="disabled">
                                 </div>
                             </div>
                         </div>
@@ -27,12 +23,12 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">From Account</label>
-                                <div class="col-sm-6">
+                               <div class="col-sm-6">
                                     <select class="form-control" name="bankAccount"  disabled="disabled"
 									ng-model="bankAccount"  
 									ng-class="{'txtbxReq': (paymentForm.bankAccount.$error.required && (paymentForm.bankAccount.$touched || paymentForm.$submitted))}" 
 									ng-required="true" 
-									ng-options="account.accountName for account in accountList track by account.id">
+									ng-options="account.nicName +'-'+account.accountNumber for account in accountList track by account.id">
                                         <option value="">Select Account</option>
                                      </select>
                                 </div>
@@ -42,11 +38,11 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">To Account</label>
                                 <div class="col-sm-6">
-                                   <select class="form-control" name="payee"  disabled="disabled"
+                                    <select class="form-control" name="payee"  disabled="disabled"
 									ng-model="payee" 
 									ng-class="{'txtbxReq': (paymentForm.payee.$error.required && (paymentForm.payee.$touched || paymentForm.$submitted))}" 
 									ng-required="true">
-                                        <option ng-repeat="payee in payeeList track by $index" value="{{payee.id}}">{{payee.name}}:{{payee.accountNumber}}</option>
+                                        <option ng-repeat="payee in payeeList track by $index" value="{{payee.id}}">{{payee.legalName}}:{{payee.accountNumber | limitTo: 4}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -128,7 +124,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Message</label>
                                 <div class="col-sm-9">
-                                    <textarea name="" rows="3" class="form-control textarea-autosize" ng-model="payment.messageToRecipient"></textarea>
+                                    <textarea name="" rows="3" class="form-control textarea-autosize" ng-model="payment.messageToPayee"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -144,6 +140,9 @@
                         <button type="submit" class="btn btn-md btn-primary" ng-disabled="!pinVerified" ng-click="makePayment()">Save</button>
                     </div>
                 </form>
+            </div>
+			<div class="example-box-wrapper" ng-show="loading">
+                        <div class="glyph-icon remove-border demo-icon tooltip-button icon-spin-4 icon-spin"></div>
             </div>
         </div>
     </div>

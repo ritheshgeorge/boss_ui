@@ -26,9 +26,10 @@ app.config(function ($httpProvider) {
 // Configure the main application module.
 
 app.config(['$urlRouterProvider','$stateProvider','USER_ROLES',function($urlRouterProvider, $stateProvider,USER_ROLES) {
-		$urlRouterProvider.when("/home", "/home/accounts");		
+		$urlRouterProvider.when("/home", "/home/accounts/all");		
 		$urlRouterProvider.when("/home/payment", "/home/payment/paymentActivity");
 		$urlRouterProvider.when("/home/payment/addPayee", "/home/payment/addPayee/domesticPayee");
+		$urlRouterProvider.when("/home/manageUsers", "/home/manageUsers/manageUsers");
 		
     $stateProvider	
 	.state('login',  {
@@ -47,12 +48,43 @@ app.config(['$urlRouterProvider','$stateProvider','USER_ROLES',function($urlRout
 	})
 	.state('home.accounts',  {
         url : '/accounts',
+        templateUrl: 'app/templates/accounts/account.html',
+		data: {
+          authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor, USER_ROLES.guest]
+      },
+	  containerClass: 'accoutnSummary',
+	})
+	.state('home.accounts.allAccounts',  {
+        url : '/all',
         templateUrl: 'app/templates/accounts/account_listing.html',
 		data: {
           authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor, USER_ROLES.guest]
       },
-	  containerClass: 'paymentActivity',
+	  containerClass: 'accoutnSummary',    
 	})
+	.state('home.accounts.activity',  {
+        url : '/activity',
+        templateUrl: 'app/templates/accounts/account_activity.html',
+		data: {
+          authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor, USER_ROLES.guest]
+      },
+	  containerClass: 'accoutnSummary',    
+	})
+	.state('home.accounts.accountStatement',  {
+        url : '/statements',
+        templateUrl: 'app/templates/accounts/account_statement.html',
+		data: {
+          authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor, USER_ROLES.guest]
+      },
+	  containerClass: 'statemensts',    
+	})
+	   
+	
+	
+	
+	
+	
+	
 	.state('home.makePayment',  {
         url : '/payment',
         templateUrl: 'app/templates/payments/payments.html',
@@ -118,13 +150,25 @@ app.config(['$urlRouterProvider','$stateProvider','USER_ROLES',function($urlRout
           authorizedRoles: [USER_ROLES.guest]
       },
 	})
-	.state('home.manageUsers',  {
+	.state('home.admin',  {
+        url : '/manageUsers',
+        templateUrl: 'app/templates/admin/admin.html',
+		containerClass: 'manageUser',
+	})
+	.state('home.admin.manageUsers',  {
         url : '/manageUsers',
         templateUrl: 'app/templates/admin/manage_users.html',
+		containerClass: 'manageUser',
 	})
-	.state('home.addEditUser',  {
-        url : '/updateUser',
+	.state('home.admin.addUser',  {
+        url : '/addUser',
         templateUrl: 'app/templates/admin/add_edit_user.html',
+		containerClass: 'addUser',
+	})
+	.state('home.admin.addEditUser',  {
+        url : '/updateUser/:userId',
+        templateUrl: 'app/templates/admin/add_edit_user.html',
+		containerClass: 'addUser',
 	})
 }]);
 /*

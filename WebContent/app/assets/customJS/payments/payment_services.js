@@ -19,14 +19,19 @@ boss_payment_module.factory('PaymentActivityService', ['$http','$cookies', funct
 }]);
 boss_payment_module.factory('PaymentService', ['$http','$cookies', function($http,$cookies) {
     return {
-        getPayment: function(paymentId) {
-           var payment = '{"paymentDate":"2017-02-24T20:08:56.182Z","fromAccountId":"9138","payeeAccountId":"2304","paymentAmount":5000,"paymentNotes":"","messageToPayee":"","deliveryChannel":"Wire","feeAmount":"25","feeCcy":"USD","documents":"","email":"saurabh@swapstech.com","mobile":"70481991014","messageToRecipient":"Please notify when payment is confirmed"}';
+        getPayment: function(_paymentId) {
+           req = {
+		        method: 'POST',
+		        url: $cookies.path + 'payment/getPayment',
+		        params: {
+		            leId: "abc123abc",
+					paymentId: _paymentId
+		        }
+		    }
+		    return $http(req).success(function(response) {
+				 return response.payment;
+			});
 		   
-		   return JSON.parse(payment);
-           /**
-        return $http.get('../getAllPayment').then(function(response) {
-          return response.data;
-        }); */
 		},
 		
 		make_payment: function(_payment) {
@@ -45,14 +50,10 @@ boss_payment_module.factory('PaymentService', ['$http','$cookies', function($htt
 }]);
 
 
-/*******************************************************************************************************
-*********************** MOVE TO ACCOUNT SERVICE ********************************************************
-*******************************************************************************************************/
-var boss_account_module = angular.module('bossApp');
-boss_account_module.factory('AccountService', ['$http','$cookies', function($http,$cookies) {
+boss_payment_module.factory('AccountService', ['$http','$cookies', function($http,$cookies) {
     return {
 		getFromAccount: function() {
-            
+            /* check this Service If not needed delete this */
 			return $http.get($cookies.path+'/getFromAccount_list').then(function(response) {
 				return response.data;
         }); 
@@ -81,5 +82,3 @@ boss_account_module.factory('AccountService', ['$http','$cookies', function($htt
     };
 }]);
 
-
-/******************************************************************************************************/

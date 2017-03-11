@@ -1,37 +1,42 @@
 var app = angular.module('bossApp');
-app.controller('editPaymentCtrl', ['$scope', '$http', '$state','$stateParams','ManagePayeeService','AccountService','PaymentService',
-					function($scope,$http,$state,$stateParams,ManagePayeeService,AccountService,PaymentService) {
+app.controller('editPaymentCtrl', ['$scope', '$http', '$state','$stateParams','PaymentService','ManagePayeeService','AccountSummaryService','AccountService',
+					function($scope,$http,$state,$stateParams,PaymentService,ManagePayeeService,AccountSummaryService,AccountService) {
+	$scope.loading = true;
     $http.defaults.headers.post["Content-Type"] = "application/json";
 	$scope.numberOfDecimals = 2;
 	$scope.pinVerified = false;
 	$scope.paymentProcessed = false;
-	$scope.payeeList = ManagePayeeService.payee_list();
-	$scope.accountList = AccountService.getFromAccount();
+	
+	
+	
+	PaymentService.getPayment($stateParams.paymentId).then(function(response){
+			$scope.payment = response.data.payment;
+		//Load From and to accounts
+		ManagePayeeService.payee_list().then(function(ps_data) {
+        $scope.payeeList = ps_data;
+			AccountSummaryService.bankAccount_list().then(function(as_data) {
+			  $scope.accountList = as_data;
+				//iterate to find selected option
+				angular.forEach($scope.accountList, function(value, index) {
+					if (angular.equals(value.id, $scope.payment.fromAccountId)) {
+									$scope.bankAccount = value;
+								}
+							});
+				angular.forEach($scope.payeeList, function(value, index) {
+					if (angular.equals(value.id, $scope.payment.payeeAccountId)) {
+									$scope.payee = value.id;
+								}
+							});
+			  $scope.loading = false; 
+			});
+		});
+		
+	
+	});
 	$scope.deliveryMethodList = AccountService.getDeliveryMethod();
-	///////////////////////////////////////////////////
-	//call back
-	/*PaymentService.getPayment($stateParams.paymentId)
-		.then(function(data) {});*/
-	$scope.payment = PaymentService.getPayment($stateParams.paymentId);
-	//iterate to find selected option
-	angular.forEach($scope.accountList, function(value, index) {
-		if (angular.equals(value.id, $scope.payment.fromAccountId)) {
-						$scope.bankAccount = value;
-					}
-				});
-	angular.forEach($scope.payeeList, function(value, index) {
-		if (angular.equals(value.id, $scope.payment.payeeAccountId)) {
-						$scope.payee = value.id;
-					}
-				});
-	/////////////////////////////////////////////////
-	console.log($scope.payment);
-	console.log($scope.payeeList);
-	/////////////////////////////
 	
 	
 	
-	console.log($scope.payment);
 	$scope.indexOfObject = function indexOfObject(array, property, value) {
 		for (var i = 0; i < array.length; i++) {
 			if (array[i][property] === value) return i;
@@ -47,11 +52,11 @@ app.controller('editPaymentCtrl', ['$scope', '$http', '$state','$stateParams','M
 	}
 	
 	$scope.makePayment = function(){
-		/*if(!$scope.paymentForm.$error.required){
-			console.log(JSON.stringify($scope.payment));
-			$scope.paymentProcessed = true;
-		}*/
-		$state.go('home.makePayment');
+		var _payment = $scope.payment;
+		PaymentService.make_payment(_payment).then(function(data){
+			$state.go('home.makePayment.paymentActivity');
+		});
+		//$state.go('home.makePayment');
 	}
 	
 	/**

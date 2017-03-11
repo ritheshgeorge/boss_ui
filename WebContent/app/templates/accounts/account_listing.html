@@ -1,32 +1,12 @@
 <div ng-controller="accountSummaryCtrl">
-    <div id="page-title">
-        <h2><b>Accounts and recent transactions of your business operations </b></h2>
-    </div>
-
     <div class="panel">
         <div class="panel-body">
             <h3 class="title-hero">
            Accounts
         </h3>
             <div class="example-box-wrapper">
-                <ul class="list-group list-group-separator row list-group-icons">
-                    <li class="col-md-4 active">
-                        <a href="#accountSummary" data-toggle="tab" ng-click="showAccountStatement=false;viewAllAccountActivity=false;" class="list-group-item">
-                            <i class="glyph-icon icon-calculator"></i>
-                            <span>Account Summary</span>
-                        </a>
-
-                    </li>
-                    <li class="col-md-4">
-                        <a href="#accountStatement" data-toggle="tab" ng-click="showAccountStatement=true;" class="list-group-item">
-                            <i class="glyph-icon icon-clipboard"></i>
-                            <span>Statements/ Documents</span>
-                        </a>
-                    </li>
-
-                </ul>
                 <div class="tab-content">
-                    <div class="tab-pane fade active in" id="accountSummary" >
+                    <div class="tab-pane fade active in" id="accountSummary">
                         <div ng-if="!viewAllAccountActivity">
                             <div class="summary_outer" ng-repeat="account in accountList track by $index" ng-show="!loading">
                                 <div class="col-md-5">
@@ -47,27 +27,16 @@
                                         <span>Available Balance</span>
                                     </div>
                                 </div>
-                                <div class="col-md-2"><a ng-click="viewAllActivityForThisAccount(account);" class="btn btn-default viewall_btn">View All</a></div>
+                                <div class="col-md-2"><a ui-sref="home.accounts.activity" class="btn btn-default viewall_btn">View All</a></div>
                                 <div class="clear"></div>
                             </div>
-							<div class="example-box-wrapper" ng-show="loading">
-				<div class="glyph-icon remove-border demo-icon tooltip-button icon-spin-4 icon-spin" title="icon-spin-4"></div> 
-			</div>
+                            <div class="example-box-wrapper" ng-show="loading">
+                                <div class="glyph-icon remove-border demo-icon tooltip-button icon-spin-4 icon-spin" title="icon-spin-4"></div>
+                            </div>
                             <div class="clear"></div>
                         </div>
-                        <div ng-if="viewAllAccountActivity">
-                            <div ng-include="'app/templates/accounts/account_activity.html'"></div>
-                        </div>
                     </div>
-                    <div class="tab-pane fade" id="accountStatement">
-                        <div ng-if="showAccountStatement">
-                            <div ng-include="'app/templates/accounts/account_statement.html'"></div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>
-    </div>
-
-</div>
+	</div>
