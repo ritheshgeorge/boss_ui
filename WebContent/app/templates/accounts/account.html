@@ -1,0 +1,26 @@
+<div>
+    <!--<div id="page-title">
+        <h2>Payments and recent transactions of your business operations</h2>
+	</div> -->
+	<div class="row dftpayment">
+		<div class="example-box-wrapper">
+            <ul class="list-group row list-group-icons">
+                <li class="col-md-3" ng-class="{'active':containerClass =='accoutnSummary'}">
+                    <a ui-sref="home.accounts.allAccounts" class="list-group-item">
+                        <span>Account Summary</span>
+                    </a>
+                </li>
+				<li class="col-md-3" ng-class="{'active':containerClass =='statemensts'}" >
+                    <a ui-sref="home.accounts.accountStatement" class="list-group-item">
+                        <span>Statements/ Documents</span>
+                    </a>
+                </li>
+            </ul>
+            <!-- Start tab-content  -->
+            <div class="tab-content">
+			    <div ui-view>
+				</div>
+            </div>
+        </div>
+	</div>
+</div>
