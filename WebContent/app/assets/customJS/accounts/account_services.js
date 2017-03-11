@@ -1,7 +1,7 @@
 var boss_account_module = angular.module('bossApp');
 boss_account_module.factory('AccountSummaryService', ['$http','$rootScope', function($http,$rootScope) {
     return {
-        bankAccount_list: function() {
+        bankAccount_list: function() {   
           var actionUrl = $rootScope.path+'bankAccount/getAccount_list/abc183kdig';
 			return $http.post(actionUrl).then(function(response) {
 				return response.data;
@@ -9,43 +9,55 @@ boss_account_module.factory('AccountSummaryService', ['$http','$rootScope', func
 		}
     };
 }]);
-boss_account_module.factory('AccountActivityService', ['$http', function($http) {
+boss_account_module.factory('TransactionService', ['$http','$cookies', function($http,$cookies) {
     return {
-        accountActivity_list: function() {
-            var account = {
-                accountNicName: 'Business Account Name',
-                accountName: 'Business Checking Account',
-                accountNumber: '1234',
-                accountCode: 'Checking',
-                accountType: 'AccountType',
-                accountBalance: 50000.50
-            };
-            var accountActivityJSON = [];
-            for (i = 0; i < 500; i++) {
-                var date = new Date();
-                date.setDate(date.getDate() + i);
-                var amount = 50000.00;
-                var accountActivity = {
-                    date: date,
-                    description: "1000.00 json Credit from ***6589",
-                    amount: (i + 500.58),
-                    status: "Authorized",
-                    availableBalance: (amount + (i + 500.58))
-                }
-                accountActivityJSON.push(accountActivity);
-            }
-            var acccountJSON = {
-                account: account,
-                accountActivity: accountActivityJSON
-            }
-            return acccountJSON;
-            /**
-        return $http.get('../getAccountActivity_list').then(function(response) {
-          return response.data;
-        }); */
-        }
+        getTransactionList: function(_account_id){
+			req = {
+				method: 'POST',
+				url: $cookies.path+'bankAccount/getAccountActivity', 
+				params: {accountId: _account_id }
+			}
+			return $http(req).success(function(response) {
+				return response.data;
+			}); 
+		
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
     };
 }]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 boss_account_module.factory('AccountStatementService', ['$http', function($http) {
     return {

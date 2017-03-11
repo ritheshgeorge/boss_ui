@@ -63,7 +63,7 @@ app.config(['$urlRouterProvider','$stateProvider','USER_ROLES',function($urlRout
 	  containerClass: 'accoutnSummary',    
 	})
 	.state('home.accounts.activity',  {
-        url : '/activity',
+        url : '/activity/:accountId',
         templateUrl: 'app/templates/accounts/account_activity.html',
 		data: {
           authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor, USER_ROLES.guest]

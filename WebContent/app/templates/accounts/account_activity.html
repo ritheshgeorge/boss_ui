@@ -1,30 +1,31 @@
 <div ng-controller="accountActivityCtrl">
+	<div ng-show="!loading">
     <div class="summary_outer active">
-        <div class="col-md-5">
-            <div class="bankdtl_header">
-                {{account.accountNicName}} - {{account.accountNumber}}
-                <span>{{account.accountName}}</span>
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="bankdtl_header">
-                {{account.accountCode}}
-                <span>{{account.accountType}}</span>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="bankdtl_header">
-                ${{account.accountBalance | number : 2}}
-                <span>Available Balance</span>
-            </div>
-        </div>
-        <div class="clear"></div>
-    </div>
+		<div class="col-md-5">
+                                    <div class="bankdtl_header">
+                                        {{bankAccount.nicName}} - {{bankAccount.accountNumber}}
+                                        <span>{{bankAccount.name}}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="bankdtl_header">
+                                        {{bankAccount.accountType}}
+                                        <span>{{bankAccount.accountCode}}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="bankdtl_header">
+                                        {{bankAccount.currency}} {{bankAccount.availableBalance | number : 2}}
+                                        <span>Available Balance</span>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+	</div>
     <div class="panel">
         <div class="panel-body">
             <h3 class="title-hero">Account Activity</h3>
             <div class="example-box-wrapper">
-                <div id="datatable-tabletools_wrapper" class="dataTables_wrapper form-inline no-footer">
+                <div id="datatable-tabletools_wrapper" class="dataTables_wrapper form-inline no-footer" ng-show="accountActivity.length > 0"> 
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="dataTables_length" id="datatable-tabletools_length">
@@ -49,19 +50,19 @@
                         <thead>
                             <tr role="row">
                                 <th>Date</th>
-                                <th>Name</th>
-                                <th>Status</th>
+                                <th>Description</th>
                                 <th>Amount</th>
-                                <th>Available Balance</th>
+                                <th>Remaining Balance</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr role="row" class="odd" ng-repeat="activity in accountActivity.slice(((tableCurrentPage-1)*tableItemsPerPage), ((tableCurrentPage)*tableItemsPerPage)) | filter: searchAccountActivity track by $index">
-                                <td>{{activity.date | date}}</td>
-                                <td>{{activity.description}}</td>
-                                <td>{{activity.status}}</td>
+                                <td>{{activity.transactionDate | date}}</td>
+                                <td>{{activity.description1}}</td>
                                 <td>{{activity.amount | number : 2}}</td>
-                                <td>{{activity.availableBalance | number : 2}}</td>
+                                <td>{{activity.remainingBalance | number : 2}}</td>
+                                <td>{{activity.status}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -76,7 +77,16 @@
                         </div>
                     </div>
                 </div>
+				<div ng-show="!accountActivity.length > 0">
+								<p class="font-red">No records to display.</p>
+						</div>
             </div>
-        </div>
+		</div>
     </div>
+</div>
+<div ng-show="loading">
+				<div class="example-box-wrapper">
+                                <div class="glyph-icon remove-border demo-icon tooltip-button icon-spin-4 icon-spin" title="icon-spin-4"></div>
+                            </div>
+			</div>
 </div>
