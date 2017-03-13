@@ -147,7 +147,7 @@ app.config(['$urlRouterProvider','$stateProvider','USER_ROLES',function($urlRout
         url : '/error',
         templateUrl: 'app/templates/404error.html',
 		data: {
-          authorizedRoles: [USER_ROLES.guest]
+          authorizedRoles: [USER_ROLES.admin]
       },
 	})
 	.state('home.admin',  {

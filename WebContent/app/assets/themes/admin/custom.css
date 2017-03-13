@@ -954,3 +954,50 @@ label.boss-label {
 .interBankRadio{
   padding-top: 9px;
 }
+/*------- Button Checkbox OnOff ----------*/
+.onoffswitch {
+    position: relative; width: 72px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;bottom: -12px
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 1px solid #CCCCCC; border-radius: 4px;
+}
+.onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 22px; padding: 0; line-height: 22px;
+    font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+    content: "Yes";
+    padding-left: 5px;
+    background-color: #00BCA4; color: #FFFFFF;
+}
+.onoffswitch-inner:after {
+    content: "No";
+    padding-right: 5px;
+    background-color: #FFFFFF; color: #B8B6B6;
+    text-align: right;
+}
+.onoffswitch-switch {
+    display: block; width: 20px; margin: 1px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 46px;
+    border: 1px solid #CCCCCC; border-radius: 4px;
+    transition: all 0.3s ease-in 0s; 
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px; 
+}
+/*--------------------------------------*/
