@@ -1,399 +1,531 @@
-<script type="text/javascript" src="app/assets/widgets/input-switch/inputswitch.js"></script>
-    <script>
-        /* Input switch */
-		$(function() {
-            "use strict";
-            $('.input-switch').bootstrapSwitch();
-        });
-    </script>
 <div ng-controller="userNewEditCtrl">
-    
+
     <div class="panel">
         <div class="panel-body">
             <h3 class="title-hero">
 				Add/Edit User
 			</h3>
-			<!----------------------------------------------->
-			<div ng-show="loadingggggggggggggg">
-				<div class="example-box-wrapper">
-        <ul class="list-group row list-group-icons">
-            <li class="col-md-3 active">
-                <a href="#tab-example-2" data-toggle="tab" class="list-group-item">
-                    <i class="glyph-icon font-red icon-bullhorn"></i>
-                    Personal Information
-                </a>
-            </li>
-            <li class="col-md-3">
-                <a href="#tab-example-1" data-toggle="tab" class="list-group-item">
-                    <i class="glyph-icon icon-dashboard"></i>
-                    Account Settings
-                </a>
-            </li>
-			
-			
-        </ul>
-        <div class="tab-content">
-			<div class="tab-pane active" id="tab-example-2">
-                <div class="content-box">
-                    <form class="form-horizontal pad15L pad15R bordered-row">
-                        <div class="form-group remove-border">
-                            <label class="col-sm-3 control-label">First Name:</label>
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control" id="" placeholder="First name...">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">Last Name:</label>
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control" id="" placeholder="Last name...">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">Email:</label>
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control" id="" placeholder="Email address...">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">Website:</label>
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control" id="" placeholder="Website...">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">About me:</label>
-                            <div class="col-sm-6">
-                                <textarea name="" rows="3" class="form-control textarea-autosize"></textarea>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">Profile Picture:</label>
-                            <div class="col-sm-6">
-                                <div class="fileinput fileinput-new" data-provides="fileinput">
-                                    <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
-                                    <div>
-                                    <span class="btn btn-default btn-file">
-                                        <span class="fileinput-new">Select image</span>
-                                        <span class="fileinput-exists">Change</span>
-                                        <input type="file" name="...">
-                                    </span>
-                                        <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                    <div class="button-pane mrg20T">
-                        <button class="btn btn-info">Save</button>
-                        <button class="btn btn-link font-gray-dark">Cancel</button>
-                    </div>
-                </div>
-            </div>
-			
-            <div class="tab-pane " id="tab-example-1">
-                <div class="alert alert-close alert-success">
-                    <a href="#" title="Close" class="glyph-icon alert-close-btn icon-remove"></a>
-                    <div class="bg-green alert-icon">
-                        <i class="glyph-icon icon-check"></i>
-                    </div>
-                    <div class="alert-content">
-                        <h4 class="alert-title">Example Infobox</h4>
-                        <p>Lorem ipsum dolor sic amet dixit tu...</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="content-box">
-                            <form class="form-horizontal clearfix pad15L pad15R pad20B bordered-row">
-                                <div class="form-group remove-border">
-                                    <label class="col-sm-7 control-label">Enable account:</label>
-                                    <div class="col-sm-3">
-                                        <input type="checkbox" class="input-switch-alt">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-7 control-label">Visible Profile</label>
-                                    <div class="col-sm-3">
-                                        <input type="checkbox" checked class="input-switch-alt">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-7 control-label">Hide timeline</label>
-                                    <div class="col-sm-3">
-                                        <input type="checkbox" data-on-color="danger" data-size="small" name="checkbox-example-1" class="input-switch" data-on-text="On" data-off-text="Off">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-7 control-label">Is it active?</label>
-                                    <div class="col-sm-3">
-                                        <input type="checkbox" data-on-color="info" data-size="small" name="checkbox-example-2" class="input-switch" data-on-text="On" data-off-text="Off">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-7 control-label">Radio example</label>
-                                    <div class="col-sm-3">
-                                        <input type="checkbox" data-on-color="success" data-size="small" name="checkbox-example-3" class="input-switch" checked data-on-text="On" data-off-text="Off">
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="content-box mrg15B">
-                            <h3 class="content-box-header clearfix">
-                                Change Password
-                                <div class="font-size-11 float-right">
-                                    <a href="#" title="">
-                                        <i class="glyph-icon mrg5R opacity-hover icon-plus"></i>
-                                    </a>
-                                    <a href="#" title="">
-                                        <i class="glyph-icon opacity-hover icon-cog"></i>
-                                    </a>
-                                </div>
-                            </h3>
-                            <div class="content-box-wrapper pad0T clearfix">
-                                <form class="form-horizontal pad15L pad15R bordered-row">
-                                    <div class="form-group">
-                                        <label class="col-sm-6 control-label">Old password:</label>
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="" placeholder="">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-6 control-label">New password:</label>
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="" placeholder="">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-6 control-label">Repeat password:</label>
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="" placeholder="">
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="button-pane mrg20T">
-                                <button class="btn btn-success">Update Password</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-        </div>
-    </div>
-			
-			
-			</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			<!---------------------------------------------------------->
-			<div ng-show="!loading">
-			<div class="example-box-wrapper">
-                <form class="form-horizontal bordered-row userForm" novalidate id="userForm" name="userForm" >
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">First Name*</label>
+            <div ng-show="!loading">
+                <div class="example-box-wrapper">
+
+                    <div class="content-box">
+                        <form class="form-horizontal pad15L pad15R bordered-row userForm" novalidate id="userForm" name="userForm">
+                            <div class="form-group remove-border">
+                                <label class="col-sm-3 control-label">First Name:*</label>
                                 <div class="col-sm-6">
-                                    <input type="text" placeholder="First name" class="form-control" name="firstName"
-									ng-model="user.firstName"
-									ng-class="{'txtbxReq': (userForm.firstName.$error.required && (userForm.firstName.$touched || userForm.$submitted))}" 
-									ng-required="true"
-									/>
-								</div>
+                                    <input type="text" placeholder="First name" class="form-control" name="firstName" 
+									ng-model="user.firstName" 
+									ng-class="{'txtbxReq': (userForm.firstName.$error.required && (userForm.firstName.$touched || userForm.$submitted))}" ng-required="true" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Last Name*</label>
+                                <label class="col-sm-3 control-label">Last Name:*</label>
                                 <div class="col-sm-6">
-                                    <input type="text" placeholder="Last name" class="form-control" name="lastName"
-									ng-model="user.lastName"
+                                    <input type="text" placeholder="Last name" class="form-control" name="lastName" 
+									ng-model="user.lastName" 
 									ng-class="{'txtbxReq': (userForm.lastName.$error.required && (userForm.lastName.$touched || userForm.$submitted))}" 
-									ng-required="true"
-									/>
-								</div>
+									ng-required="true" />
+                                </div>
                             </div>
-                        </div>
-                    </div>
-					
-					<div class="row">
-                        <div class="col-md-6">
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">User Name*</label>
+                                <label class="col-sm-3 control-label">User Name:*</label>
                                 <div class="col-sm-6">
-                                    <input type="text" placeholder="User name" class="form-control" name="userName"
-									ng-model="user.userName"
+                                    <input type="text" placeholder="User name" class="form-control" name="userName" 
+									ng-model="user.userName" 
 									ng-class="{'txtbxReq': (userForm.userName.$error.required && (userForm.userName.$touched || userForm.$submitted))}" 
-									ng-required="true"
-									/>
-								</div>
+									ng-required="true" />
+                                </div>
                             </div>
-                        </div>
-					</div>
-					
-					<div class="row">
-                        <div class="col-md-6">
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Password*</label>
+                                <label class="col-sm-3 control-label">Password:*</label>
                                 <div class="col-sm-6">
-                                    <input type="password" placeholder="Password" class="form-control" name="password"
-									ng-model="user.password"
+                                    <input type="password" placeholder="Password" class="form-control" name="password" 
+									ng-model="user.password" 
 									ng-class="{'txtbxReq': (userForm.password.$error.required && (userForm.password.$touched || userForm.$submitted))}" 
-									ng-required="true"
+									ng-required="true" 
+									ng-minlength="8" 
+									ng-maxlength="20" 
+									ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/"
 									/>
-								</div>
+                                </div>
+								<label class="col-sm-3 msg-error">
+								
+								<span ng-show="!userForm.password.$error.required && (userForm.password.$error.minlength || userForm.password.$error.maxlength) && userForm.password.$dirty">Passwords must be between 8 and 20 characters.</span>
+								<span ng-show="!userForm.password.$error.required && !userForm.password.$error.minlength && !userForm.password.$error.maxlength && userForm.password.$error.pattern && userForm.password.$dirty">Must contain one lower &amp; uppercase letter, and one non-alpha character (a number or a symbol.)</span>
+								
+								</label>
                             </div>
-                        </div>
-                        <div class="col-md-6">
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Re-Password*</label>
+                                <label class="col-sm-3 control-label">Re-Password:*</label>
                                 <div class="col-sm-6">
-                                    <input type="password" placeholder="Re Enter Password" class="form-control" name="rePassword"
-									ng-model="user.rePassword"
-									ng-class="{'txtbxReq': (userForm.rePassword.$error.required && (userForm.rePassword.$touched || userForm.$submitted))}" 
-									ng-required="true"
+                                    <input type="password" placeholder="Re Enter Password" class="form-control" name="rePassword" 
+									ng-class="{'txtbxReq': (userForm.rePassword.$error.required && (userForm.rePassword.$touched || userForm.$submitted))}" ng-required="true" 
+									ng-pattern="user.password" 
+									ng-model="user.rePassword" 
 									/>
-								</div>
+                                </div>
+								<label class="col-sm-3" ng-show="userForm.rePassword.$error.pattern">
+									<span class="msg-error" >Password does not match.</span>
+								</label>
                             </div>
-                        </div>
-                    </div>
-					
-					<div class="row">
-                        <div class="col-md-6">
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Email*</label>
+                                <label class="col-sm-3 control-label">Email:*</label>
                                 <div class="col-sm-6">
-                                    <input type="text" placeholder="Email Address" class="form-control" name="email"
+                                    <input type="text" placeholder="Email Address" class="form-control" name="email" 
 									ng-model="user.email"
 									ng-class="{'txtbxReq': (userForm.email.$error.required && (userForm.email.$touched || userForm.$submitted))}" 
-									ng-required="true"
-									/>
-								</div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Phone Number*</label>
-                                <div class="col-sm-6">
-                                    <input type="text" placeholder="Phone Number" class="form-control" name="phoneNumber"
-									ng-model="user.phoneNumber"
-									ng-class="{'txtbxReq': (userForm.phoneNumber.$error.required && (userForm.phoneNumber.$touched || userForm.$submitted))}" 
-									ng-required="true"
-									/>
-								</div>
-                            </div>
-                        </div>
-                    </div>
-					
-					
-                   
-
-                    <div class="row">
-                        <div class="panel">
-                            <div class="panel-body">
-                                <h3 class="title-hero">
-							  Access Permissions for - User
-							</h3>
-
-                                <div class="example-box-wrapper">
-                                    <div class="row">
-                                        <div class="col-xs-3">
-                                        </div>
-                                        <div class="col-xs-6">
-                                            
-
-                                                <div class="dd acl_tree" id="nestable">
-                                                    <ol class="dd-list">
-                                                        <li class="dd-item">
-                                                            <div class="dd-handle">Payments {{entitlement.payments}}</div>
-                                                            <ol class="dd-list">
-                                                                <li class="dd-item">
-                                                                    <div class="dd-handle">Manage Payments</div>
-                                                                    <div class="dd-tgle">
-																		<div class="onoffswitch">
-																			<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="managePayments" ng-model="entitlement.managePayments" >
-																			<label class="onoffswitch-label" for="managePayments">
-																				<span class="onoffswitch-inner"></span>
-																			</label>
-																		</div>
-																	</div>
-                                                                </li>
-                                                            </ol>
-
-                                                        </li>
-                                                        <li class="dd-item">
-                                                            <div class="dd-handle">Admin</div>
-                                                            <ol class="dd-list">
-                                                                <li class="dd-item">
-                                                                    <div class="dd-handle">Manage Users</div>
-                                                                    <div class="dd-tgle">
-                                                                        <div class="onoffswitch">
-																			<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="managUsers" ng-model="entitlement.managUsers" >
-																			<label class="onoffswitch-label" for="managUsers">
-																				<span class="onoffswitch-inner"></span>
-																			</label>
-																		</div>
-                                                                    </div>
-                                                                </li>
-                                                            </ol>
-														</li>
-                                                    </ol>
-                                                </div>
-                                            
-                                        </div>
-                                    </div>
+									ng-required="true" />
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Phone Number:*</label>
+                                <div class="col-sm-6">
+                                    <input type="text" placeholder="Phone Number" class="form-control" name="phoneNumber" 
+									ng-model="user.phoneNumber" 
+									ng-class="{'txtbxReq': (userForm.phoneNumber.$error.required && (userForm.phoneNumber.$touched || userForm.$submitted))}" ng-required="true" />
+                                </div>
+                            </div>
+							<!--------------------------------------- yo yo yo ---------------------------------------------->
+							<div>
+                                <div class="col-sm-12">
+                                    <!-- Permitiions -->
+									<div class="row">
+    <div class="panel">
+        <div class="panel-body">
+            <h3 class="title-hero">Access Permissions for - User</h3>
+            <div class="example-box-wrapper">
+                <div class="row">
+					<!-- FX TRADING -->
+                    <div class="col-xs-6">
+                        <div class="cf nestable-lists">
+                            <div class="dd" id="nestable3">
+                                <ol class="dd-list">
+                                    <li class="dd-item dd3-item">
+                                        <div class="dd-handle dd3-handle"></div>
+                                        <div class="dd3-content">FX TRADING</div>
+                                        <ol class="dd-list">
+                                            <li class="dd-item dd3-item">
+                                                <div class="dd-handle dd3-handle"></div>
+                                                <div class="dd3-content">
+                                                    Spot
+													<div class="ppstyle">
+                                                        <div class="onoffswitch">
+                                                            <input type="checkbox" class="onoffswitch-checkbox" id="fxTradingSpot" ng-model="entitlement.fxTrading.spot" >
+                                                            <label class="onoffswitch-label" for="fxTradingSpot">
+                                                                <span class="onoffswitch-inner"></span>
+                                                                <span class="onoffswitch-switch"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </li>
+											<li class="dd-item dd3-item">
+                                                <div class="dd-handle dd3-handle"></div>
+                                                <div class="dd3-content">
+                                                    Outright Forward
+													<div class="ppstyle">
+                                                        <div class="onoffswitch">
+                                                            <input type="checkbox" class="onoffswitch-checkbox" id="OutrightForward" ng-model="entitlement.fxTrading.outrightForward">
+                                                            <label class="onoffswitch-label" for="OutrightForward">
+                                                                <span class="onoffswitch-inner"></span>
+                                                                <span class="onoffswitch-switch"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </li>
+											<li class="dd-item dd3-item">
+                                                <div class="dd-handle dd3-handle"></div>
+                                                <div class="dd3-content">
+                                                    Window Forward
+													<div class="ppstyle">
+                                                        <div class="onoffswitch">
+                                                            <input type="checkbox" name="windowForward" class="onoffswitch-checkbox" id="windowForward" ng-model="entitlement.fxTrading.windowForward">
+                                                            <label class="onoffswitch-label" for="windowForward">
+                                                                <span class="onoffswitch-inner"></span>
+                                                                <span class="onoffswitch-switch"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </li>
+											<li class="dd-item dd3-item">
+                                                <div class="dd-handle dd3-handle"></div>
+                                                <div class="dd3-content">
+                                                    Window Drawdown
+													<div class="ppstyle">
+                                                        <div class="onoffswitch">
+                                                            <input type="checkbox" name="windowDrawdown" class="onoffswitch-checkbox" id="windowDrawdown" ng-model="entitlement.fxTrading.windowDrawdown">
+                                                            <label class="onoffswitch-label" for="windowDrawdown">
+                                                                <span class="onoffswitch-inner"></span>
+                                                                <span class="onoffswitch-switch"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </li>
+											<li class="dd-item dd3-item">
+                                                <div class="dd-handle dd3-handle"></div>
+                                                <div class="dd3-content">
+                                                    Non-Deliverable Forward
+													<div class="ppstyle">
+                                                        <div class="onoffswitch">
+                                                            <input type="checkbox" name="nonDelivarableForward" class="onoffswitch-checkbox" id="nonDelivarableForward" ng-model="entitlement.fxTrading.nonDelivarableForward">
+                                                            <label class="onoffswitch-label" for="nonDelivarableForward">
+                                                                <span class="onoffswitch-inner"></span>
+                                                                <span class="onoffswitch-switch"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </li>
+											<li class="dd-item dd3-item">
+                                                <div class="dd-handle dd3-handle"></div>
+                                                <div class="dd3-content">
+                                                    Instruct Trade
+													<div class="ppstyle">
+                                                        <div class="onoffswitch">
+                                                            <input type="checkbox" name="instructTrade" class="onoffswitch-checkbox" id="instructTrade" ng-model="entitlement.fxTrading.instructTrade">
+                                                            <label class="onoffswitch-label" for="instructTrade">
+                                                                <span class="onoffswitch-inner"></span>
+                                                                <span class="onoffswitch-switch"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </li>
+											<li class="dd-item dd3-item">
+                                                <div class="dd-handle dd3-handle"></div>
+                                                <div class="dd3-content">
+                                                    Authorize Instruction
+													<div class="ppstyle">
+                                                        <div class="onoffswitch">
+                                                            <input type="checkbox" name="authorizeTrade" class="onoffswitch-checkbox" id="authorizeTrade" ng-model="entitlement.fxTrading.authorizeTrade">
+                                                            <label class="onoffswitch-label" for="authorizeTrade">
+                                                                <span class="onoffswitch-inner"></span>
+                                                                <span class="onoffswitch-switch"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </li>
+											<li class="dd-item dd3-item">
+                                                <div class="dd-handle dd3-handle"></div>
+                                                <div class="dd3-content">
+                                                    Confirm Trade
+													<div class="ppstyle">
+                                                        <div class="onoffswitch">
+                                                            <input type="checkbox" name="confirmTrade" class="onoffswitch-checkbox" id="confirmTrade" ng-model="entitlement.fxTrading.confirmTrade">
+                                                            <label class="onoffswitch-label" for="confirmTrade">
+                                                                <span class="onoffswitch-inner"></span>
+                                                                <span class="onoffswitch-switch"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </li>
+                                        </ol>
+                                    </li>
+
+                                </ol>
+                            </div>
                         </div>
-                    </div> 
-					
-                    <div class="bg-default content-box text-center pad20A mrg25T">
-					<div class="alert alert-danger" ng-show="error">
-                        <p>{{errorMsg}}</p>
                     </div>
-                        <button ui-sref="home.admin.manageUsers" class="btn btn-md btn-default" ui-sref="manageUsers">Cancel </button>
-                        <input type="submit" class="btn btn-md btn-primary" value="Add User" ng-click="submitUser();">
-                    </div>
-                </form>
-            </div>
-            </div>
-			<div ng-show="loading">
-						<div class="example-box-wrapper">
-							<div class="glyph-icon remove-border demo-icon tooltip-button icon-spin-4 icon-spin" title="icon-spin-4"></div> 
-						</div>
+					<!-- PAYMENTS  -->
+					<div class="col-xs-6">
+						<div class="cf nestable-lists">
+                            <div class="dd" id="nestable3">
+                                <ol class="dd-list">
+                                    <li class="dd-item dd3-item">
+                                        <div class="dd-handle dd3-handle"></div>
+                                        <div class="dd3-content">PAYMENTS</div>
+                                        <ol class="dd-list">
+                                            <li class="dd-item dd3-item">
+                                                <div class="dd-handle dd3-handle"></div>
+                                                <div class="dd3-content">
+                                                    View Payments
+													<div class="ppstyle">
+                                                        <div class="onoffswitch">
+                                                            <input type="checkbox" name="viewPayments" class="onoffswitch-checkbox" id="viewPayments" ng-model="entitlement.payments.viewPayments">
+                                                            <label class="onoffswitch-label" for="viewPayments">
+                                                                <span class="onoffswitch-inner"></span>
+                                                                <span class="onoffswitch-switch"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </li>
+											<li class="dd-item dd3-item">
+                                                <div class="dd-handle dd3-handle"></div>
+                                                <div class="dd3-content">
+                                                    Submit Payment
+													<div class="ppstyle">
+                                                        <div class="onoffswitch">
+                                                            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="submitPayments" ng-model="entitlement.payments.submitPayments">
+                                                            <label class="onoffswitch-label" for="submitPayments">
+                                                                <span class="onoffswitch-inner"></span>
+                                                                <span class="onoffswitch-switch"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </li>
+											<li class="dd-item dd3-item">
+                                                <div class="dd-handle dd3-handle"></div>
+                                                <div class="dd3-content">
+                                                    Authorize Payments
+													<div class="ppstyle">
+                                                        <div class="onoffswitch">
+                                                            <input type="checkbox" name="authorizePayments" class="onoffswitch-checkbox" id="authorizePayments" ng-model="entitlement.payments.authorizePayments">
+                                                            <label class="onoffswitch-label" for="authorizePayments">
+                                                                <span class="onoffswitch-inner"></span>
+                                                                <span class="onoffswitch-switch"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </li>
+											<li class="dd-item dd3-item">
+                                                <div class="dd-handle dd3-handle"></div>
+                                                <div class="dd3-content">
+                                                    Add Payee
+													<div class="ppstyle">
+                                                        <div class="onoffswitch">
+                                                            <input type="checkbox" name="addPayee" class="onoffswitch-checkbox" id="addPayee" ng-model="entitlement.payments.addPayee">
+                                                            <label class="onoffswitch-label" for="addPayee">
+                                                                <span class="onoffswitch-inner"></span>
+                                                                <span class="onoffswitch-switch"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </li>
+											<li class="dd-item dd3-item">
+                                                <div class="dd-handle dd3-handle"></div>
+                                                <div class="dd3-content">
+                                                    Modify Payee
+													<div class="ppstyle">
+                                                        <div class="onoffswitch">
+                                                            <input type="checkbox" name="modifyPayee" class="onoffswitch-checkbox" id="modifyPayee" ng-model="entitlement.payments.modifyPayee">
+                                                            <label class="onoffswitch-label" for="modifyPayee">
+                                                                <span class="onoffswitch-inner"></span>
+                                                                <span class="onoffswitch-switch"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </li>
+											<li class="dd-item dd3-item">
+                                                <div class="dd-handle dd3-handle"></div>
+                                                <div class="dd3-content">
+                                                    Authorize Payee
+													<div class="ppstyle">
+                                                        <div class="onoffswitch">
+                                                            <input type="checkbox" name="authorizePayee" class="onoffswitch-checkbox" id="authorizePayee" ng-model="entitlement.payments.authorizePayee">
+                                                            <label class="onoffswitch-label" for="authorizePayee">
+                                                                <span class="onoffswitch-inner"></span>
+                                                                <span class="onoffswitch-switch"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </li>
+											<li class="dd-item dd3-item">
+                                                <div class="dd-handle dd3-handle"></div>
+                                                <div class="dd3-content">
+                                                    Suspend Payee
+													<div class="ppstyle">
+                                                        <div class="onoffswitch">
+                                                            <input type="checkbox" name="suspendPayee" class="onoffswitch-checkbox" id="suspendPayee" ng-model="entitlement.payments.suspendPayee">
+                                                            <label class="onoffswitch-label" for="suspendPayee">
+                                                                <span class="onoffswitch-inner"></span>
+                                                                <span class="onoffswitch-switch"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </li>
+											<li class="dd-item dd3-item">
+                                                <div class="dd-handle dd3-handle"></div>
+                                                <div class="dd3-content">
+                                                    Delete Payee
+													<div class="ppstyle">
+                                                        <div class="onoffswitch">
+                                                            <input type="checkbox" name="deletePayee" class="onoffswitch-checkbox" id="deletePayee" ng-model="entitlement.payments.deletePayee">
+                                                            <label class="onoffswitch-label" for="deletePayee">
+                                                                <span class="onoffswitch-inner"></span>
+                                                                <span class="onoffswitch-switch"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </li>
+											<li class="dd-item dd3-item">
+                                                <div class="dd-handle dd3-handle"></div>
+                                                <div class="dd3-content">
+                                                    View Payee
+													<div class="ppstyle">
+                                                        <div class="onoffswitch">
+                                                            <input type="checkbox" name="viewpayee" class="onoffswitch-checkbox" id="viewpayee" ng-model="entitlement.payments.viewpayee">
+                                                            <label class="onoffswitch-label" for="viewpayee">
+                                                                <span class="onoffswitch-inner"></span>
+                                                                <span class="onoffswitch-switch"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </li>
+                                        </ol>
+                                    </li>
+
+                                </ol>
+                            </div>
+                        </div>
 					</div>
+                </div>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="cf nestable-lists">
+                            <div class="dd" id="nestable3">
+                                <ol class="dd-list">
+                                    <li class="dd-item dd3-item">
+                                        <div class="dd-handle dd3-handle"></div>
+                                        <div class="dd3-content">USER ADMINISTRATION</div>
+                                        <ol class="dd-list">
+                                            <li class="dd-item dd3-item">
+                                                <div class="dd-handle dd3-handle"></div>
+                                                <div class="dd3-content">
+                                                    Add User
+													<div class="ppstyle">
+                                                        <div class="onoffswitch">
+                                                            <input type="checkbox" name="addUser" class="onoffswitch-checkbox" id="addUser" ng-model="entitlement.admin.addUser">
+                                                            <label class="onoffswitch-label" for="addUser">
+                                                                <span class="onoffswitch-inner"></span>
+                                                                <span class="onoffswitch-switch"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </li>
+											<li class="dd-item dd3-item">
+                                                <div class="dd-handle dd3-handle"></div>
+                                                <div class="dd3-content">
+                                                    Approve User
+													<div class="ppstyle">
+                                                        <div class="onoffswitch">
+                                                            <input type="checkbox" name="approveUser" class="onoffswitch-checkbox" id="approveUser" ng-model="entitlement.admin.approveUser">
+                                                            <label class="onoffswitch-label" for="approveUser">
+                                                                <span class="onoffswitch-inner"></span>
+                                                                <span class="onoffswitch-switch"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </li>
+											<li class="dd-item dd3-item">
+                                                <div class="dd-handle dd3-handle"></div>
+                                                <div class="dd3-content">
+                                                    Modify User
+													<div class="ppstyle">
+                                                        <div class="onoffswitch">
+                                                            <input type="checkbox" name="modifyUser" class="onoffswitch-checkbox" id="modifyUser" ng-model="entitlement.admin.modifyUser">
+                                                            <label class="onoffswitch-label" for="modifyUser">
+                                                                <span class="onoffswitch-inner"></span>
+                                                                <span class="onoffswitch-switch"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </li>
+											<li class="dd-item dd3-item">
+                                                <div class="dd-handle dd3-handle"></div>
+                                                <div class="dd3-content">
+                                                    Suspend User
+													<div class="ppstyle">
+                                                        <div class="onoffswitch">
+                                                            <input type="checkbox" name="suspendUser" class="onoffswitch-checkbox" id="suspendUser" ng-model="entitlement.admin.suspendUser">
+                                                            <label class="onoffswitch-label" for="suspendUser">
+                                                                <span class="onoffswitch-inner"></span>
+                                                                <span class="onoffswitch-switch"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </li>
+											<li class="dd-item dd3-item">
+                                                <div class="dd-handle dd3-handle"></div>
+                                                <div class="dd3-content">
+                                                    Delete User
+													<div class="ppstyle">
+                                                        <div class="onoffswitch">
+                                                            <input type="checkbox" name="deleteUser" class="onoffswitch-checkbox" id="deleteUser" ng-model="entitlement.admin.deleteUser">
+                                                            <label class="onoffswitch-label" for="deleteUser">
+                                                                <span class="onoffswitch-inner"></span>
+                                                                <span class="onoffswitch-switch"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </li>
+											
+                                        </ol>
+                                    </li>
+
+                                </ol>
+                            </div>
+                        </div>
+					</div>
+					</div>
+					<div class="col-xs-6">
+					</div>
+				</div>
+            </div>
+        </div>
+    </div>
+</div>
+									<!-- permission End -->
+                                </div>
+							<!--------------------------------------- yo yo yo ---------------------------------------------->
+                            
+                            </div>
+                            <div class="button-pane mrg20T">
+                                <div class="alert alert-danger" ng-show="error">
+                                    <p>{{errorMsg}}</p>
+                                </div>
+                                <button ui-sref="home.admin.manageUsers" class="btn btn-md btn-default" ui-sref="manageUsers">Cancel</button>
+                                <input type="submit" class="btn btn-md btn-primary" value="Add User" ng-click="submitUser();">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div ng-show="loading">
+                <div class="example-box-wrapper">
+                    <div class="glyph-icon remove-border demo-icon tooltip-button icon-spin-4 icon-spin" title="icon-spin-4"></div>
+                </div>
+            </div>
         </div>
     </div>
 
