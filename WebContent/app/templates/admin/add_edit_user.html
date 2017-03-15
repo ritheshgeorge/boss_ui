@@ -1,5 +1,5 @@
 <div ng-controller="userNewEditCtrl">
-
+	
     <div class="panel">
         <div class="panel-body">
             <h3 class="title-hero">
@@ -74,16 +74,23 @@
                                     <input type="text" placeholder="Email Address" class="form-control" name="email" 
 									ng-model="user.email"
 									ng-class="{'txtbxReq': (userForm.email.$error.required && (userForm.email.$touched || userForm.$submitted))}" 
-									ng-required="true" />
+									ng-required="true" 
+									ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]*\.([a-z]{2,4})$/"
+									/>
                                 </div>
+								<label class="col-sm-3 msg-error" ng-show="userForm.email.$error.pattern">Invalid Email</label>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Phone Number:*</label>
-                                <div class="col-sm-6">
-                                    <input type="text" placeholder="Phone Number" class="form-control" name="phoneNumber" 
+                                <div class="col-sm-6" >
+                                    <input type="text" placeholder="Phone Number" class="input-mask form-control" name="phoneNumber" 
+									
 									ng-model="user.phoneNumber" 
-									ng-class="{'txtbxReq': (userForm.phoneNumber.$error.required && (userForm.phoneNumber.$touched || userForm.$submitted))}" ng-required="true" />
-                                </div>
+									ng-class="{'txtbxReq': ((userForm.phoneNumber.$error.required || userForm.phoneNumber.$invalid) && (userForm.phoneNumber.$touched || userForm.$submitted))}" ng-required="true" 
+									ng-minlength="10" 
+									/>
+								</div>
+								<label class="col-sm-3 msg-error" ng-show="(userForm.phoneNumber.$invalid && userForm.phoneNumber.$dirty)">Invalid Phone Number</label>
                             </div>
 							<!--------------------------------------- yo yo yo ---------------------------------------------->
 							<div>

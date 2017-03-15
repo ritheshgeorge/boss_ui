@@ -39,22 +39,25 @@ function($scope,$http,$state,$rootScope,$stateParams,UserNewEditService,Entitlem
 		$scope.userForm.$submitted = true;
 		var u_user = $scope.user;
 		$scope.user.entitlements = EntitlementService.getListOfEntitlement($scope.entitlement);
-		if(!$scope.userForm.$error.required && isPasswordValid()){
-		UserNewEditService.savePayee(u_user).then(function(response){
-			if(response.data){
-				$state.go("home.admin.manageUsers");
-			}else{
-				$scope.error = true;
-				$scope.errorMsg = "UserName not available";
-			}
-		});
+		console.log("isFormValid(): ");
+		console.log($scope.userForm.phoneNumber.$error);
+		if(isFormValid() && isPasswordValid()){
+			UserNewEditService.savePayee(u_user).then(function(response){
+				if(response.data){
+					$state.go("home.admin.manageUsers");
+				}else{
+					$scope.error = true;
+					$scope.errorMsg = "UserName not available";
+				}
+			});
 		}
 	}
 	
 	function isPasswordValid(){
 		return (!$scope.userForm.rePassword.$error.pattern && !$scope.userForm.password.$error.pattern)?true:false;
-			
-		;
+	}
+	function isFormValid(){
+		return ($scope.userForm.$error.required || $scope.userForm.$error.pattern || $scope.userForm.$invalid)?false:true;
 	}
 	/**
 		Two-Factor
