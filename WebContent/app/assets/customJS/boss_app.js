@@ -26,7 +26,7 @@ app.config(function ($httpProvider) {
 // Configure the main application module.
 
 app.config(['$urlRouterProvider','$stateProvider','USER_ROLES',function($urlRouterProvider, $stateProvider,USER_ROLES) {
-		$urlRouterProvider.when("/home", "/home/accounts/all");		
+		$urlRouterProvider.when("/home", "/home/dashboard");		
 		$urlRouterProvider.when("/home/payment", "/home/payment/paymentActivity");
 		$urlRouterProvider.when("/home/payment/addPayee", "/home/payment/addPayee/domesticPayee");
 		$urlRouterProvider.when("/home/manageUsers", "/home/manageUsers/manageUsers");
@@ -169,6 +169,11 @@ app.config(['$urlRouterProvider','$stateProvider','USER_ROLES',function($urlRout
         url : '/updateUser/:userId',
         templateUrl: 'app/templates/admin/add_edit_user.html',
 		containerClass: 'addUser',
+	})
+	.state('home.dashboard',  {
+        url : '/dashboard',
+        templateUrl: 'app/templates/admin/dashboard.html',
+		
 	})
 }]);
 /*
