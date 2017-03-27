@@ -1,7 +1,8 @@
 /**
  * Contains functions that are added to the root AngularJs scope.
  */
-angular.module('bossApp').run(function($rootScope, $state, Auth, AUTH_EVENTS,$cookies) {
+ var app = angular.module('bossApp');
+app.run(function($rootScope, $state, Auth, AUTH_EVENTS,$cookies) {
 	
 	//before each state change, check if the user is logged in
 	//and authorized to move onto the next state
@@ -30,5 +31,14 @@ angular.module('bossApp').run(function($rootScope, $state, Auth, AUTH_EVENTS,$co
 	
 	$rootScope.$on('$stateChangeSuccess',function(event, toState, toParams, fromState, fromParams){
     $rootScope.containerClass = toState.containerClass;
+	$rootScope.isUndefined = function(value){
+		if(value==null || value===undefined || value.toString().trim()=="")
+			return true;
+		else
+			return false;
+	}
   });
 });
+app.run(['$anchorScroll', function($anchorScroll) {
+  $anchorScroll.yOffset = 200;   // always scroll by 50 extra pixels
+}])

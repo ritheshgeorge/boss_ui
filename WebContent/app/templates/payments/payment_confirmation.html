@@ -1,4 +1,4 @@
-<div>
+<div id="confirmPage">
 	<div id="page-title">
     <h2>Are you sure you want to make this transfer?</h2>
 
@@ -68,25 +68,29 @@
 				<div class="col-xs-6 confirm_smlhead">Payment Date:</div>
 				<div class="col-xs-6 confirm_details">{{payment.paymentDate | date}}</div>
 			</div>
-			<div class="row" ng-show="payment.messageToRecipient">
+			<div class="row" ng-show="payment.messageToPayee">
 				<div class="col-xs-6 confirm_smlhead">Message to recipient:</div>
-				<div class="col-xs-6 confirm_details">{{payment.messageToRecipient}}</div>
+				<div class="col-xs-6 confirm_details">{{payment.messageToPayee}}</div>
 			</div>
-			<div class="row" ng-show="payment.email">
+			<div class="row" ng-show="payment.emailAddress">
 				<div class="col-xs-6 confirm_smlhead">Email:</div>
-				<div class="col-xs-6 confirm_details">{{payment.email}}</div>
+				<div class="col-xs-6 confirm_details">{{payment.emailAddress}}</div>
 			</div>
-			<div class="row" ng-show="payment.mobile">
+			<div class="row" ng-show="payment.phoneNumber">
 				<div class="col-xs-6 confirm_smlhead">Phone No:</div>
-				<div class="col-xs-6 confirm_details">{{payment.mobile}}</div>
+				<div class="col-xs-6 confirm_details">{{payment.phoneNumber}}</div>
 			</div>
 			
-			
+			<hr class="line" />
+                  <div class="space_20"></div>
+                 <div ng-include="'app/templates/commons/two_factor.html'"></div>
+                                            <div class="space_10"></div>
+                                            <div class="clear"></div>
 
 			<div class="clear"></div>
 			<div class="bg-default content-box text-center pad20A mrg25T">
+				<button class="btn btn-md btn-primary" ng-disabled="!pinVerified" ng-click="postPayment()">Authorize Payment</button>
 				<button class="btn btn-md btn-default" ng-click="cancelPayment()">Cancel</button>
-				<button class="btn btn-md btn-primary" ng-click="postPayment()">Payment</button>
 			</div>
 
 		</div>

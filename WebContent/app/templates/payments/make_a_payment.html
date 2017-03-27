@@ -1,9 +1,13 @@
 <div>
+	<style>
+		#text{margin-top:-50px;}
+	</style>
     <div class="example-box-wrapper">
         <div id="form-wizard-3">
             <div class="tab-content">
                 <script type="text/javascript" src="app/assets/widgets/uniform/uniform-demo.js"></script>
                 <div class="tab-pane active" ng-controller="paymentCtrl">
+					<div ng-show="!loading"><!-- hide while loading -->
                     <div class="content-box" ng-hide="paymentProcessed">
                         <div class="content-box-wrapper">
                             <div class="paytab">
@@ -12,12 +16,12 @@
                                     <form class="form-horizontal bordered-row paymentForm" novalidate id="paymentForm" name="paymentForm">
                                         <div>
                                             <h3 class="title-hero">Make a Payment</h3>
-                                            <div class="row">
+											<div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="col-sm-4 control-label">From Account*</label>
                                                         <div class="col-sm-6">
-                                                            <select class="form-control" ng-model="bankAccount" name="bankAccount" ng-class="{'txtbxReq': (paymentForm.bankAccount.$error.required && (paymentForm.bankAccount.$touched || paymentForm.$submitted))}" ng-required="true" ng-options="account.nicName +'-'+account.accountNumber for account in accountList track by account.id">
+                                                            <select class="form-control" ng-model="bankAccount" name="bankAccount" ng-class="{'txtbxReq': (paymentForm.bankAccount.$error.required && (paymentForm.bankAccount.$touched || paymentForm.$submitted))}" ng-required="true" ng-options="account.nicName +'- ****'+account.accountNumber for account in accountList track by account.id">
                                                                 <option value="">Select Account</option>
                                                             </select>
                                                         </div>
@@ -36,12 +40,16 @@
                                                     <div class="form-group">
                                                         <label class="col-sm-4 control-label">To Account*</label>
                                                         <div class="col-sm-6">
-                                                            <select class="form-control" ng-model="payee" name="payee" ng-class="{'txtbxReq': (paymentForm.payee.$error.required && (paymentForm.payee.$touched || paymentForm.$submitted))}" ng-required="true">
+                                                            <select class="form-control"  name="payee" 
+																ng-model="payee" 
+																ng-class="{'txtbxReq': (paymentForm.payee.$error.required && (paymentForm.payee.$touched || paymentForm.$submitted))}" 
+																ng-required="true"
+																>
                                                                 <optgroup label="Domestic Payees">
-                                                                    <option ng-repeat="payee in payeeList track by $index" value="{{payee.id}}" ng-if="!payee.isInternational">{{payee.legalName}}:{{payee.accountNumber | limitTo: 4}}</option>
+                                                                    <option ng-repeat="payee in payeeList track by $index" value="{{payee.id}}" ng-if="!payee.isInternational">{{payee.legalName}}: ****{{payee.accountNumber | limitTo: 4}}</option>
                                                                 </optgroup>
                                                                 <optgroup label="International Payees">
-                                                                    <option ng-repeat="payee in payeeList track by $index" value="{{payee.id}}" ng-if="payee.isInternational">{{payee.legalName}}:{{payee.accountNumber | limitTo: 4}}</option>
+                                                                    <option ng-repeat="payee in payeeList track by $index" value="{{payee.id}}" ng-if="payee.isInternational">{{payee.legalName}}: ****{{payee.accountNumber | limitTo: 4}}</option>
                                                                 </optgroup>
                                                             </select>
                                                         </div>
@@ -50,12 +58,13 @@
                                                 <div class="col-md-6">
                                                     <div class="col-sm-8" ng-show="payeeAccount">
                                                         <div class="alert alert-info">
-                                                            <p>Bank Name ({{payeeAccount.accountCcy}})</p><!-- {{payeeAccount.accountWithBank.name}} -->
+                                                            <p>Bank: Bank of America</p><!-- {{payeeAccount.accountWithBank.name}} -->
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div ng-if="!payeeAccount.isInternational">
+											
+											 <div ng-if="!payeeAccount.isInternational">
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
@@ -68,13 +77,15 @@
                                                 <div class="col-md-6">
                                                 </div>
                                             </div>
-                                            <div class="row">
+                                            
+                                        </div>
+										<div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label class="col-sm-4 control-label">Delivery Method*</label>
                                                         <div class="col-sm-6">
                                                             <select class="form-control" ng-model="deliveryMethod" name="deliveryMethod" ng-class="{'txtbxReq': (paymentForm.deliveryMethod.$error.required && (paymentForm.deliveryMethod.$touched || paymentForm.$submitted))}" ng-required="true" ng-change="updatedeliveryMethod(deliveryMethod);">
-                                                                <option ng-repeat="deliver in deliveryMethodList track by $index" value="{{deliver.method}}">{{deliver.description}}</option>
+																<option ng-repeat="deliver in deliveryMethodList track by $index" value="{{deliver.method}}">{{deliver.description}}</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -82,67 +93,103 @@
                                                 <div class="col-md-6">
                                                     <div class="col-sm-8" ng-show="deliveryMethod">
                                                         <div class="alert alert-info">
-                                                            <p>Fees: {{payment.feeCcy}} {{payment.feeAmount}}</p>
+                                                            <p>Fees: {{payment.feeCcy}} {{payment.feeAmount | number:2}}</p>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+											<div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="col-sm-4 control-label">Payment Date*</label>
+                                                        <div class="col-sm-6">
+                                                             <div class="input-group">
+                                                                                    <span class="add-on input-group-addon" >
+                                                                                        <i class="glyphicon glyphicon-calendar"></i>
+                                                                                    </span>
+                                                                                    <input type="text" class="form-control" name="paymentDate" 
+                                                                                    datepicker-popup="MM/dd/yyyy" 
+                                                                                    ng-model="payment.paymentDate" 
+                                                                                    is-open="openPaymentCal" 
+                                                                                    min-date="minPaymentDate" 
+                                                                                    datepicker-options 
+                                                                                    close-text="Close" 
+																					ng-click="openPaymentDate($event)"
+																					ng-class="{'txtbxReq': (paymentForm.paymentDate.$error.required && (paymentForm.paymentDate.$touched || paymentForm.$submitted))}" ng-required="true" />
+                                                                                </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+											
                                             <!-- Div for Internation Payment -->
-                                            <div ng-if="payeeAccount.isInternational">
+                                            <div ng-show="payeeAccount.isInternational">
                                                 <div class="alert alert-info" ng-init="amountOption='equivalent';intermediaryBankFees='Remitter'">
                                                 <div class="row" >
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="col-sm-4 control-label">Amount*</label>
                                                             <div class="col-sm-6">
-                                                                <input type="text" placeholder="Amount" ng-model="payment.paymentAmount" class="form-control" ng-model="" name="amount" ng-class="{'txtbxReq': (paymentForm.amount.$error.required && (paymentForm.amount.$touched || paymentForm.$submitted))}" ng-required="true" number-format decimals="numberOfDecimals">
+                                                                <input type="text" placeholder="Amount" class="form-control" name="internationalAmount" 
+																ng-model="payment.paymentAmount" 
+																ng-class="{'txtbxReq': (paymentForm.internationalAmount.$error.required && (paymentForm.internationalAmount.$touched || paymentForm.$submitted))}" 
+																ng-required="payeeAccount.isInternational" 
+																number-format 
+																decimals="numberOfDecimals"
+																>
                                                             </div>
-                                                        </div>
+                                                        </div><br>
+														<div class="international-amount">
+															<input type="radio" name="amountOption" id="amountOption1" class="boss-checkbox" value="equivalent" ng-model="amountOption"/>
+															<label for="amountOption1" class="boss-label radGroup2">Pay {{bankAccount.currency}} Equivalent</label><br>
+															<p><small>The Above amount will be conerted and sent in foreign currency.</small></p>
+														</div><br>
+														<div class="international-amount">
+															<input type="radio" name="amountOption" id="amountOption2" class="boss-checkbox" value="notEquivalent" ng-model="amountOption" />
+															<label for="amountOption2" class="boss-label radGroup2">Pay {{payeeAccount.accountCcy}} Equivalent</label><br>
+															<p><small>The Above amount will be  sent in foreign currency.</small></p>
+														</div>
                                                     </div>
-                                                    <div class="col-md-6">
-                                                    </div>
+													<div class="col-md-6" id="timerDiv">
+														<div class="row">
+															<div class="col-xs-6">
+																<div class="content-box border-top border-col" ng-show="displayExRateInfo">
+																	<h3 class="content-box-header clearfix">
+																	</h3>  
+																	<div class="content-box-wrapper" >
+																		<div >
+																			<p>{{expMsg}}</p>
+																			<p>{{ratetxt}}</p>
+																			<p>{{exchangeRateInformation.baseCcy}} {{exchangeRateInformation.ccy1Amount | number:4}}</p>
+																			<p>{{exchangeRateInformation.QuoteCcy}} {{exchangeRateInformation.ccy2Amount | number:4}}</p>
+																		</div>
+																	</div>
+																</div>
+																<div class="conten-box-btn text-center mrg25T" ng-show="displayRateTimer">
+																<input type="button" ng-click="acceptRate()" value="Accept" class="btn btn-sm btn-primary">
+																<input type="button" ng-click="rejectRate()" value="Reject"  class="btn btn-sm btn-danger">
+																</div>
+																<div class="conten-box-btn text-center mrg25T" ng-hide="displayRateTimer || rateaccepted">
+																	<div>
+																		<input type="button" ng-click="getRate()" value="Get Rate" class="btn btn-sm btn-primary"
+																		ng-class="{'timeOutBtn' : displayExRateInfo , 'getrtBtn' : !displayExRateInfo}"><br>
+																		<span class="msg-error">{{getRateError}}</span>
+																	</div>
+																</div>
+															</div>
+															<div class="col-xs-6" ng-if="displayRateTimer">
+																<ui-knob value="knobValue" options="knobOptions"></ui-knob>
+															</div>
+														</div>
+													</div>
                                                 </div>  
-                                                <div class="row international-amount">
-                                                    <div class="col-sm-12">
-                                                        <input type="radio" name="amountOption" id="amountOption1" class="boss-checkbox" value="equivalent" ng-model="amountOption"/>
-                                                        <label for="amountOption1" class="boss-label radGroup2">Pay USD Equivalent</label><br>
-                                                        <p><small>The Above amount will be conerted and sent in foreign currency.</small></p>
-                                                    </div>
-                                                </div>
-                                                 <div class="row international-amount">
-                                                    <div class="col-sm-12">
-                                                        <input type="radio" name="amountOption" id="amountOption2" class="boss-checkbox" value="notEquivalent" ng-model="amountOption" />
-                                                        <label for="amountOption2" class="boss-label radGroup2">Pay {{payeeAccount.paymentCcy}} Equivalent</label><br>
-                                                        <p><small>The Above amount will be  sent in foreign currency.</small></p>
-                                                    </div>
-                                                </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label class="col-sm-4 control-label">Intermediary bank fees*</label>
-                                                            <div class="col-sm-8 interBankRadio">
-                                                               <div class="row">
-                                                                    <div class="col-sm-6">
-                                                                   <input type="radio" name="remitter" id="remitter" class="boss-checkbox" value="Remitter" ng-model="intermediaryBankFees"/>
-                                                                    <label for="remitter" class="boss-label radGroup2">Remitter (me)</label>
-                                                                </div>
-                                                                 <div class="col-sm-6">
-                                                                   <input type="radio" name="beneficiary" id="beneficiary" class="boss-checkbox" value="Beneficiary" ng-model="intermediaryBankFees"/>
-                                                                    <label for="beneficiary" class="boss-label radGroup2">Beneficiary</label>
-                                                                </div>
-                                                               </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
                                                 </div>
                                                  <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="col-sm-4 control-label">Purpose of Payment*</label>
                                                             <div class="col-sm-6">
-                                                                <input type="text" placeholder="Purpose of Payment" ng-model="payment.purposeOfPayment" class="form-control" name="purposeOfPayment" ng-class="{'txtbxReq': (paymentForm.purposeOfPayment.$error.required && (paymentForm.purposeOfPayment.$touched || paymentForm.$submitted))}" ng-required="true">
+                                                                <input type="text" placeholder="Purpose of Payment" ng-model="payment.purposeOfPayment" class="form-control" name="purposeOfPayment" ng-class="{'txtbxReq': (paymentForm.purposeOfPayment.$error.required && (paymentForm.purposeOfPayment.$touched || paymentForm.$submitted))}" ng-required="payeeAccount.isInternational">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -150,63 +197,35 @@
                                                     </div>
                                                 </div>
                                                 </div>
-
-                                        <!-- End -->
-
-                                            <hr class="line" />
+											<!-- End -->
+											<hr class="line" />
                                             <div class="space_10"></div>
-
-                                            <div class="optional">
-
-                                                <div class="panel-group" id="accordion">
+											<div class="optional">
+												<div class="panel-group" id="accordion">
                                                     <div class="panel panel-default">
                                                         <div class="panel-heading">
                                                             <h4 class="panel-title">
-                                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#panel1">Schedule this payment</a>
+                                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#panel1">Repeat this payment</a>
                                                             </h4>
                                                         </div>
                                                         <div id="panel1" class="panel-collapse collapse in">
-                                                            <div class="panel-body" ng-style="{height:openPaymentCal?'440px':''}">
+                                                            <div class="panel-body" ng-style="{height:(openPaymentCal || openFirstPaymentCal || openLastPaymentCal)?'440px':''}">
 
                                                                 <div class="">
-                                                                    <div class="row">
-                                                                        <div class="col-md-6">
-                                                                            <div class="col-md-3">
-                                                                                <div class="space_5"></div>
-                                                                                <input type="radio" name="radiog_dark" id="oneTimePayment" class="boss-checkbox" value="oneTime" ng-model="paymentFrequency" />
-                                                                                <label for="oneTimePayment" class="boss-label radGroup2">One time on</label>
-                                                                            </div>
-                                                                            <div class="col-md-9">
-                                                                                <div class="input-group">
-                                                                                    <span class="add-on input-group-addon" ng-click="openPaymentDate($event)">
-                                                                                        <i class="glyphicon glyphicon-calendar"></i>
-                                                                                    </span>
-                                                                                    <input type="text" class="form-control" name="paymentDate" 
-                                                                                    datepicker-popup="MM/dd/yyyy" 
-                                                                                    ng-model="PaymentDate" 
-                                                                                    is-open="openPaymentCal" 
-                                                                                    min-date="minDate" 
-                                                                                    datepicker-options 
-                                                                                    close-text="Close" />
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-
-                                                                        </div>
-
-                                                                    </div>
                                                                     <div class="space_10"></div>
                                                                     <div class="row">
                                                                         <div class="col-md-6">
                                                                             <div class="col-md-3">
-                                                                                <input type="radio" name="radiog_dark" id="recurringPayment" class="boss-checkbox" value="recurring" ng-model="paymentFrequency" />
-                                                                                <label for="recurringPayment" class="boss-label radGroup2">Repeat every</label>
+                                                                                <label for="recurringPayment" class="radGroup2">Every</label>
                                                                             </div>
                                                                             <div class="col-md-9">
                                                                                 <div class="row">
                                                                                     <div class="col-md-5">
-                                                                                        <select class="form-control">
+                                                                                        <select class="form-control"  name="recurringFrequency"
+																							ng-model="recurringPayment.frequency"
+																							ng-required="recurringPayReq"
+																							ng-class="{'txtbxReq': (paymentForm.recurringFrequency.$error.required && (paymentForm.recurringFrequency.$touched || paymentForm.$submitted))}"
+																							>
                                                                                             <option>Month</option>
                                                                                             <option>Week</option>
                                                                                         </select>
@@ -215,17 +234,26 @@
                                                                                         <label for="" class="rightlbl">On</label>
                                                                                     </div>
                                                                                     <div class="col-md-6">
-
-                                                                                        <div class="input-prepend input-group">
-                                                                                            <span class="add-on input-group-addon">
-                                        <i class="glyph-icon icon-calendar"></i>
-                                    </span>
-                                                                                            <input type="text" class="bootstrap-datepicker form-control" value="02/16/12" data-date-format="mm/dd/yy">
-                                                                                        </div>
-
-                                                                                    </div>
-
-                                                                                </div>
+																						<div class="input-prepend input-group">
+                                                                                            <div class="input-group">
+																								<span class="add-on input-group-addon">
+																									<i class="glyphicon glyphicon-calendar"></i>
+																								</span>
+																								<input type="text" class="form-control" name="firstPaymentDate"  
+																									datepicker-popup="MM/dd/yyyy" 
+																									ng-model="firstPaymentDate" 
+																									is-open="openFirstPaymentCal" 
+																									min-date="minPaymentDate" 
+																									datepicker-options 
+																									close-text="Close" 
+																									ng-click="openFirstPaymentDate($event)"
+																									ng-required="recurringPayReq"
+																									ng-class="{'txtbxReq': (paymentForm.firstPaymentDate.$error.required && (paymentForm.firstPaymentDate.$touched || paymentForm.$submitted))}"
+																									/>
+																							</div>
+																						 </div>
+																					</div>
+																				</div>
                                                                             </div>
 
                                                                         </div>
@@ -236,16 +264,51 @@
                                                                                     <label for="" class="pull-right rightlbl">Until</label>
                                                                                 </div>
                                                                                 <div class="col-md-5">
-                                                                                    <select class="form-control">
-                                                                                        <option>Choose one</option>
+                                                                                    <select class="form-control" name="recurringLimit"
+																						ng-model="recurringPayment.limit" 
+																						ng-required="recurringPayReq"
+																						ng-class="{'txtbxReq': (paymentForm.recurringLimit.$error.required && (paymentForm.recurringLimit.$touched || paymentForm.$submitted))}"
+																						>
                                                                                         <option>I Cancel</option>
-                                                                                        <option>Date</option>
-                                                                                        <option>Year</option>
-                                                                                        <option>Amount</option>
+                                                                                        <option value="Date">The Date</option>
+                                                                                        <option value="Amount">The Amount</option>
+                                                                                        <option value="noOfPayment">This No of Payment</option>
                                                                                     </select>
                                                                                 </div>
-                                                                                <div class="col-md-5">
-                                                                                    <input name="" type="text" class="form-control">
+                                                                                <div class="col-md-5" ng-show="recurringPayment.limit=='Date'">
+                                                                                    <div class="input-prepend input-group">
+                                                                                            <div class="input-group">
+																								<span class="add-on input-group-addon">
+																									<i class="glyphicon glyphicon-calendar"></i>
+																								</span>
+																								<input type="text" class="form-control" name="lastPaymentDate" 
+																									datepicker-popup="MM/dd/yyyy" 
+																									ng-model="lastPaymentDate" 
+																									is-open="openLastPaymentCal" 
+																									min-date="recurringPayment.firstPaymentDate" 
+																									datepicker-options 
+																									close-text="Close" 
+																									ng-click="openLastPaymentDate($event)"
+																									ng-required="recurringPayment.limit=='Date'"
+																									ng-class="{'txtbxReq': (paymentForm.lastPaymentDate.$error.required && (paymentForm.lastPaymentDate.$touched || paymentForm.$submitted))}"
+																									/>
+																							</div>
+																						 </div>
+																				</div>
+																				<div class="col-md-5" ng-show="recurringPayment.limit=='noOfPayment'">
+                                                                                    <input name="cronPattern" type="number" class="form-control" placeholder="Number of Payment" 
+																					ng-model="recurringPayment.cronPattern" 
+																					ng-required="recurringPayment.limit=='noOfPayment'"
+																					ng-class="{'txtbxReq': (paymentForm.cronPattern.$error.required && (paymentForm.cronPattern.$touched || paymentForm.$submitted))}">
+                                                                                </div>
+																				<div class="col-md-5" ng-show="recurringPayment.limit=='Amount'">
+                                                                                    <input name="amountPaid" type="text" class="form-control" placeholder="Amount"
+																							ng-model="recurringPayment.amountPaid" 
+																							number-format="" 
+																							decimals="numberOfDecimals"
+																							ng-required="recurringPayment.limit=='Amount'"
+																							ng-class="{'txtbxReq': (paymentForm.amountPaid.$error.required && (paymentForm.amountPaid.$touched || paymentForm.$submitted))}"
+																							>
                                                                                 </div>
 
                                                                             </div>
@@ -266,9 +329,59 @@
                                                         </div>
                                                         <div id="panel2" class="panel-collapse collapse">
                                                             <div class="panel-body">
+																
+                                                                
+															<input type='file' ng-model-instant onchange="angular.element(this).scope().imageUpload(event)" multiple />
 
-                                                                <input type="file" accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf" multiple>
-
+			<div ng-repeat="step in stepsModel track by $index">
+				<img class="thumb" ng-src="{{step}}" />
+			</div>
+			
+			<div class="imageuploadify well">
+				<div class="imageuploadify-images-list text-center">
+					<i class="glyph-icon icon-cloud-upload"></i>
+					<span class="imageuploadify-message">Drag and drop files here to upload</span>
+					
+					<button type="button" class="btn btn-default" >or select file to upload</button>
+					
+					
+					<input type='file' style="background: white; color: rgb(0, 188, 164);"
+						ng-model-instant 
+						onchange="angular.element(this).scope().imageUpload(event)" 
+						multiple />
+						
+						
+						
+						
+						
+						
+					<div class="imageuploadify-container" style="margin-left: 21px; margin-right: 0px;">
+						<button type="button" class="btn btn-danger glyphicon glyphicon-remove"></button>
+						<div class="imageuploadify-details" style="opacity: 0;">
+							<span>39092_Happy_birthday_card - Copy.png</span>
+							<span>image/png</span>
+							<span>82517</span>
+						</div>
+						<img src="">
+					</div>
+					<div class="imageuploadify-container" style="margin-left: 21px; margin-right: 0px;">
+						<button type="button" class="btn btn-danger glyphicon glyphicon-remove"></button>
+						<div class="imageuploadify-details" style="opacity: 0;">
+							<span>39092_Happy_birthday_card - Copy.png</span>
+							<span>image/png</span>
+							<span>82517</span>
+						</div>
+						<img src="">
+					</div>
+				</div>
+			</div>
+					
+																			
+																	
+																
+																
+																
+																
                                                                 <div class="space_5"></div>
                                                                 <div class="col-md-4">
                                                                     <a href="#">View Uploaded details</a>
@@ -285,7 +398,7 @@
                                                                             <input type="checkbox" id="inlineCheckbox110" class="custom-checkbox"> Email this Document to Payee
                                                                         </label>
                                                                     </div>
-                                                                </div>
+                                                                </div> 
 
                                                             </div>
                                                         </div>
@@ -321,7 +434,7 @@
                                                                         <div class="form-group">
                                                                             <label class="col-sm-4 control-label">Mobile</label>
                                                                             <div class="col-sm-6">
-                                                                                <input name="" type="text" class="form-control" placeholder="(***)-***-****" ng-model="payment.phoneNumber">
+                                                                                <input name="" type="text" class="form-control" placeholder="(***)-***-****" ng-model="payment.phoneNumber" phone-input>
                                                                             </div>
                                                                         </div>
 
@@ -356,19 +469,12 @@
 
                                             </div>
                                             <div class="clear"></div>
-
-                                            <hr class="line" />
-                                            <div class="space_20"></div>
-                                            <div ng-include="'app/templates/commons/two_factor.html'"></div>
-                                            <div class="space_10"></div>
-                                            <div class="clear"></div>
-
-                                            <div class="bg-default content-box text-center pad20A mrg25T">
+										<div class="bg-default content-box text-center pad20A mrg25T">
                                                 <div class="alert alert-danger" ng-if="formError">
                                                     <p>Please provide all the Required Fields<code>*</code></p>
                                                 </div>
 
-                                                <button class="btn btn-md btn-primary" ng-disabled="!pinVerified" ng-click="makePayment();" type="submit">Payment</button>
+                                                <button class="btn btn-md btn-primary" ng-click="makePayment();" type="submit">Review Payment</button>
                                             </div>
                                         </div>
                                     </form>
@@ -379,10 +485,14 @@
                     <div ng-show="paymentProcessed">
                         <div ng-include="'app/templates/payments/payment_confirmation.html'"></div>
                     </div>
+                    </div>
+					<div ng-show="loading">
+						<div class="example-box-wrapper">
+                                <div class="glyph-icon remove-border demo-icon tooltip-button icon-spin-4 icon-spin" title="icon-spin-4"></div>
+                         </div>
+					</div>
                 </div>
 
-                <!-- WIDGETS -->
-                <script type="text/javascript" src="app/assets/themes/admin/imageuploadify.min.js"></script>
                 <!-- Theme switcher -->
                 <script type="text/javascript" src="app/assets/widgets/theme-switcher/themeswitcher.js"></script>
                 <script>
@@ -395,11 +505,6 @@
                             $(e.target).prev().addClass('active').find('.glyphicon').toggleClass('glyphicon-plus glyphicon-minus');
                         })
                     });
-                </script>
-                <script type="text/javascript">
-                    $(document).ready(function() {
-                        $('input[type="file"]').imageuploadify();
-                    })
                 </script>
             </div>
         </div>

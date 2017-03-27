@@ -3,32 +3,38 @@
         "admin": {
             "username": "admin",
             "password": "admin",
-            "userRole": "admin"
+            "userRole": "admin",
+			"entityId" : "abc123abc"
         },
         "editor": {
             "username": "editor",
             "password": "editor",
-            "userRole": "editor"
+            "userRole": "editor",
+			"entityId" : "abc123abc"
         },
         "guest": {
             "username": "guest",
             "password": "guest",
-            "userRole": "guest"
+            "userRole": "guest",
+			"entityId" : "abc123abc"
         },
 		"saurabh": {
             "username": "saurabh",
             "password": "saurabh",
-            "userRole": "admin"
+            "userRole": "admin",
+			"entityId" : "abc123abc"
         },
 		"ritesh": {
             "username": "ritesh",
             "password": "ritesh",
-            "userRole": "admin"
+            "userRole": "admin",
+			"entityId" : "abc123abc"
         },
 		"booshan": {
             "username": "booshan",
             "password": "booshan",
-            "userRole": "admin"
+            "userRole": "admin",
+			"entityId" : "abc123abc"
         }
     }
 }
