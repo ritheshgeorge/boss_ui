@@ -1,5 +1,5 @@
 'use strict';
-var app = angular.module('bossApp', ['ui.router','ngMessages' ,'ui.bootstrap','angularFileUpload','ui.bootstrap','ngCookies']);
+var app = angular.module('bossApp', ['ui.router','ngMessages' ,'ui.bootstrap','angularFileUpload','ui.bootstrap','ngCookies','ui.knob']);
 	/*Constants regarding user login defined here*/
 app.constant('USER_ROLES', {
 		all : '*',
@@ -141,6 +141,11 @@ app.config(['$urlRouterProvider','$stateProvider','USER_ROLES',function($urlRout
 	.state('home.makePayment.editRecurringPayment',  {
         url : '/editRecurringPayment/:paymentId',
         templateUrl: 'app/templates/payments/edit_recurring_payment.html',
+		containerClass: 'paymentActivity',
+	})
+	.state('home.makePayment.viewPayment',  {
+        url : '/viewpayment/:paymentId',
+        templateUrl: 'app/templates/payments/view_payment.html',
 		containerClass: 'paymentActivity',
 	})
 	.state('home.error',  {

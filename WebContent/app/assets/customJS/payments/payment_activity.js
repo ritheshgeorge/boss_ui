@@ -27,7 +27,7 @@ function($scope, $http,$state,ManagePayeeService, AccountSummaryService,PaymentA
 				activityList.push(data[i]);
 			}
 			$scope.paymentActivityList = activityList;
-			//$scope.recentPaymentActivityList = activityList;
+			$scope.recentPaymentActivityList = activityList;
 			console.log("----payment activity list----");
 			console.log(activityList);
 			

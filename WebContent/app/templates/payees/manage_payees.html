@@ -55,19 +55,19 @@
                                         </td>
                                         <td>
                                             <div class="btn-group">
-                                                <button class="btn btn-primary btn-xs dropdown-toggle" type="button" data-toggle="dropdown">
+                                                <button class="btn btn-primary btn-xs dropdown-toggle" type="button" data-toggle="dropdown" >
                                                     Action
                                                     <span class="caret"></span>
                                                 </button>
                                                 <ul class="dropdown-menu" role="menu">
                                                     <li><a>Authorize</a></li>
                                                     <li><a ui-sref="makePayment.addAPayee.internationalPayee">Suspend</a></li>
-                                                    <li><a href="#">Delere</a></li>
+                                                    <li><a href="#">Delete</a></li>
                                                     <li class="divider"></li>
                                                     <li ng-if="!payee.isInternational"><a ui-sref="home.makePayment.addAPayee.editDomesticPayee({ payeeId:'{{payee.id}}'})">Edit</a></li><!-- Domestic Payee Edit -->
                                                     <li ng-if="payee.isInternational"><a ui-sref="home.makePayment.addAPayee.editInternationalPayee({ payeeId:'{{payee.id}}'})">Edit</a></li><!-- International Payee Edit -->
                                                 </ul>
-                                            </div> <!--
+                                            </div> 
 											<span ng-if="!payee.isInternational">Domestic</span>
 											<span ng-if="payee.isInternational">International</span>-->
                                         </td>

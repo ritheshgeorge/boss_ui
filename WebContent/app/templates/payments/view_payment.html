@@ -1,0 +1,340 @@
+<div id="paymentForm_head">
+	<style>
+		#text{margin-top:-50px;}
+	</style>
+    <div class="example-box-wrapper">
+        <div id="form-wizard-3">
+            <div class="tab-content">
+                <script type="text/javascript" src="app/assets/widgets/uniform/uniform-demo.js"></script>
+                <div class="tab-pane active" ng-controller="editPaymentCtrl">
+					<div ng-show="!loading"><!-- hide while loading -->
+                    <div class="content-box" ng-hide="paymentProcessed">
+                        <div class="content-box-wrapper">
+                            <div class="paytab">
+                                <div class="example-box-wrapper">
+
+                                    <form class="form-horizontal bordered-row paymentForm" novalidate id="paymentForm" name="paymentForm">
+                                        <div>
+                                            <h3 class="title-hero">View Payment</h3>
+											<div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <p class="col-sm-4 control-label">From Account:</p>
+                                                        <div class="col-sm-6 marTp7">
+                                                            <label>{{bankAccount.name}}</label>
+															<label> - ****{{bankAccount.accountNumber | limitTo:4}}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <p class="col-sm-4 control-label">To Account:</p>
+                                                        <div class="col-sm-6 marTp7">
+                                                            <label>{{selectedPayee.legalName}}</label>
+                                                            <label> - ****{{selectedPayee.accountNumber | limitTo:4}}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                </div>
+                                            </div>
+											
+											 <div ng-if="!selectedPayee.isInternational">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <p class="col-sm-4 control-label">Amount:</p>
+                                                        <div class="col-sm-6 marTp7">
+                                                            <label>{{payment.paymentAmount | number:2}}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+										<div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <p class="col-sm-4 control-label">Delivery Method:</p>
+                                                        <div class="col-sm-6 marTp7">
+                                                            <label>{{payment.deliveryChannel}}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="col-sm-8">
+                                                        <div class="alert alert-info">
+                                                            <p>Fees: {{payment.feeCcy}} {{payment.feeAmount}}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+											<div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <p class="col-sm-4 control-label">Payment Date:</p>
+                                                        <div class="col-sm-6 marTp7">
+                                                             <label>{{payment.paymentDate | date}}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+											
+                                            <!-- Div for Internation Payment -->
+                                            <div ng-show="selectedPayee.isInternational">
+                                                <div class="alert alert-info" ng-init="amountOption='equivalent';intermediaryBankFees='Remitter'">
+                                                <div class="row" >
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <p class="col-sm-4 control-label">Amount:</p>
+                                                            <div class="col-sm-6 marTp7">
+																<label>{{payment.paymentAmount | number:2}}</label>
+															</div>
+                                                        </div><br>
+														
+                                                    </div>
+													
+                                                </div>  
+                                                </div>
+                                                 <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <p class="col-sm-4 control-label">Purpose of Payment*</p>
+                                                            <div class="col-sm-6 marTp7">
+                                                                <label>{{payment.purposeOfPayment}}</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                    </div>
+                                                </div>
+                                                </div>
+											<!-- End -->
+											<hr class="line" />
+                                            <div class="space_10"></div>
+											<div class="optional">
+												<div class="panel-group" id="accordion">
+                                                    <div class="panel panel-default" ng-show="recurringPayment">
+                                                        <div class="panel-heading">
+                                                            <h4 class="panel-title">
+                                                                <a class="accordion-toggle">Repeat this payment</a>
+                                                            </h4>
+                                                        </div>
+                                                        <div id="panel1" class="panel-collapse collapse in">
+                                                            <div class="panel-body" ng-style="{height:(openPaymentCal || openFirstPaymentCal || openLastPaymentCal)?'440px':''}">
+
+                                                                <div class="">
+                                                                    <div class="space_10"></div>
+																	<div class="row">
+																		<div class="col-xs-12" id="viewPaymentTxt">
+																			<div >
+																			<label>Every</label>
+																			<label>{{recurringPayment.frequency}}</label>
+																			<label>On</label>
+																			<label>{{firstPaymentDate | date}}</label>
+																			<label>Until</label>
+																			
+																			<label ng-show="recurringPayment.limit=='I Cancel'">I Cancel</label>
+																			<label ng-show="recurringPayment.limit=='Date'">The Date
+																				<span>{{lastPaymentDate | date}}</span></label>
+																			<label ng-show="recurringPayment.limit=='Amount'">The Amount
+																				<span>{{recurringPayment.amountPaid | number:2}}</span></label>
+																			<label ng-show="recurringPayment.limit=='noOfPayment'">This No of Payment -	<span>{{recurringPayment.cronPattern}}</span></label>
+																			</div>
+																		</div>
+																	</div>
+                                                                    
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="panel panel-default" ng-show="payment.documents.length>0">
+                                                        <div class="panel-heading">
+                                                            <h4 class="panel-title">
+                <a class="accordion-toggle">Upload Payment documents</a>
+            </h4>
+                                                        </div>
+                                                        <div id="panel2" class="panel-collapse  collapse in">
+                                                            <div class="panel-body">
+																
+                                                                
+															<input type='file' ng-model-instant onchange="angular.element(this).scope().imageUpload(event)" multiple />
+
+			<div ng-repeat="step in stepsModel track by $index">
+				<img class="thumb" ng-src="{{step}}" />
+			</div>
+			
+			<div class="imageuploadify well">
+				<div class="imageuploadify-images-list text-center">
+					<i class="glyph-icon icon-cloud-upload"></i>
+					<span class="imageuploadify-message">Drag and drop files here to upload</span>
+					
+					<button type="button" class="btn btn-default" >or select file to upload</button>
+					
+					
+					<input type='file' style="background: white; color: rgb(0, 188, 164);"
+						ng-model-instant 
+						onchange="angular.element(this).scope().imageUpload(event)" 
+						multiple />
+						
+						
+						
+						
+						
+						
+					<div class="imageuploadify-container" style="margin-left: 21px; margin-right: 0px;">
+						<button type="button" class="btn btn-danger glyphicon glyphicon-remove"></button>
+						<div class="imageuploadify-details" style="opacity: 0;">
+							<span>39092_Happy_birthday_card - Copy.png</span>
+							<span>image/png</span>
+							<span>82517</span>
+						</div>
+						<img src="">
+					</div>
+					<div class="imageuploadify-container" style="margin-left: 21px; margin-right: 0px;">
+						<button type="button" class="btn btn-danger glyphicon glyphicon-remove"></button>
+						<div class="imageuploadify-details" style="opacity: 0;">
+							<span>39092_Happy_birthday_card - Copy.png</span>
+							<span>image/png</span>
+							<span>82517</span>
+						</div>
+						<img src="">
+					</div>
+				</div>
+			</div>
+					
+																			
+																	
+																
+																
+																
+																
+                                                                <div class="space_5"></div>
+                                                                <div class="col-md-4">
+                                                                    <a href="#">View Uploaded details</a>
+                                                                    <div class="clear"></div>
+                                                                    <div class="space_20"></div>
+
+                                                                    <label>Document Type :</label>
+                                                                    <select class="form-control">
+                                                                        <option>Invoice</option>
+                                                                    </select>
+                                                                    <div class="space_10"></div>
+                                                                    <div class="checkbox checkbox-primary">
+                                                                        <label>
+                                                                            <input type="checkbox" id="inlineCheckbox110" class="custom-checkbox"> Email this Document to Payee
+                                                                        </label>
+                                                                    </div>
+                                                                </div> 
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="panel panel-default" ng-show="payment.emailAddress || payment.phoneNumber || payment.messageToPayee">
+                                                        <div class="panel-heading">
+                                                            <h4 class="panel-title">
+                <a class="accordion-toggle">Message To Recipient </a>
+            </h4>
+                                                        </div>
+                                                        <div id="panel3" class="panel-collapse  collapse in">
+                                                            <div class="panel-body">
+
+                                                                <!-- Start Row  -->
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <p class="col-sm-4 control-label">Email Address:</p>
+                                                                            <div class="col-sm-6 marTp7">
+                                                                                <label>{{payment.emailAddress}}</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+
+                                                                    </div>
+                                                                </div>
+                                                                <!-- End Row  -->
+
+                                                                <!-- Start Row  -->
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <p class="col-sm-4 control-label">Mobile:</p>
+                                                                            <div class="col-sm-6 marTp7">
+                                                                                <label>{{payment.phoneNumber | tel}}</label>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="col-md-6">
+
+                                                                    </div>
+
+                                                                </div>
+                                                                <!-- End Row  -->
+                                                                <!-- Start Row  -->
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <p class="col-sm-4 control-label">Message:</p>
+                                                                            <div class="col-sm-6 marTp7">
+                                                                                <label>{{payment.messageToPayee}}</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+
+                                                                    </div>
+
+                                                                </div>
+                                                                <!-- End Row  -->
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="clear"></div>
+										<div class="bg-default content-box text-center pad20A mrg25T">
+                                                <button class="btn btn-md btn-default" ui-sref="home.makePayment.paymentActivity" type="button">Back</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+					<div ng-show="loading">
+						<div class="example-box-wrapper">
+                                <div class="glyph-icon remove-border demo-icon tooltip-button icon-spin-4 icon-spin" title="icon-spin-4"></div>
+                         </div>
+					</div>
+                </div>
+
+                <!-- Theme switcher -->
+                <script type="text/javascript" src="app/assets/widgets/theme-switcher/themeswitcher.js"></script>
+                <script>
+                    jQuery(function($) {
+                        var $active = $('#accordion .panel-collapse.in').prev().addClass('active');
+                        $active.find('a').prepend('<i class="glyphicon glyphicon-minus"></i>');
+                        $('#accordion .panel-heading').not($active).find('a').prepend('<i class="glyphicon glyphicon-plus"></i>');
+                        $('#accordion').on('show.bs.collapse', function(e) {
+                            $('#accordion .panel-heading.active').removeClass('active').find('.glyphicon').toggleClass('glyphicon-plus glyphicon-minus');
+                            $(e.target).prev().addClass('active').find('.glyphicon').toggleClass('glyphicon-plus glyphicon-minus');
+                        })
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</div>

@@ -808,6 +808,11 @@ display: inline-block !important;
 	.selectbx2 { margin: 0px 0px 5px 0px; width: 100%; max-width: 100%;}
 	.slt_label { margin-top: 10px; float: left;}
 	.bigrdo input[type=radio ]:not(old) + label { display: block; margin-left: 0;}
+	.international-amount{padding-left:1% !important;}
+#timerDiv .row .col-xs-6 .content-box{
+	width:100% !important;
+	height:119px !important;
+}
 	
 }
 
@@ -947,9 +952,9 @@ label.boss-label {
 }
 /*-----------------------------------------*/
 .international-amount{
-    padding-left:17%;
+    padding-left:35%;
 }
-.international-amount .col-sm-12 p{
+.international-amount p{
   padding-left: 2%;
 }
 .interBankRadio{
@@ -1008,3 +1013,58 @@ label.boss-label {
     right: 10px; 
 }
 /*--------------------------------------*/
+.border-col{
+	border-color: #00bca4 !important;
+}
+#timerDiv .row .col-xs-6 .content-box{
+	width:80%;
+	margin-top:16px;
+	height:124px;
+}
+#timerDiv .row .col-xs-6 .conten-box-btn{
+	width:80%;
+}
+#timerDiv .row .col-xs-6 .conten-box-btn .getrtBtn{
+	margin-top:117px;
+}
+#timerDiv .row .col-xs-6 .content-box p{
+	text-align:center;
+}
+.marTp7{
+	margin-top:7px;
+}
+#viewPaymentTxt{margin-left:50px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

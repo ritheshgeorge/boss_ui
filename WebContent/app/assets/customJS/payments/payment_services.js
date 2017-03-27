@@ -17,7 +17,7 @@ boss_payment_module.factory('PaymentActivityService', ['$http','$cookies', funct
         }
     };
 }]);
-boss_payment_module.factory('PaymentService', ['$http','$cookies', function($http,$cookies) {
+boss_payment_module.factory('PaymentService', ['$http','$cookies','$rootScope', function($http,$cookies,$rootScope) {
     return {
         getPayment: function(_paymentId) {
            req = {
@@ -34,16 +34,83 @@ boss_payment_module.factory('PaymentService', ['$http','$cookies', function($htt
 		   
 		},
 		
-		make_payment: function(_payment) {
+		make_payment: function(_payment, _recurringPayment) {
+			console.log("I am inside make payment methos Service");
+			console.log(_recurringPayment);
 			req = {
 		        method: 'POST',
 		        url: $cookies.path + 'payment/savePayment',
 		        params: {
-		            paymentJSON: _payment
+		            paymentJSON: _payment,
+					recurringPaymentJSON : _recurringPayment
 		        }
 		    }
 		    return $http(req).success(function(response) {
 				return response.data;
+			});
+		},
+			/*
+			  @Params 
+					ccy1 bankAccount.currency
+					ccy2 payeeAccount.accountCcy
+					dealCcy  dealCcy
+					dealAmount  payment.paymentAmount
+					entityId  //add in Cookies
+					payment Date deliveryMethod
+			 */
+			 
+		requestRate: function(_ccy1, _ccy2, _dealCcy, _dealAmount, _entityId, _paymentDate){
+			req = {
+		        method: 'POST',
+		        url: $cookies.path + 'payment/requestRate',
+		        params: {
+		            ccy1 : _ccy1,
+					ccy2 : _ccy2,
+					dealCcy : _dealCcy,
+					dealAmount : _dealAmount,
+					entityId : _entityId,
+					paymentDate : _paymentDate
+		        }
+		    }
+			 return $http(req).success(function(response) {
+				return response.data;
+			});
+		},
+		getDeliveryMethod : function(_ccy) {
+            req = {
+		        method: 'POST',
+		        url: $cookies.path + 'payment/getPaymentDeliveryMethod',
+		        params: { 
+		            ccy: _ccy
+		        }
+		    }
+			return $http(req).success(function(response) {
+				return response.deliveryMethodList;
+			});
+		},
+		getFees : function(_ccy,_method) {
+            req = {
+		        method: 'GET',
+		        url: $cookies.path + 'payment/getPaymentFees',
+		        params: {
+		            ccy: _ccy,
+					method : _method
+		        }
+		    }
+			return $http(req).success(function(response) {
+				return response;
+			});
+		},
+		getRecurringPayment : function(_id) {
+            req = {
+		        method: 'GET',
+		        url: $cookies.path + 'payment/getRecurringPayment',
+		        params: {
+		            paymentId: _id
+				}
+		    }
+			return $http(req).success(function(response) {
+				return response;
 			});
 		}
     };
@@ -53,32 +120,15 @@ boss_payment_module.factory('PaymentService', ['$http','$cookies', function($htt
 boss_payment_module.factory('AccountService', ['$http','$cookies', function($http,$cookies) {
     return {
 		getFromAccount: function() {
-            /* check this Service If not needed delete this */
+            /* check this Service If not needed delete this 
+			Not used in payment Controller
+			*/
 			return $http.get($cookies.path+'/getFromAccount_list').then(function(response) {
 				return response.data;
         }); 
-        },
-		
-		getDeliveryMethod : function() {
-            var deliveryMethodJSON = [];
-            for (i = 0; i < 3; i++) {
-				var date = new Date();
-                date.setDate(date.getDate() + i);
-                var method = {
-					method : (i==0)?"Wire":(i==1)?"ACH":"Check",
-					time : date,
-					fees : (i==0)?"25":(i==1)?"10":"0",
-					ccy : "USD",
-					description : ((i==0)?"Wire":(i==1)?"ACH":"Check") +" (deliver by " + date.toLocaleDateString() +")",
-				}
-                deliveryMethodJSON.push(method);
-            }
-            return deliveryMethodJSON;
-            /**
-        return $http.get('../getFromAccount_list').then(function(response) {
-          return response.data;
-        }); */
         }
+		
+		
     };
 }]);
 

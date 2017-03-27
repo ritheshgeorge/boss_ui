@@ -54,25 +54,35 @@
                                 </thead>
                                 <tbody>
                                     <tr role="row" class="odd" ng-repeat="activity in paymentActivityList.slice(((tableCurrentPage-1)*tableItemsPerPage), ((tableCurrentPage)*tableItemsPerPage)) | filter:searchPaymentActivity track by $index">
-                                        <td>-</td>
-                                        <td>{{today | date}}</td>
+                                        <td>{{activity.id}}</td>
+                                        <td>{{activity.paymentDate | date}}</td>
                                         <td>{{activity.fromAccount_name}}</td>
                                         <td>{{activity.toAccount_name}}</td>
                                         <td>{{activity.feeCcy}} {{activity.paymentAmount | number : 2}}</td>
                                         <td>
                                             
-									<span ng-if="!activity.isInternational">{{activity.status}}</span>
-									<span ng-if="activity.isInternational">{{activity.status}} <i class="glyph-icon icon-repeat" title="Recurring Payment"></i></span>
+									<span ng-if="!activity.recurringScheduleId">{{activity.status}}</span>
+									<span ng-if="activity.recurringScheduleId">{{activity.status}} <i class="glyph-icon icon-repeat" title="Recurring Payment"></i></span>
 								
                                         </td>
                                         <td>
                                             <input type="checkbox" data-on-color="primary" name="checkbox-example-1" class="input-switch" checked data-size="small" data-on-text="On" data-off-text="Off">
                                         </td>
                                         <td>
-                                            <a ui-sref="home.makePayment.editPayment({paymentId:activity.id})" class="btn btn-xs btn-primary" title="Edit Payment" ng-if="!activity.isInternational">Edit</a>
-                                            <a ui-sref="home.makePayment.editRecurringPayment({paymentId:activity.id})" class="btn btn-xs btn-primary" title="Edit Recurring Payment" ng-if="activity.isInternational"><i class="glyph-icon icon-repeat" title="Recurring Payment"  ></i> Edit</a>
-                                            <!--a href="#" class="btn btn-xs btn-danger" title="">Reject</a-->
-                                        </td>
+											<a ui-sref="home.makePayment.editPayment({paymentId:activity.id})" class="btn btn-xs btn-primary" title="Edit Payment" ng-if="!activity.recurringScheduleId">Edit</a>
+											<a ui-sref="home.makePayment.editRecurringPayment({paymentId:activity.id})" class="btn btn-xs btn-primary" title="Edit Recurring Payment" ng-if="activity.recurringScheduleId"></i> Edit</a>
+                                            <!--div class="btn-group">
+                                                <button class="btn btn-primary btn-xs dropdown-toggle" type="button" data-toggle="dropdown" >
+                                                    Action
+                                                    <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu" role="menu" style="margin-left:-94px;">
+													<li><a ui-sref="home.makePayment.viewPayment({paymentId:activity.id})" title="Edit Payment">View</a></li>
+													<li><a ui-sref="home.makePayment.editPayment({paymentId:activity.id})" title="Edit Payment" ng-if="!activity.recurringScheduleId">Edit</a></li>
+													<li><a ui-sref="home.makePayment.editRecurringPayment({paymentId:activity.id})" title="Edit Recurring Payment" ng-if="activity.recurringScheduleId"></i> Edit</a></li>
+												</ul>
+                                            </div-->
+										</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -146,16 +156,18 @@
                                         <th>To</th>
                                         <th>Amount</th>
                                         <th>Status</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr role="row" class="odd" ng-repeat="activity in recentPaymentActivityList.slice(((recentTableCurrentPage-1)*recentTableItemsPerPage), ((recentTableCurrentPage)*recentTableItemsPerPage)) | filter:searchRecentPaymentActivity track by $index">
-                                        <td>-</td>
-                                        <td>{{today | date}}</td>
+                                        <td>{{activity.id}}</td>
+                                        <td>{{activity.paymentDate | date}}</td>
                                         <td>{{activity.fromAccount_name}}</td>
                                         <td>{{activity.toAccount_name}}</td>
                                         <td>{{activity.feeCcy}} {{activity.paymentAmount | number : 2}}</td>
                                         <td>{{activity.status}}</td>
+                                        <td><a ui-sref="home.makePayment.viewPayment({paymentId:activity.id})" class="btn btn-primary btn-xs" title="Edit Payment">View</a></td>
                                     </tr>
                                 </tbody>
                             </table>

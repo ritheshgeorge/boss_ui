@@ -87,6 +87,32 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
+                                <label class="col-sm-3 control-label">Email Address</label>
+                                <div class="col-sm-6">
+                                    <input name="" type="text" class="form-control" placeholder="ex.test@test.com" ng-model="payment.emailAddress">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="space_10"></div>
+                        </div>
+                    </div>
+					<div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Mobile</label>
+                                <div class="col-sm-6">
+                                    <input name="" type="text" class="form-control" placeholder="(***)-***-****" ng-model="payment.phoneNumber">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="space_10"></div>
+                        </div>
+                    </div>
+					<div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
                                 <label class="col-sm-3 control-label">Message</label>
                                 <div class="col-sm-6">
                                     <textarea name="" rows="3" class="form-control textarea-autosize" ng-model="payment.messageToPayee"></textarea>
@@ -96,7 +122,6 @@
                         <div class="col-md-6">
                             <div class="space_10"></div>
                         </div>
-
                     </div>
 					<div class="space_20"></div>
                                   <div ng-include="'app/templates/commons/two_factor.html'"></div>
