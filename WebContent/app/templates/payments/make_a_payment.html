@@ -330,54 +330,85 @@
                                                         <div id="panel2" class="panel-collapse collapse">
                                                             <div class="panel-body">
 																
-                                                                
-															<input type='file' ng-model-instant onchange="angular.element(this).scope().imageUpload(event)" multiple />
-
-			<div ng-repeat="step in stepsModel track by $index">
-				<img class="thumb" ng-src="{{step}}" />
-			</div>
-			
+            <!----------------------------------------------------------------------->
 			<div class="imageuploadify well">
-				<div class="imageuploadify-images-list text-center">
+				<div class="imageuploadify-images-list text-center" id="dropbox">
 					<i class="glyph-icon icon-cloud-upload"></i>
 					<span class="imageuploadify-message">Drag and drop files here to upload</span>
-					
-					<button type="button" class="btn btn-default" >or select file to upload</button>
-					
-					
-					<input type='file' style="background: white; color: rgb(0, 188, 164);"
-						ng-model-instant 
-						onchange="angular.element(this).scope().imageUpload(event)" 
-						multiple />
-						
-						
-						
-						
-						
-						
-					<div class="imageuploadify-container" style="margin-left: 21px; margin-right: 0px;">
-						<button type="button" class="btn btn-danger glyphicon glyphicon-remove"></button>
+					<label for="fileToUpload" class="btn btn-default" >or select file to upload</label>
+					<input type="file" ng-model-instant id="fileToUpload" multiple onchange="angular.element(this).scope().setFiles(this)" name="" style=" display: none;" />
+					<!-- ng-repeat-->
+					<div ng-show="files.length">
+					<div class="imageuploadify-container" style="margin-left: 21px; margin-right: 0px;" 
+								ng-repeat="file in files track by $index">
+						<button type="button" class="btn btn-danger glyphicon glyphicon-remove" ng-click="removeFiles($index)"></button>
 						<div class="imageuploadify-details" style="opacity: 0;">
-							<span>39092_Happy_birthday_card - Copy.png</span>
-							<span>image/png</span>
-							<span>82517</span>
+							<span>{{file.webkitRelativePath || file.name}}</span>
+							<span>{{file.type}}</span>
+							<span ng-switch="file.size > 1024*1024">
+								<span ng-switch-when="true">{{file.size / 1024 / 1024 | number:2}} MB</span>
+								<span ng-switch-default>{{file.size / 1024 | number:2}} kB</span>
+							</span>
 						</div>
-						<img src="">
+						<img ng-src="app/assets/image-resources/document-icon.png" />
 					</div>
-					<div class="imageuploadify-container" style="margin-left: 21px; margin-right: 0px;">
-						<button type="button" class="btn btn-danger glyphicon glyphicon-remove"></button>
-						<div class="imageuploadify-details" style="opacity: 0;">
-							<span>39092_Happy_birthday_card - Copy.png</span>
-							<span>image/png</span>
-							<span>82517</span>
+					</div>
+					<!-- end -->
+					<div>
+						<div ng-show="progressVisible" >
+							<div class="progress-bar">
+								<div class="uploaded" ng-style="{'width': progress+'%'}"></div>
+							</div>
 						</div>
-						<img src="">
 					</div>
+					
 				</div>
 			</div>
 					
 																			
-																	
+							
+
+<!--
+			<div class="row">
+				<input type="file" ng-model-instant id="fileToUpload" multiple onchange="angular.element(this).scope().setFiles(this)" />
+			</div>
+			<div  class="dropbox" ng-class="dropClass"><span>{{dropText}}</span></div>
+			<div ng-show="files.length">
+				<div ng-repeat="file in files.slice(0)">
+					<span>{{file.webkitRelativePath || file.name}}</span> (
+					<span ng-switch="file.size > 1024*1024">
+							<span ng-switch-when="true">{{file.size / 1024 / 1024 | number:2}} MB</span>
+					<span ng-switch-default>{{file.size / 1024 | number:2}} kB</span>
+					</span>)
+				</div>
+				<input type="button" ng-click="uploadFile()" value="Upload" />
+				<div ng-show="progressVisible">
+					<div class="percent">{{progress}}%</div>
+					<div class="progress-bar">
+						<div class="uploaded" ng-style="{'width': progress+'%'}"></div>
+					</div>
+				</div>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+							
 																
 																
 																
