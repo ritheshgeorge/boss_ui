@@ -67,7 +67,7 @@
                                                     <li ng-if="!payee.isInternational"><a ui-sref="home.makePayment.addAPayee.editDomesticPayee({ payeeId:'{{payee.id}}'})">Edit</a></li><!-- Domestic Payee Edit -->
                                                     <li ng-if="payee.isInternational"><a ui-sref="home.makePayment.addAPayee.editInternationalPayee({ payeeId:'{{payee.id}}'})">Edit</a></li><!-- International Payee Edit -->
                                                 </ul>
-                                            </div> 
+                                            </div> <!--
 											<span ng-if="!payee.isInternational">Domestic</span>
 											<span ng-if="payee.isInternational">International</span>-->
                                         </td>
