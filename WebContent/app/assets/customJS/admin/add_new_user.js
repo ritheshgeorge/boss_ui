@@ -1,6 +1,6 @@
 var app = angular.module('bossApp');
-app.controller('userNewEditCtrl', ['$scope', '$http', '$state','$rootScope','$stateParams','UserNewEditService','EntitlementService', 
-function($scope,$http,$state,$rootScope,$stateParams,UserNewEditService,EntitlementService) {
+app.controller('userNewEditCtrl', ['$scope', '$http', '$state','$rootScope','$stateParams','UserNewEditService','EntitlementService', '$location',
+function($scope,$http,$state,$rootScope,$stateParams,UserNewEditService,EntitlementService,$location) {
     $scope.loading=true;
 	$http.defaults.headers.post["Content-Type"] = "application/json";
 	$scope.entitlement=EntitlementService.createEntitlement();
@@ -50,6 +50,8 @@ function($scope,$http,$state,$rootScope,$stateParams,UserNewEditService,Entitlem
 					$scope.errorMsg = "UserName not available";
 				}
 			});
+		}else{
+			$location.hash('page_start');
 		}
 	}
 	
