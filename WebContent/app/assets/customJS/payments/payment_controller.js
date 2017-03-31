@@ -1,9 +1,8 @@
 var app = angular.module('bossApp');
-app.controller('paymentCtrl', ['$scope', '$rootScope', '$http', '$state', '$interval','$cookies', 'ManagePayeeService', 'AccountSummaryService', 'PaymentService','$anchorScroll', '$location',
-    function($scope, $rootScope, $http, $state, $interval,$cookies , ManagePayeeService, AccountSummaryService, PaymentService,$anchorScroll, $location) {
+app.controller('paymentCtrl', ['$scope', '$rootScope', '$http', '$state', '$interval','$cookies', 'ManagePayeeService', 'AccountSummaryService', 'PaymentService','$anchorScroll', '$location','PaymentDocumentService',
+    function($scope, $rootScope, $http, $state, $interval,$cookies , ManagePayeeService, AccountSummaryService, PaymentService,$anchorScroll, $location,PaymentDocumentService) {
 		$scope.loading = true;
-        $http.defaults.headers.post["Content-Type"] = "application/json";
-		var _user = JSON.parse($cookies.user);
+    	var _user = JSON.parse($cookies.user);
         $scope.paymentProcessed = false;
         $scope.numberOfDecimals = 2;
         $scope.today = new Date();
@@ -32,7 +31,6 @@ app.controller('paymentCtrl', ['$scope', '$rootScope', '$http', '$state', '$inte
             emailAddress: '',
             phoneNumber: '',
             purposeOfPayment: '',
-            documents: {},
         };
         $scope.payment = payment;
 	
@@ -129,15 +127,26 @@ app.controller('paymentCtrl', ['$scope', '$rootScope', '$http', '$state', '$inte
             }
         }
 		
-		 
-		
-		
-        $scope.postPayment = function() {
+		$scope.postPayment = function() {
             var _payment = $scope.payment;
 			var _recurringPayment = $scope.recurringPayment;
-			PaymentService.make_payment(_payment, _recurringPayment).then(function(data) {
-                $state.go('home.makePayment.paymentActivity');
-            });
+			PaymentService.make_payment(_payment, _recurringPayment).then(function(response) {
+				var _files = $scope.files;
+				try {
+					for(var i in _files){
+						var fileObject = _files[i];
+						if(!$rootScope.isUndefined(fileObject)){
+							PaymentDocumentService.uploadDocument(fileObject,response.data.paymentId);
+						}
+					}
+				}
+				catch(err) {
+					console.log(err);
+				} 
+				finally {
+					$state.go('home.makePayment.paymentActivity');
+				}
+			});
         }
         $scope.cancelPayment = function() {
             $state.go("home.makePayment");
@@ -440,65 +449,6 @@ app.controller('paymentCtrl', ['$scope', '$rootScope', '$http', '$state', '$inte
 	$scope.removeFiles = function(_index){
 		 $scope.files.splice(_index, 1);
     };
-	
-    $scope.uploadFile = function() {
-        var fd = new FormData()
-        for (var i in $scope.files) {
-            fd.append("uploadedFile", $scope.files[i])
-        }
-        var xhr = new XMLHttpRequest()
-        xhr.upload.addEventListener("progress", uploadProgress, false)
-        xhr.addEventListener("load", uploadComplete, false)
-        xhr.addEventListener("error", uploadFailed, false)
-        xhr.addEventListener("abort", uploadCanceled, false)
-        xhr.open("POST", "/fileupload")
-        $scope.progressVisible = true
-        xhr.send(fd)
-    }
-
-    function uploadProgress(evt) {
-        $scope.$apply(function(){
-            if (evt.lengthComputable) {
-                $scope.progress = Math.round(evt.loaded * 100 / evt.total)
-            } else {
-                $scope.progress = 'unable to compute'
-            }
-        })
-    }
-
-    function uploadComplete(evt) {
-        /* This event is raised when the server send back a response */
-        alert(evt.target.responseText)
-    }
-
-    function uploadFailed(evt) {
-        alert("There was an error attempting to upload the file.")
-    }
-
-    function uploadCanceled(evt) {
-        $scope.$apply(function(){
-            $scope.progressVisible = false
-        })
-        alert("The upload has been canceled by the user or the browser dropped the connection.")
-    }
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		
 	}]);
