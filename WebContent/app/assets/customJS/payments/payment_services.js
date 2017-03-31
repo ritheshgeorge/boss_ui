@@ -112,6 +112,18 @@ boss_payment_module.factory('PaymentService', ['$http','$cookies','$rootScope', 
 			return $http(req).success(function(response) {
 				return response;
 			});
+		},
+		downloadDocument : function(row) {
+            req = {
+		        method: 'GET',
+		        url: $cookies.path + 'payment/downloadDocumnet',
+		        params: {
+		            documentJSON: row
+				}
+		    }
+			$http(req).success(function(response) {
+					console.log(response);
+			});
 		}
     };
 }]);

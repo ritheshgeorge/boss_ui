@@ -156,88 +156,61 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="panel panel-default" ng-show="payment.documents.length>0">
-                                                        <div class="panel-heading">
-                                                            <h4 class="panel-title">
+     <div class="panel panel-default" ng-show="payment.documents.length>0">
+    <div class="panel-heading">
+        <h4 class="panel-title">
                 <a class="accordion-toggle">Upload Payment documents</a>
             </h4>
-                                                        </div>
-                                                        <div id="panel2" class="panel-collapse  collapse in">
-                                                            <div class="panel-body">
-																
-                                                                
-															<input type='file' ng-model-instant onchange="angular.element(this).scope().imageUpload(event)" multiple />
+    </div>
+    <div id="panel2" class="panel-collapse  collapse in">
+        <div class="panel-body">
 
-			<div ng-repeat="step in stepsModel track by $index">
-				<img class="thumb" ng-src="{{step}}" />
-			</div>
-			
-			<div class="imageuploadify well">
-				<div class="imageuploadify-images-list text-center">
-					<i class="glyph-icon icon-cloud-upload"></i>
-					<span class="imageuploadify-message">Drag and drop files here to upload</span>
-					
-					<button type="button" class="btn btn-default" >or select file to upload</button>
-					
-					
-					<input type='file' style="background: white; color: rgb(0, 188, 164);"
-						ng-model-instant 
-						onchange="angular.element(this).scope().imageUpload(event)" 
-						multiple />
-						
-						
-						
-						
-						
-						
-					<div class="imageuploadify-container" style="margin-left: 21px; margin-right: 0px;">
-						<button type="button" class="btn btn-danger glyphicon glyphicon-remove"></button>
-						<div class="imageuploadify-details" style="opacity: 0;">
-							<span>39092_Happy_birthday_card - Copy.png</span>
-							<span>image/png</span>
-							<span>82517</span>
-						</div>
-						<img src="">
-					</div>
-					<div class="imageuploadify-container" style="margin-left: 21px; margin-right: 0px;">
-						<button type="button" class="btn btn-danger glyphicon glyphicon-remove"></button>
-						<div class="imageuploadify-details" style="opacity: 0;">
-							<span>39092_Happy_birthday_card - Copy.png</span>
-							<span>image/png</span>
-							<span>82517</span>
-						</div>
-						<img src="">
-					</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<table class="table table-striped table-bordered responsive no-wrap datatable-tabletools dataTable no-footer dtr-inline">
+						<thead>
+							<tr>
+								<th>File Name</th>
+								<th>Upload Date</th>
+								<th>Download</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="row in payment.documents">
+								<td>{{row.fileName}}</td>
+								<td>{{row.createTime | date}}</td>
+								<td>
+									<download-document></download-document>
+								</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 			</div>
-					
-																			
-																	
-																
-																
-																
-																
-                                                                <div class="space_5"></div>
-                                                                <div class="col-md-4">
-                                                                    <a href="#">View Uploaded details</a>
-                                                                    <div class="clear"></div>
-                                                                    <div class="space_20"></div>
 
-                                                                    <label>Document Type :</label>
-                                                                    <select class="form-control">
-                                                                        <option>Invoice</option>
-                                                                    </select>
-                                                                    <div class="space_10"></div>
-                                                                    <div class="checkbox checkbox-primary">
-                                                                        <label>
-                                                                            <input type="checkbox" id="inlineCheckbox110" class="custom-checkbox"> Email this Document to Payee
-                                                                        </label>
-                                                                    </div>
-                                                                </div> 
 
-                                                            </div>
-                                                        </div>
-                                                    </div>
+            <div class="space_5"></div>
+            <!--div class="col-md-4">
+                <a href="#">View Uploaded details</a>
+                <div class="clear"></div>
+                <div class="space_20"></div>
+
+                <label>Document Type :</label>
+                <select class="form-control">
+                    <option>Invoice</option>
+                </select>
+                <div class="space_10"></div>
+                <div class="checkbox checkbox-primary">
+                    <label>
+                        <input type="checkbox" id="inlineCheckbox110" class="custom-checkbox"> Email this Document to Payee
+                    </label>
+                </div>
+            </div-->
+
+        </div>
+    </div>
+</div>
                                                     <div class="panel panel-default" ng-show="payment.emailAddress || payment.phoneNumber || payment.messageToPayee">
                                                         <div class="panel-heading">
                                                             <h4 class="panel-title">
