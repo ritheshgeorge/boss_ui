@@ -6,7 +6,7 @@ TwoFA_service.factory('TwoFAService', ['$http','$cookies', function($http,$cooki
 			var _user = JSON.parse($cookies.user);
 			req = {
 		        method: 'GET',
-		        url: $cookies.path + 'TwoFactorAuthentication/is2FARequired',
+		        url: $cookies.path + 'twoFactorAuthentication/is2FARequired',
 		        params: {
 		            entityId: _user.entityId,
 					userId: _user.id,

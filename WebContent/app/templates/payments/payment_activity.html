@@ -66,8 +66,15 @@
 								
                                         </td>
                                         <td>
-                                            <input type="checkbox" data-on-color="primary" name="checkbox-example-1" class="input-switch" checked data-size="small" data-on-text="On" data-off-text="Off">
-                                        </td>
+											
+											<div class="yesnoswitch">
+												<input type="checkbox" name="yesnoswitch" ng-model="activity.isApproved" class="yesnoswitch-checkbox" id="myyesnoswitch{{$index}}" ng-change="approvePayment(activity);">
+												<label class="yesnoswitch-label" for="myyesnoswitch{{$index}}">
+													<span class="yesnoswitch-inner"></span>
+													<span class="yesnoswitch-switch"></span>
+												</label>
+											</div>
+										</td>
                                         <td>
 											<a ui-sref="home.makePayment.editPayment({paymentId:activity.id})" class="btn btn-xs btn-primary" title="Edit Payment" ng-if="!activity.recurringScheduleId">Edit</a>
 											<a ui-sref="home.makePayment.editRecurringPayment({paymentId:activity.id})" class="btn btn-xs btn-primary" title="Edit Recurring Payment" ng-if="activity.recurringScheduleId"></i> Edit</a>
