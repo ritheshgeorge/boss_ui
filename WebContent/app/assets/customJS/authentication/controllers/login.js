@@ -1,7 +1,7 @@
 'use strict';
 angular.module('bossApp')
-.controller('LoginCtrl', [ '$scope', '$state' , '$window', 'Auth','$cookies',
-function($scope, $state, $window, Auth,$cookies ) {
+.controller('LoginCtrl', [ '$scope', '$state' , '$window', 'Auth','$cookies','$rootScope','AUTH_EVENTS',
+function($scope, $state, $window, Auth,$cookies,$rootScope,AUTH_EVENTS) {
 	
 	$scope.credentials = {};
 	$scope.loginForm = {};
@@ -32,7 +32,8 @@ function($scope, $state, $window, Auth,$cookies ) {
 	// log him in again
 	if ($cookies.user) {
 		var credentials = JSON.parse($cookies.user);
-		$scope.login(credentials);
+		$rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+		$state.go('home.dashboard');
 	}
 
 } ]);

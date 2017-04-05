@@ -1,7 +1,9 @@
 var app = angular.module('bossApp');
-app.controller('paymentCtrl', ['$scope', '$rootScope', '$http', '$state', '$interval','$cookies', 'ManagePayeeService', 'AccountSummaryService', 'PaymentService','$anchorScroll', '$location','PaymentDocumentService',
-    function($scope, $rootScope, $http, $state, $interval,$cookies , ManagePayeeService, AccountSummaryService, PaymentService,$anchorScroll, $location,PaymentDocumentService) {
+app.controller('paymentCtrl', ['$scope', '$rootScope', '$http', '$state', '$interval','$cookies', 'ManagePayeeService', 'AccountSummaryService', 'PaymentService','$anchorScroll', '$location','PaymentDocumentService','TwoFAService',
+    function($scope, $rootScope, $http, $state, $interval,$cookies , ManagePayeeService, AccountSummaryService, PaymentService,$anchorScroll, $location,PaymentDocumentService,TwoFAService) {
 		$scope.loading = true;
+		$scope.files = [];
+		$scope.payeeFiles = [];
     	var _user = JSON.parse($cookies.user);
         $scope.paymentProcessed = false;
         $scope.numberOfDecimals = 2;
@@ -31,6 +33,7 @@ app.controller('paymentCtrl', ['$scope', '$rootScope', '$http', '$state', '$inte
             emailAddress: '',
             phoneNumber: '',
             purposeOfPayment: '',
+			isApproved: false,
         };
         $scope.payment = payment;
 	
@@ -115,42 +118,66 @@ app.controller('paymentCtrl', ['$scope', '$rootScope', '$http', '$state', '$inte
 
 
         $scope.makePayment = function() {
-			console.log($scope.documents);
-            if (!$scope.paymentForm.$error.required) {
-                console.log(JSON.stringify($scope.payment));
-                console.log($scope.payment);
-                $scope.paymentProcessed = true;
-				//scroll up
-				 $location.hash('confirmPage');
+			if (!$scope.paymentForm.$error.required) {
+                TwoFAService.is2FARequired($scope.payment.paymentAmount, $scope.payeeAccount.accountCcy, $scope.payment.paymentDate).then(function(response){
+					$scope.twoFARequired = response.data;
+					$scope.paymentProcessed = true;
+					$location.hash('confirmPage');
+				});
 			} else {
                 $scope.formError = true;
             }
         }
-		
+		/**
+		*   Upload Documents for your reference.
+		*/
+		function processNextDocument(paymentId, currentIndex) {
+			var isPayeeDocument = false;
+		    if (currentIndex >= $scope.files.length) {
+		       // $state.go('home.makePayment.paymentActivity');
+			   processNextPayeeDocument(paymentId,0);
+		        return;
+		    }
+		    var _files = $scope.files;
+		    var fileObject = _files[currentIndex]
+		    if (!$rootScope.isUndefined(fileObject)) {
+		        PaymentDocumentService.uploadDocument(fileObject, paymentId,isPayeeDocument).then(function() {
+		            var next = angular.copy(currentIndex + 1);
+		            console.log("next", next);
+		            processNextDocument(paymentId, next);
+		        });
+		    }
+		}
+		/**
+		*   Upload Documents to send it to Payee.
+		*/
+		function processNextPayeeDocument(paymentId, currentIndex) {
+			var isPayeeDocument = true;
+		    if (currentIndex >= $scope.payeeFiles.length) {
+		        $state.go('home.makePayment.paymentActivity');
+		        return;
+		    }
+		    var _files = $scope.payeeFiles;
+		    var fileObject = _files[currentIndex]
+		    if (!$rootScope.isUndefined(fileObject)) {
+		        PaymentDocumentService.uploadDocument(fileObject, paymentId,isPayeeDocument).then(function() {
+		            var next = angular.copy(currentIndex + 1);
+		            console.log("next", next);
+		            processNextPayeeDocument(paymentId, next);
+		        });
+		    }
+		}
+
 		$scope.postPayment = function() {
-            var _payment = $scope.payment;
-			var _recurringPayment = $scope.recurringPayment;
-			PaymentService.make_payment(_payment, _recurringPayment).then(function(response) {
-				var _files = $scope.files;
-				try {
-					for(var i in _files){
-						var fileObject = _files[i];
-						if(!$rootScope.isUndefined(fileObject)){
-							PaymentDocumentService.uploadDocument(fileObject,response.data.paymentId);
-						}
-					}
-				}
-				catch(err) {
-					console.log(err);
-				} 
-				finally {
-					$state.go('home.makePayment.paymentActivity');
-				}
-			});
-        }
-        $scope.cancelPayment = function() {
-            $state.go("home.makePayment");
-        }
+		    var _payment = $scope.payment;
+		    var _recurringPayment = $scope.recurringPayment;
+		    PaymentService.make_payment(_payment, _recurringPayment).then(function(response) {
+		        processNextDocument(response.data.paymentId, 0);
+		    });
+		}
+		$scope.cancelPayment = function() {
+		        $state.go("home.makePayment");
+		}
 
 
         /**
@@ -343,102 +370,39 @@ app.controller('paymentCtrl', ['$scope', '$rootScope', '$http', '$state', '$inte
 				$scope.recurringPayment.lastPaymentDate = _date.toLocaleDateString();
 			}
 		});
-		/******************************************/
-		/** File uploader
-		
-		 $scope.files = []; 
-		  $scope.upload=function(){
-			alert($scope.files.length+" files selected ... Write your Upload Code"); 
-			
-		  };
-		
-		//HTML
-		<input type="file" ng-file-model="files" multiple />
-		<button type="button" ng-click="upload()">Upload</button>
-		
-		<p ng-repeat="file in files">
-		  {{file._file}}
-		  <img src="{{file.name}}">
-		</p>
-		
-		**/
-		
-		
-	 $scope.stepsModel = [];
-
-    $scope.imageUpload = function(event){
-         var files = event.target.files; //FileList object
-         
-         for (var i = 0; i < files.length; i++) {
-             var file = files[i];
-                 var reader = new FileReader();
-                 reader.onload = $scope.imageIsLoaded; 
-                 reader.readAsDataURL(file);
-         }
-    }
-
-    $scope.imageIsLoaded = function(e){
-        $scope.$apply(function() {
-            $scope.stepsModel.push(e.target.result);
-        });
-    }
-		
-		
-		
 	/***************************************************************************************
-	              DRAG and DROP
+	              DRAG and DROP Reference Documents
 	***************************************************************************************/
-	//============== DRAG & DROP =============
-    // source for drag&drop: http://www.webappers.com/2011/09/28/drag-drop-file-upload-with-html5-javascript/
-    var dropbox = document.getElementById("dropbox")
-    $scope.dropText = 'Drop files here...'
-
-    // init event handlers
-    function dragEnterLeave(evt) {
-        evt.stopPropagation()
-        evt.preventDefault()
-        $scope.$apply(function(){
-            $scope.dropText = 'Drop files here...'
-            $scope.dropClass = ''
-        })
-    }
-    dropbox.addEventListener("dragenter", dragEnterLeave, false)
-    dropbox.addEventListener("dragleave", dragEnterLeave, false)
+	var dropbox = document.getElementById("dropbox")
+    
     dropbox.addEventListener("dragover", function(evt) {
-        evt.stopPropagation()
-        evt.preventDefault()
-        var clazz = 'not-available'
+        evt.stopPropagation();
+        evt.preventDefault();
+		console.log("-----Dropbox",evt.dataTransfer.types);
         var ok = evt.dataTransfer && evt.dataTransfer.types && evt.dataTransfer.types.indexOf('Files') >= 0
-        $scope.$apply(function(){
-            $scope.dropText = ok ? 'Drop files here...' : 'Only files are allowed!'
-            $scope.dropClass = ok ? 'over' : 'not-available'
-        })
-    }, false)
+    }, false) 
     dropbox.addEventListener("drop", function(evt) {
         console.log('drop evt:', JSON.parse(JSON.stringify(evt.dataTransfer)))
         evt.stopPropagation()
         evt.preventDefault()
-        $scope.$apply(function(){
+        /*$scope.$apply(function(){
             $scope.dropText = 'Drop files here...'
             $scope.dropClass = ''
-        })
-        var files = evt.dataTransfer.files
+        })*/
+        var files = evt.dataTransfer.files;
         if (files.length > 0) {
             $scope.$apply(function(){
-                $scope.files = []
                 for (var i = 0; i < files.length; i++) {
                     $scope.files.push(files[i])
                 }
             })
         }
     }, false)
-    //============== DRAG & DROP =============
-
     $scope.setFiles = function(element) {
     $scope.$apply(function(scope) {
       console.log('files:', element.files);
       // Turn the FileList object into an Array
-        $scope.files = []
+        //$scope.files = []
         for (var i = 0; i < element.files.length; i++) {
           $scope.files.push(element.files[i])
         }
@@ -449,6 +413,50 @@ app.controller('paymentCtrl', ['$scope', '$rootScope', '$http', '$state', '$inte
 	$scope.removeFiles = function(_index){
 		 $scope.files.splice(_index, 1);
     };
-		
+	/***************************************************************************************
+	              DRAG and DROP Payee Documents
+	***************************************************************************************/
+	var payeeDropbox = document.getElementById("payeeDropbox")
+    
+    payeeDropbox.addEventListener("dragover", function(evt) {
+        evt.stopPropagation();
+        evt.preventDefault();
+		console.log("-----payeeDropbox",evt.dataTransfer.types);
+        var ok = evt.dataTransfer && evt.dataTransfer.types && evt.dataTransfer.types.indexOf('Files') >= 0
+    }, false) 
+    payeeDropbox.addEventListener("drop", function(evt) {
+        evt.stopPropagation()
+        evt.preventDefault()
+        $scope.$apply(function(){
+            $scope.dropText = 'Drop files here...'
+            $scope.dropClass = ''
+        })
+        var payeeFiles = evt.dataTransfer.files;
+		if (payeeFiles.length > 0) {
+            $scope.$apply(function(){
+                for (var i = 0; i < payeeFiles.length; i++) {
+					console.log("payeeFiles",payeeFiles[i]);
+                    $scope.payeeFiles.push(payeeFiles[i])
+                }
+            })
+        }
+		console.log("$scope.payeeFiles",$scope.payeeFiles);
+    }, false)
+    $scope.setPayeeFiles = function(element) {
+    $scope.$apply(function(scope) {
+      console.log('payeeFiles:', element.files);
+      // Turn the FileList object into an Array
+       // $scope.payeeFiles = []
+        for (var i = 0; i < element.files.length; i++) {
+		  console.log("element.files[i]",element.files[i]);
+          $scope.payeeFiles.push(element.files[i]);
+        }
+      scope.progressVisible = false
+      });
+    };
+	
+	$scope.removePayeeFiles = function(_index){
+		 $scope.payeeFiles.splice(_index, 1);
+    };	
 		
 	}]);

@@ -146,13 +146,15 @@ boss_payment_module.factory('AccountService', ['$http','$cookies', function($htt
 
 boss_payment_module.factory('PaymentDocumentService', ['$http','$cookies', function($http,$cookies) {
     return {
-		uploadDocument: function(_file,_paymentId) {
+		uploadDocument: function(_file,_paymentId,_isPayeeDocument) {
 			var _user = JSON.parse($cookies.user);
 			var formData = new FormData();
 			formData.append('paymentId', _paymentId);
             formData.append('leId', _user.entityId);
             formData.append("file", _file);
-            $http.post($cookies.path + 'payment/uploadDocumets', formData, {
+            formData.append("isPayeeDocument", _isPayeeDocument);
+			
+            return $http.post($cookies.path + 'payment/uploadDocumets', formData, {
                 withCredentials: true,
                 headers: {
                     'Content-Type': undefined

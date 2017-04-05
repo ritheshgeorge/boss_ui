@@ -208,7 +208,7 @@
                                                                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#panel1">Repeat this payment</a>
                                                             </h4>
                                                         </div>
-                                                        <div id="panel1" class="panel-collapse collapse in">
+                                                        <div id="panel1" class="panel-collapse collapse">
                                                             <div class="panel-body" ng-style="{height:(openPaymentCal || openFirstPaymentCal || openLastPaymentCal)?'440px':''}">
 
                                                                 <div class="">
@@ -327,14 +327,51 @@
                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#panel2">Upload Payment documents</a>
             </h4>
                                                         </div>
-                                                        <div id="panel2" class="panel-collapse collapse">
+                                                        <div id="panel2" class="panel-collapse collapse in">
                                                             <div class="panel-body">
 																
             <!----------------------------------------------------------------------->
+			<div class="row">
+			<div class="col-xs-6">
+				<div class="imageuploadify well">
+				<div class="imageuploadify-images-list text-center" id="payeeDropbox">
+					<i class="glyph-icon icon-cloud-upload"></i>
+					<span class="imageuploadify-message">Drag and drop files here to <span class="spnbldtxt">send it to Payee</span> </span>
+					<label for="payeeFileToUpload" class="btn btn-default" >or select file to upload</label>
+					<input type="file" ng-model-instant id="payeeFileToUpload" multiple onchange="angular.element(this).scope().setPayeeFiles(this)" name="" style=" display: none;" />
+					<!-- ng-repeat-->
+					<div ng-show="payeeFiles.length">
+					<div class="imageuploadify-container" style="margin-left: 21px; margin-right: 0px;" 
+								ng-repeat="payeeFile in payeeFiles track by $index">
+						<button type="button" class="btn btn-danger glyphicon glyphicon-remove" ng-click="removePayeeFiles($index)"></button>
+						<div class="imageuploadify-details">
+							<span>{{payeeFile.webkitRelativePath || payeeFile.name}}</span>
+							<span>{{payeeFile.type}}</span>
+							<span ng-switch="payeeFile.size > 1024*1024">
+								<span ng-switch-when="true">{{payeeFile.size / 1024 / 1024 | number:2}} MB</span>
+								<span ng-switch-default>{{payeeFile.size / 1024 | number:2}} kB</span>
+							</span>
+						</div>
+						<img ng-src="app/assets/image-resources/document-icon.png" />
+					</div>
+					</div>
+					<!-- end -->
+					<div>
+						<div ng-show="progressVisible" >
+							<div class="progress-bar">
+								<div class="uploaded" ng-style="{'width': progress+'%'}"></div>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			</div>
+			<div class="col-xs-6">
 			<div class="imageuploadify well">
 				<div class="imageuploadify-images-list text-center" id="dropbox">
 					<i class="glyph-icon icon-cloud-upload"></i>
-					<span class="imageuploadify-message">Drag and drop files here to upload</span>
+					<span class="imageuploadify-message">Drag and drop files here for <span class="spnbldtxt">your reference</span> </span>
 					<label for="fileToUpload" class="btn btn-default" >or select file to upload</label>
 					<input type="file" ng-model-instant id="fileToUpload" multiple onchange="angular.element(this).scope().setFiles(this)" name="" style=" display: none;" />
 					<!-- ng-repeat-->
@@ -342,7 +379,7 @@
 					<div class="imageuploadify-container" style="margin-left: 21px; margin-right: 0px;" 
 								ng-repeat="file in files track by $index">
 						<button type="button" class="btn btn-danger glyphicon glyphicon-remove" ng-click="removeFiles($index)"></button>
-						<div class="imageuploadify-details" style="opacity: 0;">
+						<div class="imageuploadify-details">
 							<span>{{file.webkitRelativePath || file.name}}</span>
 							<span>{{file.type}}</span>
 							<span ng-switch="file.size > 1024*1024">
@@ -364,24 +401,11 @@
 					
 				</div>
 			</div>
-				<div class="space_5"></div>
-                                                                <div class="col-md-4">
-                                                                    <a href="#">View Uploaded details</a>
-                                                                    <div class="clear"></div>
-                                                                    <div class="space_20"></div>
-
-                                                                    <label>Document Type :</label>
-                                                                    <select class="form-control">
-                                                                        <option>Invoice</option>
-                                                                    </select>
-                                                                    <div class="space_10"></div>
-                                                                    <div class="checkbox checkbox-primary">
-                                                                        <label>
-                                                                            <input type="checkbox" id="inlineCheckbox110" class="custom-checkbox"> Email this Document to Payee
-                                                                        </label>
-                                                                    </div>
-                                                                </div> 
-
+			</div>
+			</div>
+				
+                               
+											<div class="space_5"></div>
                                                             </div>
                                                         </div>
                                                     </div>

@@ -5,42 +5,7 @@
 	</div>
 
 	<div class="panel">
-		<!--div class="panel-body">
-			<ul class="paydls">
-				<li>
-					<div class="confirm_head">Please Confirm</div>
-				</li>
-				<li>
-					<div class="confirm_smlhead">Pay from Account :</div>
-					<div class="confirm_details">{{payment.bankAccount.accountName}}</div>
-				</li>
-				<li>
-					<div class="confirm_smlhead">Pay to :</div>
-					<div class="confirm_details">{{payment.payee}}</div>
-				</li>
-				<li>
-					<div class="confirm_smlhead">Amount :</div>
-					<div class="confirm_details">{{payment.amount | currency}}</div>
-				</li>
-				<li>
-					<div class="confirm_smlhead">Date :</div>
-					<div class="confirm_details">{{today | date}}</div>
-				</li>
-				<li>
-					<div class="confirm_smlhead">Status :</div>
-					<div class="confirm_details">New</div>
-				</li>
-			</ul>
-
-			<div class="clear"></div>
-			<div class="bg-default content-box text-center pad20A mrg25T">
-				<button class="btn btn-md btn-default" ng-click="cancelPayment()">Cancel</button>
-				<button class="btn btn-md btn-primary" ng-click="cancelPayment()">Payment</button>
-			</div>
-
-		</div>-->
 		<div class="panel-body">
-		
 			<div class="row">
 				<div class="col-xs-12 confirm_head">Please Confirm</div>
 			</div>
@@ -83,13 +48,13 @@
 			
 			<hr class="line" />
                   <div class="space_20"></div>
-                 <div ng-include="'app/templates/commons/two_factor.html'"></div>
+                 <div ng-show="twoFARequired" ng-include="'app/templates/commons/two_factor.html'"></div>
                                             <div class="space_10"></div>
                                             <div class="clear"></div>
 
 			<div class="clear"></div>
 			<div class="bg-default content-box text-center pad20A mrg25T">
-				<button class="btn btn-md btn-primary" ng-disabled="!pinVerified" ng-click="postPayment()">Authorize Payment</button>
+				<button class="btn btn-md btn-primary" ng-disabled="!pinVerified && twoFARequired" ng-click="postPayment()">Authorize Payment</button>
 				<button class="btn btn-md btn-default" ng-click="cancelPayment()">Cancel</button>
 			</div>
 
