@@ -10,7 +10,7 @@ function($http, $rootScope, $window, AUTH_EVENTS,$state,$cookies) {
 	authService.login = function(user, success, error) {
 		var req = {
 		        method: 'GET',
-		        url: $cookies.path + 'TwoFactorAuthentication/authenticateUser',
+		        url: $cookies.path + 'twoFactorAuthentication/authenticateUser',
 		        params: {
 		            userName: user.username,
 					password: user.password

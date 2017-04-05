@@ -35,14 +35,14 @@ boss_payment_module.factory('PaymentService', ['$http','$cookies','$rootScope', 
 		},
 		
 		make_payment: function(_payment, _recurringPayment) {
-			console.log("I am inside make payment methos Service");
-			console.log(_recurringPayment);
+			var _user = JSON.parse($cookies.user);
 			req = {
 		        method: 'POST',
 		        url: $cookies.path + 'payment/savePayment',
 		        params: {
 		            paymentJSON: _payment,
-					recurringPaymentJSON : _recurringPayment
+					recurringPaymentJSON : _recurringPayment,
+					userJSON: $cookies.user
 		        }
 		    }
 		    return $http(req).success(function(response) {
@@ -123,6 +123,19 @@ boss_payment_module.factory('PaymentService', ['$http','$cookies','$rootScope', 
 		    }
 			$http(req).success(function(response) {
 					console.log(response);
+			});
+		},
+		approvePayment : function(_payment) {
+           req = {
+		        method: 'POST',
+		        url: $cookies.path + 'payment/approvePayment',
+		        params: {
+		            paymentJSON: _payment,
+					userJSON: $cookies.user
+		        }
+		    }
+			return $http(req).success(function(response) {
+					return response;
 			});
 		}
     };

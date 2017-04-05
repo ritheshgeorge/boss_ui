@@ -34,7 +34,7 @@ app.controller('paymentCtrl', ['$scope', '$rootScope', '$http', '$state', '$inte
             phoneNumber: '',
             purposeOfPayment: '',
 			isApproved: false,
-        };
+		};
         $scope.payment = payment;
 	
 		$scope.updatedeliveryMethod = function(value) {
@@ -120,7 +120,9 @@ app.controller('paymentCtrl', ['$scope', '$rootScope', '$http', '$state', '$inte
         $scope.makePayment = function() {
 			if (!$scope.paymentForm.$error.required) {
                 TwoFAService.is2FARequired($scope.payment.paymentAmount, $scope.payeeAccount.accountCcy, $scope.payment.paymentDate).then(function(response){
-					$scope.twoFARequired = response.data;
+					console.log(response.data);
+					$scope.twoFARequired = response.data.isApproved;
+					$scope.payment.isApproved = response.data.isApproved;
 					$scope.paymentProcessed = true;
 					$location.hash('confirmPage');
 				});
@@ -170,6 +172,8 @@ app.controller('paymentCtrl', ['$scope', '$rootScope', '$http', '$state', '$inte
 
 		$scope.postPayment = function() {
 		    var _payment = $scope.payment;
+			var payDate = angular.copy(new Date(_payment.paymentDate));
+			_payment.paymentDate = payDate.toLocaleDateString();
 		    var _recurringPayment = $scope.recurringPayment;
 		    PaymentService.make_payment(_payment, _recurringPayment).then(function(response) {
 		        processNextDocument(response.data.paymentId, 0);
