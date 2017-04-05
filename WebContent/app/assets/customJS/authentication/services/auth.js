@@ -8,22 +8,31 @@ function($http, $rootScope, $window, AUTH_EVENTS,$state,$cookies) {
 	
 	//the login function
 	authService.login = function(user, success, error) {
-		$http.post('misc/users.json').success(function(data) {
-		//this is my dummy technique, normally here the 
+		var req = {
+		        method: 'GET',
+		        url: $cookies.path + 'TwoFactorAuthentication/authenticateUser',
+		        params: {
+		            userName: user.username,
+					password: user.password
+		        }
+		    }
+		if(($cookies.user==undefined || $cookies.user=='false') && (user != undefined && user.password != undefined && user.username !=undefined)){
+		$http(req).success(function(data) {
 		//user is returned with his data from the db
-		var users = data.users;
-		if(users[user.username]){
-			var loginData = users[user.username];
+		var users = data;
+		console.log("users",users);
+		if((users!=undefined || user!=null)){
+			var loginData = users;
 			//insert your custom login function here 
-			if(user.username == loginData.username && user.password == loginData.username){
+			if(users.userName===user.username){
 				//set the browser session, to avoid relogin on refresh
 				//$window.sessionStorage["userInfo"] = JSON.stringify(loginData);
-				$cookies.user = JSON.stringify(loginData);
+				loginData.userRole = "admin";
 				//delete password not to be seen clientside 
 				delete loginData.password;
-				
+				$cookies.user = JSON.stringify(loginData);
 				//update current user into the Session service or $rootScope.currentUser
-				$rootScope.currentUser = loginData;
+				//$rootScope.currentUser = loginData;
 				
 				//fire event of successful login
 				$rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
@@ -41,6 +50,7 @@ function($http, $rootScope, $window, AUTH_EVENTS,$state,$cookies) {
 			error();
 		}	
 		});
+		}
 		
 	};
 

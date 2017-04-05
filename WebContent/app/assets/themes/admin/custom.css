@@ -555,16 +555,18 @@ h3.subhead span {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    background: rgba(255, 255, 255, .5);
+    background: rgba(255, 255, 255, .7);
     z-index: 2;
-    opacity: 0
+    opacity: 1
 }
 .imageuploadify .imageuploadify-images-list .imageuploadify-container .imageuploadify-details:hover{
 	opacity: 1 !important;
 }
 
 .imageuploadify .imageuploadify-images-list .imageuploadify-container .imageuploadify-details span {
-    display: block
+    display: block;
+	    color: black;
+    font-weight: bold;
 }
 
 .preview {
@@ -1080,7 +1082,9 @@ table { border-collapse: collapse; }
 .dropbox.over {
     background-color: #bfb;
 }
-
+.spnbldtxt{
+	font-weight:bold;
+}
 
 
 

@@ -25,6 +25,7 @@ app.run(function($rootScope, $state, Auth, AUTH_EVENTS,$cookies) {
 	  });
 	
 	$rootScope.logout = function(){
+		$cookies.user = null;
 		Auth.logout();
 		location.reload();
 	};

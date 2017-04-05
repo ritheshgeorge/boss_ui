@@ -170,6 +170,7 @@
 					<table class="table table-striped table-bordered responsive no-wrap datatable-tabletools dataTable no-footer dtr-inline">
 						<thead>
 							<tr>
+								<th>Document For</th>
 								<th>File Name</th>
 								<th>Upload Date</th>
 								<th>Download</th>
@@ -178,6 +179,15 @@
 						</thead>
 						<tbody>
 							<tr ng-repeat="row in payment.documents">
+								<td>Your Reference</td>
+								<td>{{row.fileName}}</td>
+								<td>{{row.createTime | date}}</td>
+								<td>
+									<download-document></download-document>
+								</td>
+							</tr>
+							<tr ng-repeat="row in payment.payeeDocuments">
+								<td>Payee</td>
 								<td>{{row.fileName}}</td>
 								<td>{{row.createTime | date}}</td>
 								<td>
